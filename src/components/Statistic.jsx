@@ -4,24 +4,21 @@ import cakeFill from '../assets/firstAnimationImages/cake-fill.png'
 import scalesFill from '../assets/firstAnimationImages/scales-fill.png'
 import DashboardApp from './DashboardApp'
 
-const Statistic = () => {
-    const [kkl_1, setKkl_1] = useState(319)
-    const [gr_1, setGr_1] = useState(210)
-    const [kkl_2, setKkl_2] = useState(425)
-    const [gr_2, setGr_2] = useState(210)
-    const [kkl_3, setKkl_3] = useState(920)
-    const [gr_3, setGr_3] = useState(1870)
-
-    const [sum, setSume] = useState(kkl_1 + kkl_2 + kkl_3)
-    const kkl_1Pr = Math.floor((100 * kkl_1) / sum);
-    const kkl_2Pr = Math.floor((100 * kkl_2) / sum);
-    const kkl_3Pr = Math.floor((100 * kkl_3) / sum);
-    const [meals_all, setMeals_all] = useState(3)
-    const [meals_curent, setMeals_curent] = useState(3)
-    const [eaten_gr, setEaten_gr] = useState('2,250')
-    const [left, setLeft] = useState('230')
-
+const Statistic = ({statisticInfo}) => {
     
+    const [gr_1, setGr_1] = useState(statisticInfo.stat.fats)
+    const [gr_2, setGr_2] = useState(statisticInfo.stat.carbohydrates)
+    const [gr_3, setGr_3] = useState(statisticInfo.stat.squirrels)
+
+    const [sum, setSume] = useState(gr_1 + gr_2 + gr_3)
+    const kkl_1Pr = Math.floor((100 * gr_1) / sum);
+    const kkl_2Pr = Math.floor((100 * gr_2) / sum);
+    const kkl_3Pr = Math.floor((100 * gr_3) / sum);
+    const [meals_all, setMeals_all] = useState(statisticInfo.stat.meals.current)
+    const [meals_curent, setMeals_curent] = useState(statisticInfo.stat.meals.total)
+    const [eaten_gr, setEaten_gr] = useState(statisticInfo.stat.eaten)
+    const [left, setLeft] = useState(statisticInfo.stat.left)
+
 
   return (
      <>
@@ -41,21 +38,21 @@ const Statistic = () => {
                   <div className="c_text_1"></div>
                   <h3>Жиры</h3>
                 </div>
-                <h4 className="c_text_h3" id="kkl_j_1">{kkl_1} ккал, {gr_1} гр</h4>
+                <h4 className="c_text_h3" id="kkl_j_1">{gr_1} гр</h4>
               </div>
               <div className="j_1_ypr j_1_yp_2">
                 <div className="c_text">
                   <div className="c_text_2"></div>
                   <h3>Углеводы</h3>
                 </div>
-                <h4 className="c_text_h3" id="kkl_j_2">{kkl_2} ккал, {gr_2} гр</h4>
+                <h4 className="c_text_h3" id="kkl_j_2">{gr_2} гр</h4>
               </div>
               <div className="j_1_ypr j_1_yp_2 ">
                 <div className="c_text">
                   <div className="c_text_3"></div>
                   <h3>Белки</h3>
                 </div>
-                <h4 className="c_text_h3" id="kkl_j_3">{kkl_3} ккал, {gr_3} гр</h4>
+                <h4 className="c_text_h3" id="kkl_j_3">{gr_3} гр</h4>
               </div>
             </div>
           </div>

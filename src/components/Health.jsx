@@ -12,7 +12,7 @@ import icon_5 from '../assets/icon5.svg'
 import icon_5_1 from '../assets/icon_5_1.svg'
 import '../styles/health.css'
 
-const Health = () => {
+const Health = ({onChangeData}) => {
     const [items,setItems] = useState([
         {
             id:1,
@@ -55,17 +55,24 @@ const Health = () => {
             name: 'Аллергия',
         },
     ])
-
     const selectItem = (id) => {
+        const newDatan = []
         setItems(items.map((item)=>{
             if(item.id === id){
+                if (!item.selected){    
+                    newDatan.push(item.name)
+                }
                 return {
                     ...item,
                     selected: !item.selected
                 }
             }
+             if (item.selected) {
+                 newDatan.push(item.name)
+             }
             return item
         }))
+        onChangeData("health", newDatan)
     }
 
   return (

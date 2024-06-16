@@ -12,7 +12,7 @@ import icon_5 from '../assets/run.svg'
 import icon_5_1 from '../assets/run2.svg'
 import '../styles/health.css'
 
-const Purpose = () => {
+const Purpose = ({onChangeData}) => {
     const [items,setItems] = useState([
         {
             id:1,
@@ -50,22 +50,30 @@ const Purpose = () => {
             id:5,
             selected:false,
             icon:icon_5,
-            icon:icon_5_1,
+            icon2:icon_5_1,
             img:vector,
             name: 'Улучшение спортивных результатов',
         },
     ])
 
-    const selectItem = (id) => {
+     const selectItem = (id) => {
+        const newDatan = []
         setItems(items.map((item)=>{
             if(item.id === id){
+                if (!item.selected){    
+                    newDatan.push(item.name)
+                }
                 return {
                     ...item,
                     selected: !item.selected
                 }
             }
+             if (item.selected) {
+                 newDatan.push(item.name)
+             }
             return item
         }))
+        onChangeData("goals", newDatan)
     }
 
   return (

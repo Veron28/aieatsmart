@@ -17,7 +17,7 @@ import orange from '../assets/orange.svg';
 import rice from '../assets/rice.svg';
 import rchocolateice from '../assets/chocolate.svg';
 
-const Preferences = () => {
+const Preferences = ({onChangeData}) => {
 
     const [items, setItems] = useState([
         {
@@ -127,17 +127,25 @@ const Preferences = () => {
         },
     ])
 
-    const selectItem = (id) => {
-        setItems(items.map((item) => {
-            if (item.id === id) {
-                return {
-                    ...item,
-                    selected: !item.selected
-                }
-            }
-            return item
-        }))
-    }
+     const selectItem = (id) => {
+         const newDatan = []
+         setItems(items.map((item) => {
+             if (item.id === id) {
+                 if (!item.selected) {
+                     newDatan.push(item.name)
+                 }
+                 return {
+                     ...item,
+                     selected: !item.selected
+                 }
+             }
+             if (item.selected) {
+                 newDatan.push(item.name)
+             }
+             return item
+         }))
+         onChangeData("preferences", newDatan)
+     }
 
   return (
     <>

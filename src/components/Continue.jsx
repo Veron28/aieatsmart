@@ -3,7 +3,6 @@ import Button from './commands/Button'
 import '../styles/continue.css'
 
 const Continue = ({step,onClick}) => {
-  console.log('step', step)
   return (
     <div className='button_section'>
       {

@@ -70,6 +70,7 @@
           background-color: #9C6AF9;
         }
         #gender{
+          color:#000;
             appearance: none;
             -webkit-appearance: none; 
             -moz-appearance: none;

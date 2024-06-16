@@ -1,17 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-const Popaps = ({ showpopUp1, showpopUp2, showpopUp3, cloasePop }) => {
+const Popaps = ({ onChangeData,showpopUp1, showpopUp2, showpopUp3, cloasePop }) => {
   const [selectedWeight, setSelectedWeight] = useState(null);
   const [selectedWeight2, setSelectedWeight2] = useState(null);
   const [selectedWeight3, setSelectedWeight3] = useState(null);
   const [selectedWeight4, setSelectedWeight4] = useState(null);
   const [selectedWeight5, setSelectedWeight5] = useState(null);
+  const [kg, setKg] = useState('kg');
 
   const weightPickerRef = useRef();
   const weightPicker2Ref = useRef();
   const weightPicker21Ref = useRef();
   const weightPicker22Ref = useRef();
   const weightPicker31Ref = useRef();
+
+
+  const onChangeKg = (e) =>{
+    setKg(e.target.value)
+  }
 
   useEffect(() => {
     const initializePickers = () => {
@@ -128,7 +134,8 @@ const Popaps = ({ showpopUp1, showpopUp2, showpopUp3, cloasePop }) => {
 
   const handleConfirm = () => {
     if (selectedWeight && selectedWeight2) {
-      document.getElementById('weight').innerText = Number(selectedWeight + '.' + selectedWeight2) + 'кг';
+      document.getElementById('weight').innerText = Number(selectedWeight + '.' + selectedWeight2) + kg;
+      onChangeData('weight', Number(selectedWeight + '.' + selectedWeight2) + kg)
     }
     cloasePop();
   };
@@ -136,6 +143,7 @@ const Popaps = ({ showpopUp1, showpopUp2, showpopUp3, cloasePop }) => {
   const handleConfirm2 = () => {
     if (selectedWeight3 && selectedWeight4) {
       document.getElementById('height').innerText = Number(selectedWeight3 + '.' + selectedWeight4) + 'см';
+      onChangeData('height', Number(selectedWeight3 + '.' + selectedWeight4) + 'см')
     }
     cloasePop();
   };
@@ -143,6 +151,7 @@ const Popaps = ({ showpopUp1, showpopUp2, showpopUp3, cloasePop }) => {
   const handleConfirm3 = () => {
     if (selectedWeight5) {
       document.getElementById('age').innerText = Number(selectedWeight5) + 'лет';
+      onChangeData('age', Number(selectedWeight5) + 'лет')
     }
     cloasePop();
   };
@@ -157,9 +166,9 @@ const Popaps = ({ showpopUp1, showpopUp2, showpopUp3, cloasePop }) => {
               <h3>Ваш вес</h3>
             </div>
             <div className="option_1">
-              <select id="gender_1" name="gender_1">
-                <option value="kg">Килограммы</option>
-                <option value="fn">Фунты</option>
+              <select id="gender_1" name="gender_1" onChange={onChangeKg}>
+                <option value="кг">Килограммы</option>
+                <option value="фу">Фунты</option>
               </select>
             </div>
             <div className="weight-picker-section">
@@ -175,7 +184,7 @@ const Popaps = ({ showpopUp1, showpopUp2, showpopUp3, cloasePop }) => {
                 <div className="highlight_2"></div>
               </div>
               <div className="comma" id="comma_type">
-                <span>кг</span>
+                <span>{kg}</span>
               </div>
             </div>
             <div className="buttons">

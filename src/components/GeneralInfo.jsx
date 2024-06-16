@@ -3,9 +3,11 @@ import '../styles/generalInfo.css'
 import downArrow from '../assets/down-arrow-svgrepo-com.svg'
 
 const GeneralInfo = ({
+  onChangeData,
     openPopupButton1,
     openPopupButton2, 
-    openPopupButton3}) => {
+    openPopupButton3,
+    }) => {
   return (
     <div>
         <h1 className="greeting">Основное</h1>
@@ -13,7 +15,9 @@ const GeneralInfo = ({
             сможем вам помочь:</h2>
           <div className="option1">
             <span>Пол:</span>
-            <select id="gender" name="gender">
+            <select id = "gender"
+            name = "gender"
+            onChange={(e)=>onChangeData('gender',e.target.value)} >
               <option value="male">Мужской</option>
               <option value="female">Женский</option>
             </select>

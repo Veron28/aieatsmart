@@ -25,7 +25,8 @@ const Button = ({
                         onClick = { variante === 'standart' && step === 7 ? null : variante !== 'standart' && step === 7 ?
                             onClick : onClick
                         } > {
-                            step === 6 ? 'Готово' : step === 7 && variante === 'standart' ? 'Открыть чат' : label
+                            step === 6 ? 'Готово' : step === 7 && variante === 'standart' ? 'Открыть чат' : step === 8 && variante === 'standart' ? 'Открыть чат':
+                            label
                         }
                         {
                             step === 6 && icon === 'arrow' ?
