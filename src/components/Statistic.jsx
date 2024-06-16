@@ -5,7 +5,6 @@ import scalesFill from '../assets/firstAnimationImages/scales-fill.png'
 import DashboardApp from './DashboardApp'
 
 const Statistic = ({statisticInfo}) => {
-    console.log('statisticInfo', statisticInfo)
     const [gr_1, setGr_1] = useState(statisticInfo?.stat?.fats ? statisticInfo?.stat?.fats : '')
     const [gr_2, setGr_2] = useState(statisticInfo?.stat?.carbohydrates ? statisticInfo?.stat?.carbohydrates :'')
     const [gr_3, setGr_3] = useState(statisticInfo?.stat?.squirrels ?  statisticInfo?.stat?.squirrels : '')
@@ -59,7 +58,7 @@ const Statistic = ({statisticInfo}) => {
           <div className="j_2">
             <div className="j_2_i">
               <div className="j_2_i_c">
-                <img src={cakeFill} />
+                <img src={cakeFill} alt='img' />
               </div>
               <div className="j_2_i_text">
                 <h2 id="meals_all">{meals_all}</h2>
@@ -69,7 +68,7 @@ const Statistic = ({statisticInfo}) => {
             </div>
             <div className="j_2_i">
               <div className="j_2_i_c">
-                <img src={scalesFill} />
+                <img src={scalesFill} alt='img' />
               </div>
               <div className="j_2_i_text">
                 <h2 id="eaten">{eaten_gr}</h2>

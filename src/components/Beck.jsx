@@ -7,7 +7,7 @@ const Beck = ({step,onClick}) => {
     <div>
       {
         step !== 1 && <button className='beck_button' onClick={onClick}>
-          <img src={chevronLeftSvg} />
+          <img src={chevronLeftSvg} alt='chevronLeftSvg' />
           Назад
         </button> 
       }      

@@ -166,10 +166,10 @@ const Preferences = ({onChangeData}) => {
                                     () => selectItem(item.id)
                                 } >
                                     <div className='preference-card-img' >
-                                        <img src={item.img} />
+                                        <img src={item.img}  alt='img' />
                                     </div>
                                     <div className="preference-card_img">
-                                        <img src={item.icon} />
+                                        <img src={item.icon} alt='img'  />
                                     </div>
                                     <div className="preference-title">{item.name}</div>
                                 </div>

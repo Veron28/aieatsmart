@@ -29,10 +29,10 @@ const Button = ({
                         }
                         {
                             step === 6 && icon === 'arrow' ?
-                                <img src={Vector} alt="Icon" className="button-icon" />
+                                <img src={Vector} alt="Icon" alt='img' className="button-icon" />
                                 :
                             icon === 'arrow' ? 
-                                <img src={arrow} alt="Icon" className="button-icon" />
+                                <img src={arrow} alt="Icon" alt='img' className="button-icon" />
                             : <></>    
                             }
                         <div style = {

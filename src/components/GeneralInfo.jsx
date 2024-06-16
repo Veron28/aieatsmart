@@ -27,7 +27,7 @@ const GeneralInfo = ({
             <span>Вес:</span>
             <div>
               <span id="weight">Выберите вес</span>
-              <img src={downArrow} />
+              <img alt='img'  src={downArrow} />
             </div>
           </div>
           <div onClick ={openPopupButton2}
@@ -36,7 +36,7 @@ const GeneralInfo = ({
             <span>Рост:</span>
             <div>
               <span id="height">Выберите рост</span>
-              <img src={downArrow} />
+              <img alt='img' src={downArrow} />
             </div>
           </div>
           <div onClick = {openPopupButton3}
@@ -45,7 +45,7 @@ const GeneralInfo = ({
             <span>Возраст:</span>
             <div>
               <span id="age">Выберите возраст</span>
-              <img src={downArrow} />
+              <img alt='img' src={downArrow} />
             </div>
           </div>
     </div>

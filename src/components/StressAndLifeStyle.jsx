@@ -35,7 +35,7 @@ const  StressAndLifeStyle = ({onChangeData}) => {
     if (valueBubbleRef.current) {
       valueBubbleRef.current.style.left = `calc(${newValue}% + (${newPosition}px))`;
     }
-    if (left == 0) {
+    if (left === 0) {
       valueBubbleRef.current.style.left = '0'
     }
   };
@@ -101,8 +101,6 @@ const  StressAndLifeStyle = ({onChangeData}) => {
                       left > 50 && left <= 70 ? '-96px' :
                         left > 70 && left < 90 ? '-128px' : ''
               }
-
-              // left === 20 ? '-32px' : left === 40 ? '-64px' : left === 60 ? '-96px' : left === 80 ? '-128px': '0px'
             } >
             <div className='level'>Минимальный</div>
             <div className='level'>Небольшой</div>

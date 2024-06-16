@@ -91,7 +91,6 @@ const Welcom = () => {
        window.Telegram.WebApp.expand();
        let initData = window.Telegram.WebApp.initData || '';
        setToken(initData)
-       let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
        getUser(initData)

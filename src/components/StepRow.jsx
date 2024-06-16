@@ -14,11 +14,11 @@ const StepRow = ({step}) => {
         <div className="steps" id="steps">
           {
             step < 7 ?(<>
-              <div className={` steps_item ${step == 2 ? 'steps_item_active': step > 2 ?'steps_item_active_2' : ''}`} ></div>
-              <div className={` steps_item ${step == 3 ? 'steps_item_active': step > 3 ?'steps_item_active_2' : ''}`} ></div>
-              <div className={` steps_item ${step == 4 ? 'steps_item_active': step > 4 ?'steps_item_active_2' : ''}`} ></div>
-              <div className={` steps_item ${step == 5 ? 'steps_item_active': step > 5 ?'steps_item_active_2' : ''}`} ></div>
-              <div className={` steps_item ${step == 6 ? 'steps_item_active': ''}`} ></div>
+              <div className={` steps_item ${step === 2 ? 'steps_item_active': step > 2 ?'steps_item_active_2' : ''}`} ></div>
+              <div className={` steps_item ${step === 3 ? 'steps_item_active': step > 3 ?'steps_item_active_2' : ''}`} ></div>
+              <div className={` steps_item ${step === 4 ? 'steps_item_active': step > 4 ?'steps_item_active_2' : ''}`} ></div>
+              <div className={` steps_item ${step === 5 ? 'steps_item_active': step > 5 ?'steps_item_active_2' : ''}`} ></div>
+              <div className={` steps_item ${step === 6 ? 'steps_item_active': ''}`} ></div>
             </>
             )
             : <></>
@@ -28,19 +28,19 @@ const StepRow = ({step}) => {
         <div className="steps_row_icon" id="steps_row_icon">
             {
             step === 2 ?
-                 <img id="steps_row_icon_img" src={Vector9} />
+                 <img id="steps_row_icon_img" alt='img'  src={Vector9} />
             :
             step === 3 ?
-                 <img id="steps_row_icon_img" src={Vector10} />
+                 <img id="steps_row_icon_img" alt='img'  src={Vector10} />
             :
              step === 4 ?
-                 <img id="steps_row_icon_img" src={Vector11} />
+                 <img id="steps_row_icon_img" alt='img'  src={Vector11} />
             :
             step === 5 ?
-                <img id="steps_row_icon_img" src={Vector12} />
+                <img id="steps_row_icon_img"  alt='img' src={Vector12} />
             :
              step === 6 ? 
-                 <img id="steps_row_icon_img" src={Vector13} />
+                 <img id="steps_row_icon_img"  alt='img' src={Vector13} />
                 : <></>
             }          
         </div>

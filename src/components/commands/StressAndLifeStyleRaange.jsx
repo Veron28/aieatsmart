@@ -34,7 +34,7 @@ const StressAndLifeStyleRaange = ({onChangeData}) => {
     if (valueBubbleRef1.current) {
       valueBubbleRef1.current.style.left = `calc(${newValue}% + (${newPosition}px))`;
     }
-    if (left == 0) {
+    if (left === 0) {
       valueBubbleRef1.current.style.left = '0'
     }
   };
