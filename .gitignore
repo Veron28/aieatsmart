@@ -28,6 +28,6 @@ env
 pycache
 *.sqlite3
 static
-# .env
+.env
 .env.development
 .env.production
