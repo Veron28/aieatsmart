@@ -43,18 +43,12 @@ const Welcom = () => {
     })
   }
 
-  useEffect(()=>{
-    if(step === 7){
-      addUser(token)
-    }
-  }, [dataForNewUser])
-
   const addUser = async (initData) => {
     if(!newUserIsAdded){
       const headers = {
         'Authorization': `Bearer ${initData}`
       }
-      const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/add_user_data`, {dataForNewUser}, headers)
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/add_user_data`, {dataForNewUser}, headers)
       setNewUserIsAdded(true)
     }
   }
@@ -110,6 +104,9 @@ const Welcom = () => {
 
   const onClickNextStep = ()=>{
     if (step <8){
+      if (step === 7) {
+        addUser(token)
+      }
       setStep(step + 1)
     }
   }

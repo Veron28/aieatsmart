@@ -1,4 +1,4 @@
-import React,{useEffect, useState,useRef} from 'react'
+import React,{useState,useRef} from 'react'
 import '../styles/stressAndLifeStyle.css'
 import StressAndLifeStyleRaange from './commands/StressAndLifeStyleRaange'
 
@@ -23,11 +23,8 @@ const  StressAndLifeStyle = ({onChangeData}) => {
     } else {
       setValue(5)
     }
-  }
-
-  useEffect(() => {
     updateBubblePosition()
-  }, [left])
+  }
 
   const updateBubblePosition = () => {
     const newValue = Number((left) * 100 / (100 - 0));
@@ -77,6 +74,7 @@ const  StressAndLifeStyle = ({onChangeData}) => {
       setValue(5)
     }
     onChangeData('stressLevel', stressLevel)
+    updateBubblePosition()
   };
 
 
