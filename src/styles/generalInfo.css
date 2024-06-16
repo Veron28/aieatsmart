@@ -1,0 +1,80 @@
+.greeting{
+    font-size: 32px;
+    line-height: 36px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+    .under_greeting{
+    margin-top: 4px;
+    font-weight: normal;
+    font-size: 14px;
+    color: #8F8F8F;
+    margin-bottom: 20px;
+}
+ .option1 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin: 0px 10px 20px;
+      cursor: pointer; /* Делаем курсор указателем при наведении */
+      transition: background-color 0.3s, color 0.3s; /* Добавляем плавные анимации при наведении */
+    }
+
+    .option1 span {
+      font-size: 16px; /* Размер текста */
+    }
+    .option1 > div {
+     display: flex;
+    align-items: center;
+    }
+    .option1 > div >img{
+      margin-top: 1px;
+      width: 20px;
+      margin-left: 10px;
+      margin-right: 12px;
+    }
+
+    .option1 select,
+    .option1 input[type="number"] {
+      flex-grow: 1;
+      padding: 8px;
+      border: none; /* Убираем рамку */
+      border-radius: 0; /* Убираем бордер радиус */
+      border-bottom: 1px solid #ccc; /* Добавляем нижнюю границу */
+      font-size: 14px;
+      margin-left: 10px;
+    }
+    .option_1{
+      display: flex;
+      justify-content: center;
+    }
+    .option_1 select,
+    .option_1 input[type="number"] {
+      flex-grow: 1;
+      text-align:center;
+      padding: 8px;
+      text-align:center;
+      border: none; /* Убираем рамку */
+      border-radius: 0; /* Убираем бордер радиус */
+      font-size: 14px;
+      margin-left: 10px;
+     outline: none;
+      max-width: 120px;
+    }
+
+#gender{
+    max-width: 120px;
+    border:none;
+    appearance: none;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    background: url('../assets/down-arrow-svgrepo-com.svg') no-repeat right 10px center;
+    background-size: 20px; 
+    padding: 10px;
+    padding-right: 40px; 
+    border-radius: 5px; 
+    font-size: 16px; 
+}

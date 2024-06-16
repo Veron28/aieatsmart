@@ -1,0 +1,170 @@
+.range
+{
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.1);
+  margin: 20px 0;
+}
+.sliderValue
+{
+  position: relative;
+  width: 100%;
+}
+.sliderValue span
+{
+  position: absolute;
+  height: 45px;
+  width: 45px;
+  transform: translateX(-70%) scale(0);
+  font-weight: 500;
+  top: -40px;
+  line-height: 55px;
+  z-index: 2;
+  color: #fff;
+  transform-origin: bottom;
+  transition: transform 0.5s ease-in-out;
+}
+.sliderValue span.show
+{
+  transform: translateX(-70%) scale(1);
+}
+.sliderValue span:after
+{
+  position: absolute;
+  content: '';
+  height: 100%;
+  width: 100%;
+  background: #664AFF;
+  border: 3px solid #fff;
+  z-index: -1;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  border-bottom-left-radius: 50%;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+}
+.field
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+.field .value
+{
+  font-size: 18px;
+  color: #8F8F8F;
+  font-weight: 100;
+}
+.range input
+{
+  -webkit-appearance: none;
+  width: 100%;
+  height: 0px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  z-index: 2222;
+  margin: 0 6px;
+}
+.range input::-webkit-slider-thumb
+{
+-webkit-appearance: none;
+width: 25px;
+height: 25px;
+background: red;
+border-radius: 50%;
+background: #9C6AF9;
+border: 3px solid #ffffff;
+cursor: pointer;
+}
+.range input::-moz-range-thumb
+{
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+  background: #9C6AF9;
+  border: 1px solid #9C6AF9;
+  cursor: pointer;
+}
+.range input::-moz-range-progress
+{
+  background: #9C6AF9;
+}
+.title
+{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.level_title
+{
+    font-size: 14px;
+}
+.levels_name
+{
+    overflow: hidden;
+    height: 20px;
+    width:120px;
+    text-align: right;
+    position: relative;
+}
+.levels_name > .levels > div
+{
+    color: #9C6AF9;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+.levels
+{
+    position: absolute;
+    transition: all 0.5s ease 0s;
+}
+
+.line{
+    position: absolute;
+    display: flex;
+    width: 90%;
+    transition: all 0.5s ease 0s;
+    justify-content: space-around;
+}
+
+.cirkul{
+    transition: all 0.5s ease 0s;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color:#DBDBDB; 
+}
+.lin{
+    transition: all 0.5s ease 0s;
+   width: 60px;
+    height: 4px;
+    background-color:#DBDBDB;  
+}
+.info_text{
+    margin: 20px 4px 0;
+    color: #B7B7B7;
+    transition: all .5s ease;
+}
+.info_text >span{
+    transition: all .5s ease;
+}
+.range-value {
+  position: absolute;
+  background: #fff;
+  padding: 2px 5px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+}
+.field_range-cirkule{
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+}
