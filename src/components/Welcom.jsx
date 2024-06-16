@@ -44,7 +44,6 @@ const Welcom = () => {
   }
 
   useEffect(()=>{
-    getStatisticInfo('%7B%22id%22%3A963717429%2C%22first_name%22%3A%22Mher%22%2C%22last_name%22%3A%22Janikyan%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%7D&chat_instance=2702432507875626646&chat_type=private&auth_date=1718557604&hash=f54fb30841a05211b7fe30de5ca845881094f94ab0ba3bf11ec3c558e8826c64')
     if(step === 7){
       addUser(token)
     }
@@ -95,7 +94,7 @@ const Welcom = () => {
        let initDataUnsafe = window.Telegram.WebApp.initDataUnsafe || {};
        window.Telegram.WebApp.setBackgroundColor('#EFEEF4');
        window.Telegram.WebApp.ready();
-      //  getUser(initData)
+       getUser(initData)
      }
    };
 

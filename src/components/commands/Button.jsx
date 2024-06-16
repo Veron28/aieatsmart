@@ -11,7 +11,6 @@ const Button = ({
         step, 
         classN
     }) => {
-        console.log(classN)
   return (
     <>
                     <div className = {
