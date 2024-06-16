@@ -5,19 +5,19 @@ import scalesFill from '../assets/firstAnimationImages/scales-fill.png'
 import DashboardApp from './DashboardApp'
 
 const Statistic = ({statisticInfo}) => {
-    
-    const [gr_1, setGr_1] = useState(statisticInfo.stat.fats)
-    const [gr_2, setGr_2] = useState(statisticInfo.stat.carbohydrates)
-    const [gr_3, setGr_3] = useState(statisticInfo.stat.squirrels)
+    console.log('statisticInfo', statisticInfo)
+    const [gr_1, setGr_1] = useState(statisticInfo?.stat?.fats ? statisticInfo?.stat?.fats : '')
+    const [gr_2, setGr_2] = useState(statisticInfo?.stat?.carbohydrates ? statisticInfo?.stat?.carbohydrates :'')
+    const [gr_3, setGr_3] = useState(statisticInfo?.stat?.squirrels ?  statisticInfo?.stat?.squirrels : '')
 
     const [sum, setSume] = useState(gr_1 + gr_2 + gr_3)
     const kkl_1Pr = Math.floor((100 * gr_1) / sum);
     const kkl_2Pr = Math.floor((100 * gr_2) / sum);
     const kkl_3Pr = Math.floor((100 * gr_3) / sum);
-    const [meals_all, setMeals_all] = useState(statisticInfo.stat.meals.current)
-    const [meals_curent, setMeals_curent] = useState(statisticInfo.stat.meals.total)
-    const [eaten_gr, setEaten_gr] = useState(statisticInfo.stat.eaten)
-    const [left, setLeft] = useState(statisticInfo.stat.left)
+    const [meals_all, setMeals_all] = useState(statisticInfo?.stat?.meals?.current ? statisticInfo?.stat?.meals?.current :'')
+    const [meals_curent, setMeals_curent] = useState(statisticInfo?.stat?.meals?.total ? statisticInfo?.stat?.meals?.total : '')
+    const [eaten_gr, setEaten_gr] = useState(statisticInfo?.stat?.eaten ? statisticInfo?.stat?.eaten : '')
+    const [left, setLeft] = useState(statisticInfo?.stat?.left ? statisticInfo?.stat?.left : '')
 
 
   return (
