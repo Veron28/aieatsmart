@@ -1,6 +1,8 @@
-FROM node:18-alpine
+FROM node:21.4.0-bullseye
 WORKDIR /app
-COPY . .
+COPY package*.json ./
 RUN npm install
-CMD ["npm", "run" , "start"]
+COPY . .
+RUN npm run build
 EXPOSE 3000
+CMD ["npm", "start"]
