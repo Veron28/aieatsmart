@@ -2,7 +2,7 @@ version: "3.2"
 services:
   nginx_server:
     build:
-      context: ./nginx
+      context: ./conf/nginx
       dockerfile: Dockerfile
     depends_on:
       - tgfront
