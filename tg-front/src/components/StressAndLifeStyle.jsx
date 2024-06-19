@@ -96,7 +96,7 @@ const  StressAndLifeStyle = ({onChangeData}) => {
                 top: left <= 10 ? '0px' :
                   left > 10 && left <= 30 ? '-32px' :
                     left > 30 && left <= 50 ? '-64px' :
-                      left > 50 && left <= 70 ? '-96px' :
+                      left > 50 && left <= 76 ? '-96px' :
                         left > 76 && left <= 100 ? '-128px' : ''
               }
             } >

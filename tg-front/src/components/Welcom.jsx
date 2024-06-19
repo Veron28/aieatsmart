@@ -226,7 +226,7 @@ const Welcom = () => {
         !loading ? (
         <>
         <div>
-            <Beck step={step} onClick={onClickBeckStep} />
+            {/* <Beck step={step} onClick={onClickBeckStep} /> */}
            {
              showContetn()
            }
