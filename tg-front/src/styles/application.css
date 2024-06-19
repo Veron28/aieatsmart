@@ -1,0 +1,21 @@
+@import url("telegram.css");
+@import url("typography.css");
+
+body,
+#root,
+.main {
+    width: 100%;
+    min-height: 100dvh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* This is just to show borders to the main app */
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}

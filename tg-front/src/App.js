@@ -1,15 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import Welcom from './components/Welcom';
+import "./styles/application.css"
 
-function App() {
-  return (
-    <div className="conatiner">
-      <div className="main">
-        <Welcom />
-      </div>
-    </div>
-  );
+import WizardPage from "./features/setup_wizard/pages/WizardPage"
+
+export default function App() {
+    return (
+        <div className="main">
+            <div className="container">
+                <WizardPage />
+            </div>
+        </div>
+    )
 }
-
-export default App;
