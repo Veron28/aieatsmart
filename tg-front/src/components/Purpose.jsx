@@ -89,7 +89,7 @@ const Purpose = ({onChangeData}) => {
                       <label key = {i.id}
                       onClick={() => selectItem(i.id)}
                       className={`option medical_option_parent ${i.selected && 'medical_option_ck'}`}
-                      id = "medical_option_5" >
+                      id={`medical_option_${i.id}`} >
                         <img src={i.selected ? i.icon2 : i.icon} alt="Icon 5"/>
                         <span>{i.name}</span>
                         <div className={` ${i.selected ? 'item_checked_none' : 'medical_option_item'}`}></div>

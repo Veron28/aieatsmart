@@ -22,16 +22,16 @@ const Popaps = ({ onChangeData,showpopUp1, showpopUp2, showpopUp3, cloasePop }) 
   useEffect(() => {
     const initializePickers = () => {
       if (weightPickerRef.current) {
-        populatePicker(weightPickerRef.current, 26, 154, [30, 150]);
+        populatePicker(weightPickerRef.current, 46, 253, [50, 250]);
       }
       if (weightPicker21Ref.current) {
-        populatePicker(weightPicker21Ref.current, 46, 200, [50, 196]);
+        populatePicker(weightPicker21Ref.current, 46, 253, [50, 250]);
       }
       if (weightPicker31Ref.current) {
         populatePicker(weightPicker31Ref.current, 12, 79, [16, 75]);
       }
       if (weightPicker2Ref.current || weightPicker22Ref.current) {
-        populatePickerDual(weightPicker2Ref.current, weightPicker22Ref.current, -3, 13, [1, 9]);
+        populatePickerDual(weightPicker2Ref.current, weightPicker22Ref.current, -3, 13, [0, 9]);
       }
     };
 

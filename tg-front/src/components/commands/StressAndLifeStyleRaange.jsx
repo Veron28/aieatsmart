@@ -90,7 +90,7 @@ const handleTouchEnd = (e) => {
                   left > 10 && left <= 30 ? '-32px' :
                     left > 30 && left <= 50 ? '-64px' :
                       left > 50 && left <= 70 ? '-96px' :
-                        left > 70 && left < 90 ? '-128px' : ''
+                        left > 70  ? '-128px' : ''
               }
 
               // left === 20 ? '-32px' : left === 40 ? '-64px' : left === 60 ? '-96px' : left === 80 ? '-128px': '0px'

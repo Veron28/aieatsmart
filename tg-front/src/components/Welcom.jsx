@@ -59,8 +59,8 @@ const Welcom = () => {
       'Authorization': `Bearer ${initData}`
     }
    const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/is_auth`, {}, headers)
-   
-   if (data.status){
+  console.log('data', data)
+   if (data?.status){
    await getStatisticInfo(initData)
     setStep(8)
   }

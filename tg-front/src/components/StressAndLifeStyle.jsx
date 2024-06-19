@@ -97,7 +97,7 @@ const  StressAndLifeStyle = ({onChangeData}) => {
                   left > 10 && left <= 30 ? '-32px' :
                     left > 30 && left <= 50 ? '-64px' :
                       left > 50 && left <= 70 ? '-96px' :
-                        left > 70 && left < 90 ? '-128px' : ''
+                        left > 70 ? '-128px' : ''
               }
             } >
             <div className='level'>Минимальный</div>
