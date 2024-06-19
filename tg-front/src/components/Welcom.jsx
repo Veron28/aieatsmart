@@ -59,7 +59,6 @@ const Welcom = () => {
       'Authorization': `Bearer ${initData}`
     }
    const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/is_auth`, {}, headers)
-  console.log('data', data)
    if (data?.status){
    await getStatisticInfo(initData)
     setStep(8)
@@ -102,12 +101,20 @@ const Welcom = () => {
  }, []);
 
 
+ const onCloaseApp = () =>{
+  window.Telegram.WebApp.close()
+ }
+
+
   const onClickNextStep = ()=>{
-    if (step <8){
+    if (step < 8){
       if (step === 7) {
         addUser(token)
       }
       setStep(step + 1)
+    }
+    else{
+      onCloaseApp()
     }
   }
   const onClickBeckStep = () => {
