@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './commands/Button'
 import '../styles/continue.css'
 
-const Continue = ({step,onClick}) => {
+const Continue = ({onCloaseApp,step,onClick}) => {
   return (
     <div className='button_section'>
       {
@@ -14,7 +14,8 @@ const Continue = ({step,onClick}) => {
                 onClick
               }
               step={step} 
-              classN="button-container2" />
+              classN="button-container2"
+               />
           ) : ''
       }
       <Button label = "Начать"
@@ -23,7 +24,10 @@ const Continue = ({step,onClick}) => {
       onClick = {
         onClick
       }
-      step={step} / >
+      step={step} 
+      onCloaseApp={onCloaseApp}
+      / >
+
     </div>
   )
 }

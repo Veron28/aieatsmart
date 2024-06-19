@@ -102,6 +102,7 @@ const Welcom = () => {
 
 
  const onCloaseApp = () =>{
+  console.log('-00012')
   window.Telegram.WebApp.close()
  }
 
@@ -231,8 +232,8 @@ const Welcom = () => {
              showContetn()
            }
         </div>
-        <Continue step={step} onClick={onClickNextStep}/>
-       <Popaps onChangeData={onChangeData} showpopUp1={showpopUp1} showpopUp2={showpopUp2} showpopUp3={showpopUp3} cloasePop={cloasePop} />
+        <Continue onCloaseApp={onCloaseApp} step={step} onClick={onClickNextStep} />
+        <Popaps onChangeData={onChangeData} showpopUp1={showpopUp1} showpopUp2={showpopUp2} showpopUp3={showpopUp3} cloasePop={cloasePop} />
        </>
         ) : <></>
       }

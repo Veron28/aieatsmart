@@ -9,8 +9,11 @@ const Button = ({
         icon,
         onClick ,
         step, 
-        classN
+        classN,
+        onCloaseApp
     }) => {
+        console.log('variante', variante)
+        console.log('step', step)
   return (
     <>
                     <div className = {
@@ -21,10 +24,10 @@ const Button = ({
                         className = {
                             `${variante === 'standart' ? 'buttonMain' : 'buttonMain_2' }`
                         }
-                        onClick = { variante === 'standart' && step === 7 ? null : variante !== 'standart' && step === 7 ?
-                            onClick : onClick
+                        onClick = {
+                                variante === 'standart' && step === 7 ? onCloaseApp : variante !== 'standart' && step === 7 ? onClick : onClick
                         } > {
-                            step === 6 ? 'Готово' : step === 7 && variante === 'standart' ? 'Открыть чат' : step === 8 && variante === 'standart' ? 'Открыть чат':
+                            step === 6 ? 'Готово' : step === 7 && variante === 'standart' ? 'Открыть чат' : step === 8 && variante === 'standart' ? 'Открыть чат' :
                             label
                         }
                         {
