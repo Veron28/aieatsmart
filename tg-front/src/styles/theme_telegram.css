@@ -6,8 +6,13 @@ body {
     --theme_bg_color: var(--tg-theme-bg-color, white);
     --theme_text_color: var(--tg-theme-text-color, black);
     --theme_text_hint_color: var(--tg-theme-hint-color, #8F8F8F);
-    --theme_link_color: #9C6AF9;
     --theme_subtitle_text_color: var(--tg-theme-subtitle-text-color, #8F8F8F);
+
+    /* Can be connected to Telegram */
+    --theme_link_color: #9C6AF9;
+    /* Can be connected to Telegram */
+    --theme_button_color: #9C6AF9;
+    --theme_button_text_color: var(--button_text_color, white);
 
     background-color: var(--theme_bg_color);
     color: var(--theme_text_color);

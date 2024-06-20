@@ -4,17 +4,17 @@ const SectionHeading = ({ title, subtitle }) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "start",
-            gap: "4px",
+            gap: ".5em",
         }}>
             <h1 style={{
-                fontSize: "32px",
+                fontSize: "2em",
                 fontWeight: "bold",
                 color: "var(--theme_text_color)"
             }}>
                 {title}
             </h1>
             <h2 style={{
-                fontSize: "14px",
+                fontSize: "0.875em",
                 color: "var(--theme_subtitle_text_color)"
             }}>
                 {subtitle}
