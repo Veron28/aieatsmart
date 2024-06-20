@@ -25,7 +25,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: ./tg-front
-        file: Dockerfile.prod
+        file: ./tg-front/Dockerfile.prod
         tags: ${{ env.REGISTRY_URL }}/aieatsmart/telegram_frontend:latest
 
   WebApp-Deploy:
