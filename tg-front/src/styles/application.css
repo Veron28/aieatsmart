@@ -1,6 +1,6 @@
 @import url("theme_telegram.css");
 @import url("typography.css");
-@import url("dialog.css");
+@import url("theme_components.css");
 
 body,
 #root,

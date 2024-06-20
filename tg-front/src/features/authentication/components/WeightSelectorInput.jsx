@@ -4,9 +4,9 @@ import NumberSelectorDialog from "../../../components/NumberSelectorDialog"
 
 const WeightSelectorInput = () => {
     const [selectedWeight, setSelectedWeight] = useState(undefined)
-    const dialogRef = useRef()
+    const dialogRef = useRef(null)
     const openDialogFn = useCallback(() => {
-        dialogRef.value?.openDialog()
+        dialogRef.current?.showModal()
     }, [dialogRef])
     const onValueSelected = useCallback(
         (newWeight) => {
@@ -17,7 +17,12 @@ const WeightSelectorInput = () => {
 
     return (
         <>
-            <NumberSelectorDialog ref={dialogRef} title="Ваш вес" unitSectionText="Килограммы" />
+            <NumberSelectorDialog
+                ref={dialogRef}
+                title="Ваш вес"
+                unitSectionText="Килограммы"
+                onValueSelected={onValueSelected}
+            />
             <button
                 style={{
                     display: "flex",

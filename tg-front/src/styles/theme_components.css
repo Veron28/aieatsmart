@@ -1,5 +1,14 @@
+dialog {
+    border: none;
+    background-color: transparent;
+}
+
 dialog ::backdrop {
     background-color: var(--theme_bg_secondary_color);
     filter: blur(4px);
     opacity: 0.75;
+}
+
+button {
+    border: none
 }

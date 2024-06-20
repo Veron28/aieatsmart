@@ -1,14 +1,19 @@
-import { memo, useCallback } from "react"
+import { forwardRef, useCallback } from "react"
 import PaperSection from "./PaperSection"
 import SimpleButton from "./SimpleButton"
 
-const NumberSelectorDialog = ({ title, unitSectionText, unitShorthand, integerNumbers, onValueSelected }) => {
+const NumberSelectorDialog = forwardRef((props, ref) => {
+    const { title, unitSectionText, unitShorthand, integerNumbers, onValueSelected } = props
+    const onClose = useCallback(() => {
+        ref?.current?.close()
+    }, [ref])
     const onOKClick = useCallback(() => {
-        onValueSelected()
-    }, [onValueSelected])
+        onValueSelected?.()
+        onClose()
+    }, [onValueSelected, onClose])
 
     return (
-        <dialog>
+        <dialog ref={ref}>
             <PaperSection
                 style={{
                     display: "flex",
@@ -39,12 +44,12 @@ const NumberSelectorDialog = ({ title, unitSectionText, unitShorthand, integerNu
                         display: "flex",
                     }}
                 >
-                    <SimpleButton text="Отмена" isPlain />
+                    <SimpleButton text="Отмена" isPlain onClick={onClose} />
                     <SimpleButton text="ОК" onClick={onOKClick} />
                 </div>
             </PaperSection>
         </dialog>
     )
-}
+})
 
-export default memo(NumberSelectorDialog)
+export default NumberSelectorDialog
