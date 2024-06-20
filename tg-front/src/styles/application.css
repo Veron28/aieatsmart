@@ -5,6 +5,7 @@ body,
 #root,
 .main {
     width: 100%;
+    overflow-x: hidden;
     max-height: var(--tg-viewport-height, 100dvh);
     padding: 0;
     margin: 0;

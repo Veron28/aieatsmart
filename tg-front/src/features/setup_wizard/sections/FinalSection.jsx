@@ -5,7 +5,7 @@ const WelcomeSection = () => {
     return (
         <SpinningImages>
             <img
-                alt="Checkbox image"
+                alt="Checkbox logo"
                 src={CheckmarkGraphics}
                 />
         </SpinningImages>

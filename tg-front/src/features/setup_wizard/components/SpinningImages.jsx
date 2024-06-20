@@ -1,6 +1,11 @@
+import { motion } from "framer-motion"
+
 const ConcentratedCircle = ({ children, style: styleProps }) => {
     return (
-        <div
+        <motion.div
+            key={Date.now.toString()}
+            animate={{ scale: [0.95, 1.05, 0.95] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
             style={{
                 width: "100%",
                 borderRadius: "50%",
@@ -15,7 +20,7 @@ const ConcentratedCircle = ({ children, style: styleProps }) => {
             }}
         >
             {children}
-        </div>
+        </motion.div>
     )
 }
 
@@ -27,13 +32,20 @@ const SpinningImages = ({ children }) => {
                 display: "inline-flex",
                 justifyContent: "center",
                 alignItems: "center",
+                position: "relative",
             }}
         >
-            <ConcentratedCircle>
+            <ConcentratedCircle
+                style={{
+                    position: "absolute",
+                    transform: "translate(-50%, -50%)",
+                }}
+            >
                 <ConcentratedCircle>
-                    <ConcentratedCircle>{children}</ConcentratedCircle>
+                    <ConcentratedCircle></ConcentratedCircle>
                 </ConcentratedCircle>
             </ConcentratedCircle>
+            {children}
         </div>
     )
 }
