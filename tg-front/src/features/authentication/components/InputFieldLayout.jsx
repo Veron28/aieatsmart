@@ -15,7 +15,7 @@ const InputFieldLayout = ({ fieldIcon, fieldName, inputControl }) => {
                 style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: ".3em",
+                    gap: "1em",
                     flexBasis: 0,
                     flexGrow: 1,
                 }}
