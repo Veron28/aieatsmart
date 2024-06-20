@@ -17,6 +17,9 @@ jobs:
     steps:
     - name: 🌳 Clone the project
       uses: actions/checkout@v4
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
     # Build the image itself
     - name: 🛠️🐳 Build and push Docker image
       uses: docker/build-push-action@v6
