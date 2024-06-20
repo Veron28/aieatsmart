@@ -16,6 +16,8 @@ import WelcomeSection from "../sections/WelcomeSection"
 import BasicsSection from "../sections/BasicsSection"
 import HealthSection from "../sections/HealthSection"
 import GoalsSection from "../sections/GoalsSection"
+import LimitationsSection from "../sections/LimitationsSection"
+import LifestyleSection from "../sections/LifestyleSection"
 import FinalSection from "../sections/FinalSection"
 
 import { weAreInWebBrowser, useOnBackListener } from "@/utils/TelegramUtils"
@@ -32,7 +34,7 @@ const SECTION_WELCOME = "welcome"
 const SECTION_BASICS = "basics"
 const SECTION_HEALTH = "health"
 const SECTION_GOALS = "goals"
-const SECTION_PREFERENCES = "preferences"
+const SECTION_LIMITATIONS = "limitations"
 const SECTION_LIFESTYLE = "lifestyle"
 
 const SECTION_FINAL = "final"
@@ -42,7 +44,7 @@ const WIZARD_SECTIONS = [
     SECTION_BASICS,
     SECTION_HEALTH,
     SECTION_GOALS,
-    SECTION_PREFERENCES,
+    SECTION_LIMITATIONS,
     SECTION_LIFESTYLE,
     SECTION_FINAL,
 ]
@@ -82,7 +84,7 @@ const getHeadingForWizard = (sectionName) => {
                 title: "Цели",
                 subtitle: "Выберите одну или несколько целей, которые больше Вам подходят:",
             }
-        case SECTION_PREFERENCES:
+        case SECTION_LIMITATIONS:
             return {
                 title: "Предпочтения",
                 subtitle: "Выберите продукты и блюда, которые Вы предпочитаете употреблять:",
@@ -102,20 +104,20 @@ const getHeadingForWizard = (sectionName) => {
     }
 }
 
-const getSectionForWizard = (sectionName) => {
+const getSectionForWizard = (sectionName, onStateUpdateFn) => {
     switch (sectionName) {
         case SECTION_WELCOME:
             return <WelcomeSection />
         case SECTION_BASICS:
-            return <BasicsSection />
+            return <BasicsSection onStateUpdate={onStateUpdateFn} />
         case SECTION_HEALTH:
-            return <HealthSection />
+            return <HealthSection onStateUpdate={onStateUpdateFn} />
         case SECTION_GOALS:
             return <GoalsSection />
-        case SECTION_PREFERENCES:
-            return null
+        case SECTION_LIMITATIONS:
+            return <LimitationsSection />
         case SECTION_LIFESTYLE:
-            return null
+            return <LifestyleSection />
         case SECTION_FINAL:
             return <FinalSection />
         default:
@@ -133,7 +135,7 @@ const getStateSaveHandler = (sectionName) => {
             return storeUserHealthInfo
         case SECTION_GOALS:
             return storeUserGoals
-        case SECTION_PREFERENCES:
+        case SECTION_LIMITATIONS:
             return storeUserLimitations
         case SECTION_LIFESTYLE:
             return storeUserLifestyleData

@@ -1,5 +1,5 @@
 import SpinningImages from "../components/SpinningImages"
-import WeightsGraphics from "../../../assets/firstAnimationImages/Vector1.svg"
+import WeightsGraphics from "@/assets/firstAnimationImages/variant1.png"
 
 const WelcomeSection = () => {
     return (
