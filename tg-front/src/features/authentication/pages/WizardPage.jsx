@@ -19,6 +19,7 @@ import GoalsSection from "../sections/GoalsSection"
 import FinalSection from "../sections/FinalSection"
 
 import { weAreInWebBrowser, useOnBackListener } from "../../../utils/TelegramUtils"
+import { startRegistration } from "../api/RegistrationApi"
 
 const SECTION_WELCOME = "welcome"
 const SECTION_BASICS = "basics"
@@ -183,6 +184,10 @@ const SetupWizardPage = () => {
         ])
     }
     const goToNextSection = useCallback(() => {
+        if (currentStageName === SECTION_WELCOME) {
+            startRegistration()
+        }
+
         if (currentStageIndex === WIZARD_SECTIONS.length - 1) {
             navigate("/statistics")
             return
