@@ -6,6 +6,9 @@ const getTelegramObject = () => {
 
 export const waitForTelegramLoad = async () => {
     const telegramObject = getTelegramObject()
+    if (!telegramObject) {
+        return
+    }
     await telegramObject?.ready()
     telegramObject?.expand()
 }
