@@ -34,7 +34,6 @@ const CellSummaryLayout = ({ dataToDisplay }) => {
 
             <p
                 style={{
-                    fontSize: ".825em",
                     color: "var(--theme_subtitle_text_color)",
                 }}
             >
@@ -48,10 +47,19 @@ const CellSummaryLayout = ({ dataToDisplay }) => {
                     >
                         {emphasis}
                     </span>{" "}
-                    {remainingSummary}
+                    <span
+                        style={{
+                            display: "contents",
+                            fontSize: ".825em",
+                        }}
+                    >
+                        {remainingSummary}
+                    </span>
                 </p>
                 <p
                     style={{
+                        display: "contents",
+                        fontSize: ".825em",
                         marginTop: ".4em",
                     }}
                 >

@@ -5,14 +5,21 @@ import UltimateActionButton from "../../../components/UltimateActionButton"
 import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 import FoodIntakeSummary from "../sections/FoodIntakeSummary"
 import GrammsEatenSummary from "../sections/GrammsEatenSummary"
+import RemainingCaloriesSummary from "../sections/RemainingCaloriesSummary"
 
 const getFoodIntakeData = () => ({
     current: 3,
     total: 3,
 })
 
+const getCaloriesIntakeData = () => ({
+    current: 1000,
+    total: 1230,
+})
+
 const StatisticsPage = () => {
     const foodIntakeData = getFoodIntakeData()
+    const caloriesConsumptionData = getCaloriesIntakeData()
 
     return (
         <section
@@ -39,6 +46,12 @@ const StatisticsPage = () => {
                 />
                 <FoodIntakeSummary foodIntakeData={foodIntakeData} />
                 <GrammsEatenSummary foodIntakeData={foodIntakeData} />
+                <RemainingCaloriesSummary
+                    style={{
+                        gridColumnStart: "span 2",
+                    }}
+                    caloriesConsumptionData={caloriesConsumptionData}
+                />
             </div>
             <UltimateActionButton
                 text="Поделиться"
