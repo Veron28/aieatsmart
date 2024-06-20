@@ -38,12 +38,11 @@ class BaseDAL:
             many: bool = False,
             relationship: Optional[Column] = None,
             orderby=None,
-            groupby=None,
             distinct: bool = False,
+            desc: bool = False,
             *args,
             **kwargs
     ) -> Union[List[any], Optional[any]]:
-
         db = Database.get_instance()
         model = cls._get_model()
 
@@ -56,25 +55,11 @@ class BaseDAL:
                     filters.append(getattr(model, 'id') == id)
                 else:
                     for key, value in kwargs.items():
-                        if hasattr(value, '__iter__') and not isinstance(value, str):
-                            if '>' in value:
-                                filters.append(getattr(model, key) > value[1])
-                            elif '<' in value:
-                                filters.append(getattr(model, key) < value[1])
-                            elif '>=' in value:
-                                filters.append(getattr(model, key) >= value[1])
-                            elif '<=' in value:
-                                filters.append(getattr(model, key) <= value[1])
-                            else:
-                                iters = []
-                                for val in value:
-                                    iters.append(getattr(model, key) == val)
-                                filters.append(or_(*iters))
-                        else:
-                            filters.append(getattr(model, key) == value)
+                        filters.append(getattr(model, key) == value)
+
                 if orderby:
-                    if hasattr(orderby, '__iter__'):
-                        query = select(model).where(*filters).order_by(*orderby)
+                    if desc:
+                        query = select(model).where(*filters).order_by(orderby.desc())
                     else:
                         query = select(model).where(*filters).order_by(orderby)
                 else:
@@ -93,6 +78,7 @@ class BaseDAL:
                         (result,) = result
 
         return result
+
 
     @classmethod
     async def update(cls, id: Optional[int] = None, where: Optional[Dict] = None, **kwargs) -> None:
