@@ -33,8 +33,8 @@ const StatisticsPage = () => {
                 style={{
                     position: "absolute",
                     bottom: "2em",
-                    left: 0,
-                    right: 0,
+                    left: "1.25em",
+                    right: "1.25em",
                 }}
                 icon={<ShareIcon />}
             />

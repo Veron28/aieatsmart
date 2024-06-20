@@ -25,5 +25,5 @@ body,
 .page {
     box-sizing: border-box;
     min-height: var(--tg-viewport-height, 100dvh);
-    padding: 20px;
+    padding: 1.25em;
 }
