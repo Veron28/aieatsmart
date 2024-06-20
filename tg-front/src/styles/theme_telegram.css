@@ -3,7 +3,7 @@ body {
     We adapt some, but not all colors to user's Telegram color scheme
     See: https://core.telegram.org/bots/webapps#themeparams
     */
-    --theme_bg_color: var(--tg-theme-bg-color, white);
+    --theme_bg_color: var(--tg-theme-bg-color, #FCFCFC);
     --theme_section_bg_color: var(--tg-theme-section-bg-color, white);
     --theme_text_color: var(--tg-theme-text-color, black);
     --theme_text_hint_color: var(--tg-theme-hint-color, #CECECE);
@@ -16,6 +16,10 @@ body {
     /* Can be connected to Telegram */
     --theme_button_color: #9C6AF9;
     --theme_button_text_color: var(--button_text_color, white);
+
+    --theme_color_pcf_proteins: #FF5A71;
+    --theme_color_pcf_carbons: #9C6AF9;
+    --theme_color_pcf_fats: #F9D673;
 
     background-color: var(--theme_bg_color);
     color: var(--theme_text_color);

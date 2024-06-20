@@ -1,8 +1,8 @@
+import { Outlet } from "react-router-dom"
+
 import "./styles/application.css"
 
 import { waitForTelegramLoad } from "./utils/TelegramUtils"
-
-import WizardPage from "./features/setup_wizard/pages/WizardPage"
 import { useState } from "react"
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
     waitForTelegramLoad().then(() => setIsLoading(false))
     return (
         <div className="main">
-            <div className="container">{isLoading ? <h1>Загрузка...</h1> : <WizardPage />}</div>
+            <div className="container">{isLoading ? <h1>Загрузка...</h1> : <Outlet />}</div>
         </div>
     )
 }

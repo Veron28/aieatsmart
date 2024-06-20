@@ -2,9 +2,10 @@ import { useState } from "react"
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
 import { RiArrowLeftLine as BackIcon } from "@remixicon/react"
 
+import SectionHeading from "../../../components/SectionHeading"
+
 import PageIndicator from "../components/PageIndicator"
 import UltimateActionButton from "../components/UltimateActionButton"
-import SectionHeading from "../components/SectionHeading"
 
 import WelcomeSection from "../sections/WelcomeSection"
 import BasicsSection from "../sections/BasicsSection"
