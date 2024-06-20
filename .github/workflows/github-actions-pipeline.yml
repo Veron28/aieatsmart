@@ -24,6 +24,7 @@ jobs:
     - name: 🛠️🐳 Build and push Docker image
       uses: docker/build-push-action@v6
       with:
+        context: ./tg-front
         file: Dockerfile.prod
         tags: ${{ env.REGISTRY_URL }}/aieatsmart/telegram_frontend:latest
 
