@@ -19,7 +19,14 @@ import GoalsSection from "../sections/GoalsSection"
 import FinalSection from "../sections/FinalSection"
 
 import { weAreInWebBrowser, useOnBackListener } from "../../../utils/TelegramUtils"
-import { startRegistration } from "../api/RegistrationApi"
+import {
+    startRegistration,
+    storeUserGoals,
+    storeUserHealthInfo,
+    storeUserLifestyleData,
+    storeUserLimitations,
+    storeUserPhysiologyInfo,
+} from "../api/RegistrationApi"
 
 const SECTION_WELCOME = "welcome"
 const SECTION_BASICS = "basics"
@@ -116,6 +123,25 @@ const getSectionForWizard = (sectionName) => {
     }
 }
 
+const getStateSaveHandler = (sectionName) => {
+    switch (sectionName) {
+        case SECTION_WELCOME:
+            return startRegistration
+        case SECTION_BASICS:
+            return storeUserPhysiologyInfo
+        case SECTION_HEALTH:
+            return storeUserHealthInfo
+        case SECTION_GOALS:
+            return storeUserGoals
+        case SECTION_PREFERENCES:
+            return storeUserLimitations
+        case SECTION_LIFESTYLE:
+            return storeUserLifestyleData
+        default:
+            return null
+    }
+}
+
 const variants = {
     enter: (direction) => {
         return {
@@ -177,27 +203,27 @@ const SetupWizardPage = () => {
     const currentSectionContents = getSectionForWizard(currentStageName)
     const actionButtonState = getButtonState(currentStageName)
 
-    const goToPreviousSection = () => {
+    const proceed = (direction) => {
         setCurrentStageIndex([
-            Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex - 1)),
-            -1, // left
+            Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex + direction)),
+            direction, // left
         ])
     }
+
+    const goToPreviousSection = () => {
+        proceed(-1) // left
+    }
     const goToNextSection = useCallback(() => {
-        if (currentStageName === SECTION_WELCOME) {
-            startRegistration()
-        }
+        const stateSaveHandler = getStateSaveHandler(currentStageName)
+        stateSaveHandler?.()
 
         if (currentStageIndex === WIZARD_SECTIONS.length - 1) {
             navigate("/statistics")
             return
         }
 
-        setCurrentStageIndex([
-            Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex + 1)),
-            1, // right
-        ])
-    }, [navigate, currentStageIndex])
+        proceed(+1) // right
+    }, [navigate, currentStageIndex, currentStageName])
 
     useOnBackListener(goToPreviousSection)
 

@@ -20,7 +20,7 @@ const InputFieldLayout = ({ fieldIcon, fieldName, inputControl }) => {
                     flexGrow: 1,
                 }}
             >
-                {fieldIcon}
+                {fieldIcon && <img src={fieldIcon} alt={`Icon for ${fieldName}`} />}
                 <span
                     style={{
                         fontWeight: 500,
