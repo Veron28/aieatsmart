@@ -1,4 +1,7 @@
+import { RiShareFill as ShareIcon } from "@remixicon/react"
+
 import SectionHeading from "../../../components/SectionHeading"
+import UltimateActionButton from "../../../components/UltimateActionButton"
 import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 
 const StatisticsPage = () => {
@@ -25,6 +28,16 @@ const StatisticsPage = () => {
                     }}
                 />
             </div>
+            <UltimateActionButton
+                text="Поделиться"
+                style={{
+                    position: "absolute",
+                    bottom: "2em",
+                    left: 0,
+                    right: 0,
+                }}
+                icon={<ShareIcon />}
+            />
         </section>
     )
 }

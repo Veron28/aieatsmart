@@ -25,7 +25,7 @@ const PCFChart = ({ pcfConsumption, style: styleProps }) => {
     return (
         <div
             style={{
-                width: "1.25em",
+                minWidth: "1.25em",
                 display: "flex",
                 flexDirection: "column",
                 flexWrap: "nowrap",

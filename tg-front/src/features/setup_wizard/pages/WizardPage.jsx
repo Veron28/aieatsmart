@@ -4,9 +4,9 @@ import { RiArrowLeftLine as BackIcon } from "@remixicon/react"
 import { useNavigate } from "react-router-dom"
 
 import SectionHeading from "../../../components/SectionHeading"
+import UltimateActionButton from "../../../components/UltimateActionButton"
 
 import PageIndicator from "../components/PageIndicator"
-import UltimateActionButton from "../components/UltimateActionButton"
 
 import WelcomeSection from "../sections/WelcomeSection"
 import BasicsSection from "../sections/BasicsSection"
