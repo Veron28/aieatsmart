@@ -1,5 +1,6 @@
 import { memo } from "react"
-import PaperSection from "../../../components/PaperSection"
+import { AnimatePresence, motion } from "framer-motion"
+import PaperSection from "@/components/PaperSection"
 
 const InputFieldLayout = ({ fieldIcon, fieldName, inputControl }) => {
     return (
@@ -20,7 +21,17 @@ const InputFieldLayout = ({ fieldIcon, fieldName, inputControl }) => {
                     flexGrow: 1,
                 }}
             >
-                {fieldIcon && <img src={fieldIcon} alt={`Icon for ${fieldName}`} />}
+                <AnimatePresence>
+                    {fieldIcon && (
+                        <motion.img
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            src={fieldIcon}
+                            alt={`Icon for ${fieldName}`}
+                        />
+                    )}
+                </AnimatePresence>
                 <span
                     style={{
                         fontWeight: 500,

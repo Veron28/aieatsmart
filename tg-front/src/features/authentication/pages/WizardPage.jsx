@@ -18,7 +18,7 @@ import HealthSection from "../sections/HealthSection"
 import GoalsSection from "../sections/GoalsSection"
 import FinalSection from "../sections/FinalSection"
 
-import { weAreInWebBrowser, useOnBackListener } from "../../../utils/TelegramUtils"
+import { weAreInWebBrowser, useOnBackListener } from "@/utils/TelegramUtils"
 import {
     startRegistration,
     storeUserGoals,

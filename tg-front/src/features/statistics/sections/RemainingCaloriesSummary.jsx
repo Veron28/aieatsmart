@@ -1,4 +1,4 @@
-import PaperSection from "../../../components/PaperSection"
+import PaperSection from "@/components/PaperSection"
 
 const RemainingCaloriesSummary = ({ caloriesConsumptionData, style: styleProps }) => {
     const { current, total } = caloriesConsumptionData

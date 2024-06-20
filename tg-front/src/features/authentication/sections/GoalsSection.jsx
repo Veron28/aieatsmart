@@ -1,9 +1,9 @@
 import InputFieldLayout from "../components/InputFieldLayout"
-import WeightGainIcon from "../../../assets/up.svg"
-import WeightLossIcon from "../../../assets/up2.svg"
-import WeightMaintenanceIcon from "../../../assets/icon2.svg"
-import HealthImprovementIcon from "../../../assets/heart.svg"
-import SportResultsIcon from "../../../assets/run.svg"
+import WeightGainIcon from "@/assets/up.svg"
+import WeightLossIcon from "@/assets/down.svg"
+import WeightMaintenanceIcon from "@/assets/icon2.svg"
+import HealthImprovementIcon from "@/assets/heart.svg"
+import SportResultsIcon from "@/assets/run.svg"
 
 const GoalsSection = () => {
     return (
