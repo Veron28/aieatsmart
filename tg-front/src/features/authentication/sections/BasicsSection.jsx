@@ -1,4 +1,5 @@
 import InputFieldLayout from "../components/InputFieldLayout"
+import WeightSelectorInput from "../components/WeightSelectorInput"
 
 const BasicsSection = () => {
     return (
@@ -10,7 +11,7 @@ const BasicsSection = () => {
             }}
         >
             <InputFieldLayout fieldName="Пол" />
-            <InputFieldLayout fieldName="Вес" />
+            <InputFieldLayout fieldName="Вес" inputControl={<WeightSelectorInput />} />
             <InputFieldLayout fieldName="Рост" />
             <InputFieldLayout fieldName="Возраст" />
         </div>
