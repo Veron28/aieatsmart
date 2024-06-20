@@ -10,6 +10,7 @@ const UltimateActionButton = ({ text, progress, icon, onClick, style: styleProps
             style={{
                 display: "inline-flex",
                 justifyContent: "space-between",
+                alignItems: "center",
                 backgroundColor: "var(--theme_button_color)",
                 color: "var(--theme_button_text_color)",
                 borderRadius: ".5em",

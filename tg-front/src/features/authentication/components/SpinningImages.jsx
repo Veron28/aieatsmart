@@ -14,8 +14,9 @@ const ConcentratedCircle = ({ children, style: styleProps }) => {
                 justifyContent: "center",
                 alignItems: "center",
                 background:
-                    "radial-gradient(50% 50% at 50% 50%, rgba(255, 255, 255, 0.1) 0%, rgba(213, 192, 252, 0) 85.37%, rgba(156, 106, 249, 0.1) 100%)",
+                    "radial-gradient(50% 50% at 50% 50%, var(--theme_bg_color) 0%, rgba(213, 192, 252, 0) 85.37%, rgba(156, 106, 249, 0.1) 100%)",
                 aspectRatio: "1/1",
+                zIndex: -1,
                 ...styleProps,
             }}
         >
