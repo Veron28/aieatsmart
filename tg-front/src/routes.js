@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 
 import App from "./App"
-import WizardPage from "./features/setup_wizard/pages/WizardPage"
+import WizardPage from "./features/authentication/pages/WizardPage"
 import StatisticsPage from "./features/statistics/pages/StatisticsPage"
 
 const router = createBrowserRouter([
