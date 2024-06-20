@@ -5,11 +5,9 @@ import SimpleButton from "./SimpleButton"
 const NumberSelectorDialog = forwardRef((props, ref) => {
     const { title, unitSectionText, unitShorthand, integerNumbers, onValueSelected } = props
     const onClose = useCallback(() => {
-        console.log("Clicked close", ref?.current)
         ref?.current?.close()
     }, [ref])
     const onOKClick = useCallback(() => {
-        console.log("Clicked ok")
         onValueSelected?.()
         onClose()
     }, [onValueSelected, onClose])
