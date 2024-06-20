@@ -25,7 +25,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         file: Dockerfile.prod
-        tags: ${{ env.REGISTRY_URL }}/${{ env.GITHUB_REPOSITORY }}/eatsmart_telegram_webapp/:${{ env.GITHUB_REF_NAME }}
+        tags: ${{ env.REGISTRY_URL }}/$GITHUB_REPOSITORY/eatsmart_telegram_webapp/:$GITHUB_REF_NAME
 
   WebApp-Deploy:
     needs: [Webapp-Docker-Build]
