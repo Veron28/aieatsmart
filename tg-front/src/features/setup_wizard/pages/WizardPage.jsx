@@ -1,6 +1,10 @@
 import { useCallback, useState } from "react"
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
-import { RiArrowLeftLine as BackIcon } from "@remixicon/react"
+import {
+    RiArrowLeftLine as BackIcon,
+    RiArrowRightLine as ForwardIcon,
+    RiCheckFill as CheckmarkIcon,
+} from "@remixicon/react"
 import { useNavigate } from "react-router-dom"
 
 import SectionHeading from "../../../components/SectionHeading"
@@ -113,7 +117,7 @@ const getSectionForWizard = (sectionName) => {
 const variants = {
     enter: (direction) => {
         return {
-            x: direction > 0 ? "100dvw" : "-100dvw",
+            x: direction === 0 ? 0 : direction > 0 ? "100dvw" : "-100dvw",
             opacity: 0,
         }
     },
@@ -130,6 +134,31 @@ const variants = {
     },
 }
 
+const getButtonState = (currentStageName) => {
+    switch (currentStageName) {
+        case SECTION_WELCOME:
+            return {
+                title: "Начать",
+                icon: <ForwardIcon />,
+            }
+        case SECTION_LIFESTYLE:
+            return {
+                title: "Готово",
+                icon: <CheckmarkIcon />,
+            }
+        case SECTION_FINAL:
+            return {
+                title: "Открыть чат",
+                icon: <ForwardIcon />,
+            }
+        default:
+            return {
+                title: "Продолжить",
+                icon: <ForwardIcon />,
+            }
+    }
+}
+
 const SetupWizardPage = () => {
     const [[currentStageIndex, navigationDirection], setCurrentStageIndex] = useState([0, 0])
     const currentStageName = WIZARD_SECTIONS[currentStageIndex]
@@ -144,6 +173,7 @@ const SetupWizardPage = () => {
 
     const currentSectionHeading = getHeadingForWizard(currentStageName)
     const currentSectionContents = getSectionForWizard(currentStageName)
+    const actionButtonState = getButtonState(currentStageName)
 
     const goToPreviousSection = () => {
         setCurrentStageIndex([
@@ -206,7 +236,7 @@ const SetupWizardPage = () => {
                         flexGrow: 1,
                     }}
                 >
-                    <AnimatePresence initial={false} custom={navigationDirection}>
+                    <AnimatePresence custom={navigationDirection}>
                         <motion.section
                             key={currentStageName}
                             initial="enter"
@@ -237,7 +267,7 @@ const SetupWizardPage = () => {
             </LayoutGroup>
 
             <UltimateActionButton
-                text="Начать"
+                text={actionButtonState.title}
                 progress={progressInfo}
                 style={{
                     position: "absolute",
@@ -245,6 +275,7 @@ const SetupWizardPage = () => {
                     left: "1.25em",
                     right: "1.25em",
                 }}
+                icon={actionButtonState.icon}
                 onClick={goToNextSection}
             />
         </div>
