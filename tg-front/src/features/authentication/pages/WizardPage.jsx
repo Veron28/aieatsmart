@@ -15,6 +15,7 @@ import PageIndicator from "../components/PageIndicator"
 import WelcomeSection from "../sections/WelcomeSection"
 import BasicsSection from "../sections/BasicsSection"
 import HealthSection from "../sections/HealthSection"
+import GoalsSection from "../sections/GoalsSection"
 import FinalSection from "../sections/FinalSection"
 
 import { weAreInWebBrowser, useOnBackListener } from "../../../utils/TelegramUtils"
@@ -102,7 +103,7 @@ const getSectionForWizard = (sectionName) => {
         case SECTION_HEALTH:
             return <HealthSection />
         case SECTION_GOALS:
-            return null
+            return <GoalsSection />
         case SECTION_PREFERENCES:
             return null
         case SECTION_LIFESTYLE:
@@ -254,6 +255,7 @@ const SetupWizardPage = () => {
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: "stretch",
+                                gap: "1.5em",
                             }}
                         >
                             <SectionHeading

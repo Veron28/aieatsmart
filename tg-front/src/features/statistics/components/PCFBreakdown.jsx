@@ -24,7 +24,7 @@ const PCFBreakdownItem = ({ consumptionItem }) => {
             <span></span>
             <p
                 style={{
-                    fontSize: "0.875em",
+                    fontSize: ".875em",
                     color: "var(--theme_subtitle_text_color)",
                 }}
             >

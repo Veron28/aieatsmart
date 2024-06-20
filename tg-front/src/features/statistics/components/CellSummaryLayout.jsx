@@ -1,5 +1,3 @@
-import { RiCakeFill as CakeIcon } from "@remixicon/react"
-
 import PaperSection from "../../../components/PaperSection"
 
 const CellSummaryLayout = ({ dataToDisplay }) => {
