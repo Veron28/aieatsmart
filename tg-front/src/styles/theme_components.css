@@ -1,7 +1,6 @@
 dialog {
     border: none;
     background-color: transparent;
-    max-width: 600px;
 }
 
 dialog::backdrop {
