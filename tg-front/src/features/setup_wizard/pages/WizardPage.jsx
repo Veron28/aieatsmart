@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
 import { RiArrowLeftLine as BackIcon } from "@remixicon/react"
+import { useNavigate } from "react-router-dom"
 
 import SectionHeading from "../../../components/SectionHeading"
 
@@ -132,6 +133,7 @@ const variants = {
 const SetupWizardPage = () => {
     const [[currentStageIndex, navigationDirection], setCurrentStageIndex] = useState([0, 0])
     const currentStageName = WIZARD_SECTIONS[currentStageIndex]
+    const navigate = useNavigate()
 
     const progressInfo = {
         currentStage: currentStageIndex,
@@ -149,12 +151,17 @@ const SetupWizardPage = () => {
             -1, // left
         ])
     }
-    const goToNextSection = () => {
+    const goToNextSection = useCallback(() => {
+        if (currentStageIndex === WIZARD_SECTIONS.length - 1) {
+            navigate("/statistics")
+            return
+        }
+
         setCurrentStageIndex([
             Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex + 1)),
             1, // right
         ])
-    }
+    }, [navigate, currentStageIndex])
 
     useOnBackListener(goToPreviousSection)
 
@@ -176,7 +183,7 @@ const SetupWizardPage = () => {
                             key="pageIndicator"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            exit={{ opacity: 0, position: "absolute", duration: .1 }}
+                            exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
                             style={{
                                 display: "flex",
                                 alignItems: "center",
