@@ -4,17 +4,19 @@ body {
     See: https://core.telegram.org/bots/webapps#themeparams
     */
     --theme_bg_color: var(--tg-theme-bg-color, #FCFCFC);
+    --theme_bg_secondary_color: var(--tg-theme-secondary-bg-color, gray);
     --theme_section_bg_color: var(--tg-theme-section-bg-color, white);
     --theme_text_color: var(--tg-theme-text-color, black);
     --theme_text_hint_color: var(--tg-theme-hint-color, #CECECE);
     --theme_subtitle_text_color: var(--tg-theme-subtitle-text-color, #8F8F8F);
 
+    --theme_accent_color: #9C6AF9;
     --theme_accent_light_color: #EBE1FE;
 
     /* Can be connected to Telegram */
-    --theme_link_color: #9C6AF9;
+    --theme_link_color: var(--theme_accent_color);
     /* Can be connected to Telegram */
-    --theme_button_color: #9C6AF9;
+    --theme_button_color: var(--theme_accent_color);
     --theme_button_text_color: var(--button_text_color, white);
 
     --theme_color_pcf_proteins: #FF5A71;
