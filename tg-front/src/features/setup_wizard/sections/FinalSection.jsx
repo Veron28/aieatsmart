@@ -1,12 +1,12 @@
 import SpinningImages from "../components/SpinningImages"
-import WeightsGraphics from "../../../assets/firstAnimationImages/Vector1.svg"
+import CheckmarkGraphics from "../../../assets/firstAnimationImages/Vector8.svg"
 
 const WelcomeSection = () => {
     return (
         <SpinningImages>
             <img
-                alt="Weights logo"
-                src={WeightsGraphics}
+                alt="Checkbox image"
+                src={CheckmarkGraphics}
                 />
         </SpinningImages>
     )

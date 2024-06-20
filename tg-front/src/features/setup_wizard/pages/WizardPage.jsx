@@ -9,6 +9,8 @@ import SectionHeading from "../components/SectionHeading"
 import WelcomeSection from "../sections/WelcomeSection"
 import BasicsSection from "../sections/BasicsSection"
 import HealthSection from "../sections/HealthSection"
+import FinalSection from "../sections/FinalSection"
+
 import { weAreInWebBrowser, useOnBackListener } from "../../../utils/TelegramUtils"
 
 const SECTION_WELCOME = "welcome"
@@ -100,7 +102,7 @@ const getSectionForWizard = (sectionName) => {
         case SECTION_LIFESTYLE:
             return null
         case SECTION_FINAL:
-            return null
+            return <FinalSection />
         default:
             return null
     }
@@ -173,7 +175,7 @@ const SetupWizardPage = () => {
                             key="pageIndicator"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                            exit={{ opacity: 0, position: "absolute", duration: .1 }}
                             style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -206,11 +208,14 @@ const SetupWizardPage = () => {
                             variants={variants}
                             transition={{
                                 ease: "easeOut",
-                                duration: .25,
+                                duration: 0.25,
                             }}
                             style={{
+                                width: "100%",
+                                boxSizing: "border-box",
                                 display: "flex",
                                 flexDirection: "column",
+                                alignItems: "stretch",
                             }}
                         >
                             <SectionHeading
