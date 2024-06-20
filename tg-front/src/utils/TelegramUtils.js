@@ -14,6 +14,10 @@ export const weAreInWebBrowser = () => {
     return !getTelegramObject()?.version
 }
 
+export const getTelegramInitData = () => {
+    return getTelegramObject()?.initData
+}
+
 export const useOnBackListener = (onBackListener) => {
     useEffect(() => {
         const backButton = getTelegramObject()?.BackButton
