@@ -25,7 +25,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         file: Dockerfile.prod
-        tags: ${{ env.REGISTRY_URL }}/aieatsmart/telegram_frontend/:latest
+        tags: ${{ env.REGISTRY_URL }}/aieatsmart/telegram_frontend:latest
 
   WebApp-Deploy:
     needs: [Webapp-Docker-Build]
