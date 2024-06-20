@@ -18,7 +18,7 @@ async def _is_auth_by_init_data(init_data: str) -> Union[bool, int]:
         return False
 
 
-async def status_by_request(request: Request, in_db: bool = True, return_id: bool = True) -> dict:
+async def status_by_request(request: Request, in_db: bool = False, return_id: bool = True) -> dict:
     response_obj = {}
 
     try:
@@ -42,7 +42,6 @@ async def status_by_request(request: Request, in_db: bool = True, return_id: boo
                 response_obj['status'] = False
         else:
             response_obj['status'] = False
-
     except:
         response_obj['status'] = False
 
@@ -51,9 +50,9 @@ async def status_by_request(request: Request, in_db: bool = True, return_id: boo
             response_obj['status'] = True
             response_obj['user_id'] = user_id
 
-    #test version
-    response_obj['status'] = True
-    if return_id:
-        response_obj['user_id'] = 398015513
+    # #test version
+    # response_obj['status'] = True
+    # if return_id:
+    #     response_obj['user_id'] = 398015513
 
     return response_obj

@@ -10,7 +10,7 @@ class Prompt(Base):
     __tablename__ = 'prompt'
 
     user_id = Column(BigInteger, primary_key=True)
-    prompt_id = Column(Integer, primary_key=True, autoincrement=True)
+    prompt_id = Column(BigInteger, primary_key=True, autoincrement=True)
 
     type = Column(String)
     time = Column(DateTime, default=datetime.now, onupdate=datetime.now)

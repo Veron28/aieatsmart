@@ -11,10 +11,9 @@ from aiohttp.web_response import json_response
 
 from api.v1.routes.registration import Registration
 from api.v1.routes.stat import Stat
-from handlers.start import webapp_start
+from handlers.start import webapp_start, share_stat_check_user
 from utils.auth_checker import _is_auth_by_init_data, status_by_request
 from utils.send_share_link import send_share_link
-from utils.share import share_stat_check_user
 from utils.stat_and_reg import stat_or_reg
 from utils.user_stat import get_user_stat
 
@@ -44,12 +43,19 @@ class Routes(Registration, Stat):
 
         user_id = response_obj['user_id']
 
-        if 'start_app' in data or not response_obj['status']:
-            await webapp_start(user_id=user_id, start_app=data['start_app']) # need to write funct
+        start_app = ''
+        if 'start_app' in data and 'share_stat' not in data:
+            start_app = data['start_app']
+        await webapp_start(user_id=user_id, start_app=start_app)
 
         if 'share_stat' in data:
-            user_id_to_share = data['share_stat']
-            await share_stat_check_user(user_id=user_id)  # need to write funct
+            if not data['share_stat'].isnumeric():
+                response_obj['status'] = False
+                response_obj['text'] = 'bad share_stat user_id'
+                return json_response(response_obj)
+
+            user_id_to_share = int(data['share_stat'])
+            await share_stat_check_user(user_id=user_id, user_id_to_share=user_id_to_share)  # need to write funct
             user_stat = await get_user_stat(user_id=user_id_to_share)  # need to write funct
 
             if user_stat:

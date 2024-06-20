@@ -10,6 +10,7 @@ class Premium(Base):
     __tablename__ = 'premium'
 
     user_id = Column(BigInteger, primary_key=True)
+    premium_id = Column(BigInteger, primary_key=True, autoincrement=True)
 
     time_start = Column(DateTime, default=datetime.now, onupdate=datetime.now)
     time_end = Column(DateTime, default=datetime.now, onupdate=datetime.now)

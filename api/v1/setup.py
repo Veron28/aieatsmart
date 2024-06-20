@@ -16,6 +16,7 @@ app.add_routes(
         web.post('/api/v1/user_goal_info', Routes.user_goal_info),
         web.post('/api/v1/user_limit_info', Routes.user_limit_info),
         web.post('/api/v1/user_stress_and_activity_info', Routes.user_stress_and_activity_info),
+        web.post('/api/v1/share_stat', Routes.share_stat),
     ]
 )
 
