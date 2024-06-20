@@ -3,9 +3,10 @@ dialog {
     background-color: transparent;
 }
 
-dialog ::backdrop {
+dialog::backdrop {
+    height: 100dvh;
     background-color: var(--theme_bg_secondary_color);
-    filter: blur(4px);
+    backdrop-filter: blur(12px);
     opacity: 0.75;
 }
 

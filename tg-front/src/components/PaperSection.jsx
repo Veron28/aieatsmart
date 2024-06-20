@@ -1,6 +1,4 @@
 const PaperSection = ({ children, style: styleProps }) => {
-    console.log("Paper props", styleProps)
-
     return (
         <div
             style={{

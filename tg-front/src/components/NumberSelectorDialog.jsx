@@ -5,15 +5,22 @@ import SimpleButton from "./SimpleButton"
 const NumberSelectorDialog = forwardRef((props, ref) => {
     const { title, unitSectionText, unitShorthand, integerNumbers, onValueSelected } = props
     const onClose = useCallback(() => {
+        console.log("Clicked close", ref?.current)
         ref?.current?.close()
     }, [ref])
     const onOKClick = useCallback(() => {
+        console.log("Clicked ok")
         onValueSelected?.()
         onClose()
     }, [onValueSelected, onClose])
 
     return (
-        <dialog ref={ref}>
+        <dialog
+            ref={ref}
+            style={{
+                width: "100%",
+            }}
+        >
             <PaperSection
                 style={{
                     display: "flex",
@@ -41,11 +48,29 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
 
                 <div
                     style={{
+                        width: "100%",
                         display: "flex",
+                        justifyContent: "stretch",
+                        gap: ".5em",
                     }}
                 >
-                    <SimpleButton text="Отмена" isPlain onClick={onClose} />
-                    <SimpleButton text="ОК" onClick={onOKClick} />
+                    <SimpleButton
+                        text="Отмена"
+                        isPlain
+                        onClick={onClose}
+                        style={{
+                            flexBasis: 0,
+                            flexGrow: 1,
+                        }}
+                    />
+                    <SimpleButton
+                        text="ОК"
+                        onClick={onOKClick}
+                        style={{
+                            flexBasis: 0,
+                            flexGrow: 1,
+                        }}
+                    />
                 </div>
             </PaperSection>
         </dialog>
