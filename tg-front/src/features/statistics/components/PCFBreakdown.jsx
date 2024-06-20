@@ -10,7 +10,7 @@ const PCFBreakdownItem = ({ consumptionItem }) => {
                     aspectRatio: "1/1",
                     borderRadius: "50%",
                     boxSizing: "border-box",
-                    gridRowStart: "span 2",
+                    alignSelf: "center",
                     backgroundColor: consumptionItem.color,
                 }}
             ></span>
@@ -21,6 +21,7 @@ const PCFBreakdownItem = ({ consumptionItem }) => {
             >
                 {consumptionItem.name}
             </h3>
+            <span></span>
             <p
                 style={{
                     fontSize: "0.875em",
