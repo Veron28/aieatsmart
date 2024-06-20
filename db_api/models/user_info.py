@@ -26,4 +26,5 @@ class UserInfo(Base):
     stress_level = Column(Integer, default=1)
     life_info = Column(String, default='')
 
-    daily_norm = Column(Integer, default=0)
+    dayly_eating_norm = Column(Integer, default=0)
+    daily_kcal_norm = Column(BigInteger, default=0)

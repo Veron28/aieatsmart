@@ -12,7 +12,7 @@ from api.v1.setup import app
 
 
 async def on_startup(dispatcher):
-    await db.drop_all()
+    # await db.drop_all()
     await db.create_all()
     await on_startup_notify(dispatcher)
 

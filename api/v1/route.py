@@ -55,7 +55,7 @@ class Routes(Registration, Stat):
                 return json_response(response_obj)
 
             user_id_to_share = int(data['share_stat'])
-            await share_stat_check_user(user_id=user_id, user_id_to_share=user_id_to_share)  # need to write funct
+            await share_stat_check_user(user_id=user_id, user_id_to_share=user_id_to_share)
             user_stat = await get_user_stat(user_id=user_id_to_share)  # need to write funct
 
             if user_stat:
