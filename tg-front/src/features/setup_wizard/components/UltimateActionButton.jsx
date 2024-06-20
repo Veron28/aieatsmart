@@ -1,6 +1,17 @@
-const UltimateActionButton = ({ text, style: styleProps }) => {
+import { memo } from "react";
+
+const UltimateActionButton = ({
+    text,
+    progress,
+    onClick,
+    style: styleProps,
+}) => {
+    const currentStage = progress?.currentStage ?? 0
+    const finalStage = progress?.totalStages ?? 0
+
     return (
         <button
+            onClick={onClick}
             style={{
                 display: "inline-flex",
                 justifyContent: "center",
@@ -22,4 +33,4 @@ const UltimateActionButton = ({ text, style: styleProps }) => {
     )
 }
 
-export default UltimateActionButton
+export default memo(UltimateActionButton)

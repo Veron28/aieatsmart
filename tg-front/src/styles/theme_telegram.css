@@ -4,9 +4,12 @@ body {
     See: https://core.telegram.org/bots/webapps#themeparams
     */
     --theme_bg_color: var(--tg-theme-bg-color, white);
+    --theme_section_bg_color: var(--tg-theme-section-bg-color, white);
     --theme_text_color: var(--tg-theme-text-color, black);
-    --theme_text_hint_color: var(--tg-theme-hint-color, #8F8F8F);
+    --theme_text_hint_color: var(--tg-theme-hint-color, #CECECE);
     --theme_subtitle_text_color: var(--tg-theme-subtitle-text-color, #8F8F8F);
+
+    --theme_accent_light_color: #EBE1FE;
 
     /* Can be connected to Telegram */
     --theme_link_color: #9C6AF9;
