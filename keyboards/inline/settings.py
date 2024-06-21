@@ -14,6 +14,14 @@ settings_kb = InlineKeyboardMarkup(
     ]
 )
 
+daily_goal_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+        [
+            InlineKeyboardButton(text='Отменить', callback_data=setting_callback_data.new(type='сansel')),
+        ],
+    ]
+)
+
 utc_kb = InlineKeyboardMarkup(
         inline_keyboard=[
         [

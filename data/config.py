@@ -9,6 +9,7 @@ PROXY = env.str("PROXY")
 API_KEY = env.str("API_KEY")
 DATABASE_URL = env.str("DATABASE_URL")
 WEBAPP_URL = env.str("WEBAPP_URL")
+PATH_PYTHON3 = env.str("PATH_PYTHON3")
 
 headers = {
   "Content-Type": "application/json",
