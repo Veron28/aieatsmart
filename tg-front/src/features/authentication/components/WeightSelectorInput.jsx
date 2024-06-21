@@ -18,16 +18,18 @@ const subUnit = {
 const WeightSelectorInput = () => {
     const [selectedWeight, setSelectedWeight] = useState(undefined)
     const dialogRef = useRef(null)
+    const currentSectionData = useContext(WizardSectionContext)
     const openDialogFn = useCallback(() => {
         dialogRef.current?.showModal()
     }, [dialogRef])
     const onValueSelected = useCallback(
-        (newWeight) => {
+        (newWeight, subUnitWeight) => {
             setSelectedWeight(newWeight)
-            const currentSectionData = useContext(WizardSectionContext)
             currentSectionData.weight = newWeight
+            console.log("Got value", newWeight)
+            console.log("Got value 2", subUnitWeight)
         },
-        [setSelectedWeight]
+        [setSelectedWeight, useContext]
     )
 
     return (

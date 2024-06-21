@@ -50,7 +50,7 @@ export const setContainerStyles = (emblaApi, wheelRotation) => {
 }
 
 export const NumberPickerItem = (props) => {
-    const { slideCount, perspective, label, loop = false } = props
+    const { slideCount, perspective, label, loop = false, onChange } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop,
         axis: "y",
@@ -97,6 +97,12 @@ export const NumberPickerItem = (props) => {
             scrollTo.distance(distance, true)
         })
 
+        if (onChange) {
+            emblaApi.on("settle", () => {
+                onChange(emblaApi.getCurrentSlide())
+            })
+        }
+
         emblaApi.on("scroll", rotateWheel)
 
         emblaApi.on("reInit", (emblaApi) => {
@@ -106,7 +112,7 @@ export const NumberPickerItem = (props) => {
 
         inactivateEmblaTransform(emblaApi)
         rotateWheel(emblaApi)
-    }, [emblaApi, inactivateEmblaTransform, rotateWheel])
+    }, [emblaApi, inactivateEmblaTransform, rotateWheel, onChange])
 
     return (
         <div className="embla__ios-picker">

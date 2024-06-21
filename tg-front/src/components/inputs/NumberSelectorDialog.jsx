@@ -1,4 +1,4 @@
-import { forwardRef, useCallback } from "react"
+import { forwardRef, useCallback, useState } from "react"
 import PaperSection from "@/components/PaperSection"
 import SimpleButton from "@/components/SimpleButton"
 
@@ -6,11 +6,13 @@ import CarouselNumberPicker from "./CarouselNumberPicker"
 
 const NumberSelectorDialog = forwardRef((props, ref) => {
     const { title, unitSectionText, unit, subUnit, onValueSelected } = props
+    const [unitValue, setUnitValue] = useState(0)
+    const [subUnitValue, setSubUnitValue] = useState(0)
     const onClose = useCallback(() => {
         ref?.current?.close()
     }, [ref])
     const onOKClick = useCallback(() => {
-        onValueSelected?.()
+        onValueSelected?.(unitValue, subUnitValue)
         onClose()
     }, [onValueSelected, onClose])
 
@@ -46,7 +48,20 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                     {unitSectionText}
                 </p>
 
-                <CarouselNumberPicker unit={unit} subUnit={subUnit} />
+                <CarouselNumberPicker
+                    unit={{
+                        ...unit,
+                        onChange: setUnitValue,
+                    }}
+                    subUnit={
+                        subUnit
+                            ? {
+                                  ...subUnit,
+                                  onChange: setSubUnitValue,
+                              }
+                            : undefined
+                    }
+                />
 
                 <div
                     style={{
