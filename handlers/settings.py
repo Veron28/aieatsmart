@@ -60,10 +60,12 @@ async def utc_change(call: CallbackQuery, state: FSMContext):
         text=utc_edit_end
     )
 
-@dp.callback_query_handler(setting_callback_data.filter(type='daily_goal'), state=None)
+
+@dp.callback_query_handler(setting_callback_data.filter(type='daily_goal'), state='*')
 async def daily_goal_start(call: CallbackQuery, state: FSMContext):
     user_id = call.message.chat.id
     message_id = call.message.message_id
+    await state.reset_state()
 
     async with state.proxy() as data:
         data['message_id'] = message_id

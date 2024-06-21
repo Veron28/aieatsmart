@@ -86,6 +86,16 @@ daily_goal_text = 'Отправьте количество ккал, котор�
 daily_goal_end = 'Данные о суточной цели изменены'
 cansel_text = 'Изменение отменено'
 
+def cal_text(data):
+    return \
+f'''
+<b>{data['food_name']}</b> <i>{data['calories']} ккал {data['grams']} г</i>
+
+<i>{data['squirrels']} белки {data['fats']} жиры {data['carbohydrates']} углеводы</i>
+
+<blockquote expandable>{data['recommendation']}</blockquote expandable>
+'''
+
 async def share_text(user_id: int):
     return \
 f'''

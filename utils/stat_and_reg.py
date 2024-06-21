@@ -6,14 +6,14 @@ from db_api.models import UserRegPage, UserInfo, UserHealth
 from utils.user_stat import get_user_stat
 
 
-async def stat_or_reg(user_id: int):
+async def stat_or_reg(user_id: int, get_data=False):
     response_obj = {}
     response_obj['status'] = True
     response_obj['user_id'] = user_id
     response_obj['is_stat'] = False
 
     is_auth = await UserRegPageDAL.get(user_id=user_id, reg_page_name='final')
-    if is_auth:
+    if is_auth and not get_data:
         response_obj['is_stat'] = True
         response_obj.update(await get_user_stat(user_id=user_id))
     else:

@@ -1,5 +1,6 @@
 from typing import Union
 
+from db_api.dal.user_history_dal import UserHistoryDAL
 from db_api.dal.user_info_dal import UserInfoDAL
 from db_api.models import UserInfo
 
@@ -37,3 +38,17 @@ async def get_user_stat(user_id: int) -> Union[bool, dict]:
         response_obj['status'] = False
         response_obj['text'] = 'some error'
     return response_obj
+
+async def get_user_history(user_id: int) -> Union[bool, dict]:
+    user_history = [
+        {
+            'time': x.time,
+            'food_name': x.food_name,
+            'kcal': x.kcal,
+            'grams': x.grams,
+            'squirrels': x.squirrels,
+            'fats': x.fats,
+            'carbohydrates': x.carbohydrates,
+        } for x in await UserHistoryDAL.get(user_id=user_id, is_eat=True, many=True)
+    ]
+    return user_history
