@@ -1,0 +1,26 @@
+version: "3.2"
+services:
+  nginx_server:
+    build:
+      context: ./conf/nginx
+      dockerfile: Dockerfile
+    depends_on:
+      - tgfront
+    networks:
+      - main_net
+    ports:
+      - '80:80'
+      - '443:443'
+
+  tgfront:
+    build:
+      context: ./tg-front
+      dockerfile: Dockerfile
+    networks:
+      - main_net
+    ports:
+      - '3000:3000'
+
+networks:
+  main_net:
+    driver: bridge

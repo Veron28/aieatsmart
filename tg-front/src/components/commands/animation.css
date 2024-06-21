@@ -1,0 +1,244 @@
+.main_image
+{
+max-width: 500px;
+width: 100%;
+height: 500px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top:40px;
+margin-left: auto;
+margin-right: auto;
+}
+.c_1
+{
+display: flex;
+justify-content: center;
+align-items: center;
+background-image: url('../../assets/firstAnimationImages/Ellipse 4.png');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+animation: c_1 .6s ease-in-out;
+width:100%;
+height: 100%;
+}
+.c_2
+{
+display: flex;
+justify-content: center;
+align-items: center;
+background-image: url('../../assets/firstAnimationImages/Ellipse 4.png');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+animation-delay: .3s;
+animation: c_2 .6s ease-in-out;
+width:70%;
+height: 70%;
+}
+.c_3
+{
+display: flex;
+justify-content: center;
+align-items: center;
+background-image: url('../../assets/firstAnimationImages/Ellipse 4.png');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+animation-delay: .3s;
+animation: c_3 .6s ease-in-out;
+width:70%;
+height: 70%;
+position: relative;
+}
+
+.c_2
+{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.c_3
+{
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+z-index: 2;
+}  
+.c_3 > div
+{
+display: none;
+} 
+@keyframes c_1 
+{
+from{width: 0px;height:0px}
+to{width: 400px;height:400px}
+}
+@keyframes c_2 
+{
+from{width: 0%;height:0%}
+to{width: 70%;height:70%}
+}
+@keyframes c_3 
+{
+from{width: 0%;height:0%}
+to{width: 70%;height:70%}
+}
+
+
+.c_3_img_1
+{
+background-image: url('../../assets/firstAnimationImages/Vector1.svg');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 130px;
+height: 130px;
+animation: c_3_img_1 .5s ease-in-out;
+position: relative;
+z-index: -1;
+}
+@keyframes c_3_img_1 
+{
+from{width: 0px;height:0px}
+to{width: 130px;height:130px}
+}
+.c_3_img_8
+{
+background-image: url('../../assets/firstAnimationImages/Vector8.svg');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 130px;
+height: 130px;
+animation: c_3_img_1 .5s ease-in-out;
+position: relative;
+z-index: -1;
+}
+@keyframes c_3_img_1 
+{
+from{width: 0px;height:0px}
+to{width: 130px;height:130px}
+}
+
+.c_3_img_2
+{
+background-image: url('../../assets/firstAnimationImages/Vector2.svg');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 70px;
+height: 70px;
+left: -20px;
+bottom: -50px;
+animation: c_3_img_2 .5s ease-in-out;
+position: absolute;
+z-index: -1;
+}
+@keyframes c_3_img_2 
+{
+from{width: 0px;height:0px;}
+to{width: 70px;height:70px;}
+}
+
+.c_3_img_3
+{
+background-image: url('../../assets/firstAnimationImages/Vector3.svg');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 60px;
+height: 60px;
+left: -52px;
+bottom: 70px;
+animation: c_3_img_3 .5s ease-in-out;
+position: absolute;
+z-index: -1;
+}
+@keyframes c_3_img_3 
+{
+from{width: 0px;height:0px;}
+to{width: 60px;height:60px;}
+}
+
+.c_3_img_4
+{
+background-image: url('../../assets/firstAnimationImages/Vector4.svg');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 70px;
+height: 70px;
+left: -32px;
+top: -40px;
+animation: c_3_img_4 .5s ease-in-out;
+position: absolute;
+z-index: -1;
+}
+@keyframes c_3_img_4 
+{
+from{width: 0px;height:0px;}
+to{width: 70px;height:70px;}
+}
+
+.c_3_img_5
+{
+background-image: url('../../assets/firstAnimationImages/Vector5.svg');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 70px;
+height: 70px;
+right: -22px;
+top: -40px;
+animation: c_3_img_5 .5s ease-in-out;
+position: absolute;
+z-index: -1;
+}
+@keyframes c_3_img_5 
+{
+from{width: 0px;height:0px;}
+to{width: 70px;height:70px;}
+}
+
+.c_3_img_6
+{
+background-image: url('../../assets/firstAnimationImages/Vector6.svg');
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 70px;
+height: 70px;
+right: -90px;
+bottom: 50px;
+animation: c_3_img_6 .6s ease-in-out;
+position: absolute;
+z-index: -1;
+}
+@keyframes c_3_img_6 
+{
+from{width: 0px;height:0px;}
+to{width: 70px;height:70px;}
+}
+
+.c_3_img_7
+{
+background-image: url('../../assets/firstAnimationImages/Vector7.svg');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+width: 100px;    
+height: 85px;
+right: -32px;
+bottom: -60px;
+animation: c_3_img_7 .6s ease-in-out;
+position: absolute;
+z-index: -1;
+}
+@keyframes c_3_img_7 
+{
+from{width: 0px;height:0px;}
+to{width: 70px;height:70px;}
+}

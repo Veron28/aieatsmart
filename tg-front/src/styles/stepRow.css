@@ -1,0 +1,41 @@
+.steps_row
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.steps_item
+{
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    border: 1px solid #CECECE;
+    background: #ffffff;
+    margin: 8px 5px;
+}
+ .steps{
+    display: flex;
+    border-radius: 20px;
+    padding:0 15px;
+    background-color: #eeeeee;
+}
+.steps_row_icon{ 
+    display: flex;
+    background-image: url('../assets/firstAnimationImages/Ellipse 4.png');
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 0 22px 10px #e1dbdb;
+}
+.steps_item_active{
+    background:radial-gradient(circle, rgb(255, 255, 255) 30%, #9C6AF9 30%)
+}
+.steps_item_active_2{
+    background:radial-gradient(circle, #9C6AF9 30%, #EBE1FE 30%)
+}
