@@ -1,0 +1,37 @@
+@import url("theme_telegram.css");
+@import url("typography.css");
+@import url("theme_components.css");
+@import url("embla.css");
+
+body,
+#root,
+.main {
+    width: 100%;
+    overflow-x: hidden;
+    max-height: var(--tg-viewport-height, 100dvh);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: stretch;
+    font-size: 16px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+}
+
+.page::-webkit-scrollbar {
+    display: none;
+}
+
+.page {
+    box-sizing: border-box;
+    min-height: var(--tg-viewport-height, 100dvh);
+    padding: 1.25em;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
