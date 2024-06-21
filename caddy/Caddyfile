@@ -1,0 +1,4 @@
+localhost:8181 {
+    reverse_proxy tgfront:9000
+    reverse_proxy /api/v1 fbotapp:8080
+}

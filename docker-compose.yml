@@ -1,31 +1,81 @@
-version: "3.2"
+version: "3.9"
+
 services:
-  nginx_server:
+  caddy:
+    container_name: caddy
+    hostname: caddy
     build:
-      context: ./conf/nginx
+      context: ./caddy
       dockerfile: Dockerfile
-#    depends_on:
-#      - tgfront
     networks:
       - main_net
     ports:
-      - '80:80'
-      - '443:443'
+      - '8181:8181'
+    depends_on:
+      - db
+    restart: always
 
-  tgfront:
-    build:
-      context: ./tg-front
-      dockerfile: Dockerfile
+  db:
+    container_name: db
+    hostname: db
+    image: postgres:16
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./init-db.sh:/docker-entrypoint-initdb.d/init-db.sh
+    environment:
+      POSTGRES_DB: huinya
+      POSTGRES_USER: dolboeb
+      POSTGRES_PASSWORD: O71337l23814dfsbvuio8697834
     networks:
-      - main_net
+      main_net:
+        aliases:
+          - db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U huinya"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
 
   fbotapp:
+    container_name: fbotapp
+    hostname: fbotapp
     build:
       context: ./backend
       dockerfile: Dockerfile
     networks:
       - main_net
+    ports:
+      - '8080:8080'
+    environment:
+      - ADMINS=398015513
+      - BOT_TOKEN=6684958290:AAGjj1VFdGmJPGUo9KeQNI15IK5RRgjX3jg
+      - PROXY=http://caddy:8181
+      - API_KEY=123456
+      - DATABASE_URL=postgresql://dolboeb:O71337l23814dfsbvuio8697834@db:5432/huinya
+      - WEBAPP_URL=http://tgfront:9000
+      - PATH_PYTHON3=/usr/local/bin/python3
+    depends_on:
+      - tgfront
+      - db
+      - caddy
+    restart: always
+
+  tgfront:
+    container_name: tgfront
+    hostname: tgfront
+    build:
+      context: ./tg-front
+      dockerfile: Dockerfile
+    networks:
+      - main_net
+    ports:
+      - '9000:9000'
+    restart: always
 
 networks:
   main_net:
     driver: bridge
+
+volumes:
+  db_data:

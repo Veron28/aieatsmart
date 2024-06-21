@@ -10,6 +10,10 @@ from aiohttp import web
 from api.v1.setup import app
 from utils.notify_admins import on_startup_notify
 
+async def health(request):
+    return web.Response(text="OK")
+
+app.router.add_get('/health', health)
 
 async def on_startup(dispatcher):
     await db.create_all()
