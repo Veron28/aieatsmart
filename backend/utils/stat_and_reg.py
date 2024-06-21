@@ -3,7 +3,7 @@ from db_api.dal.user_info_dal import UserInfoDAL
 from db_api.dal.user_limit_dal import UserLimitDAL
 from db_api.dal.user_reg_page_dal import UserRegPageDAL
 from db_api.models import UserRegPage, UserInfo
-from backend.utils.user_stat import get_user_stat
+from utils.user_stat import get_user_stat
 
 
 async def stat_or_reg(user_id: int, get_data=False):
