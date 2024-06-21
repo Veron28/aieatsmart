@@ -18,8 +18,6 @@ services:
       dockerfile: Dockerfile
     networks:
       - main_net
-    ports:
-      - '3000:3000'
 
   fbotapp:
     build:
