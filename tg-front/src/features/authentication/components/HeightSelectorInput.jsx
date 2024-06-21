@@ -4,13 +4,13 @@ import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
 const unit = {
-    title: "М",
+    name: "М",
     minValue: 40,
     maxValue: 280,
 }
 
 const subUnit = {
-    title: "см",
+    name: "см",
     minValue: 0,
     maxValue: 99,
 }

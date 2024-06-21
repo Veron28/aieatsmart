@@ -5,7 +5,7 @@ import { WizardSectionContext } from "./WizardSectionContext"
 
 
 const unit = {
-    title: "лет",
+    name: "лет",
     minValue: 0,
     maxValue: 120,
 }

@@ -50,7 +50,7 @@ export const setContainerStyles = (emblaApi, wheelRotation) => {
 }
 
 export const NumberPickerItem = (props) => {
-    const { slideCount, perspective, label, loop = false, minValue = 0 } = props
+    const { slideCount, perspective, label, loop = false } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop,
         axis: "y",
