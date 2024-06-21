@@ -23,8 +23,14 @@ body,
     position: relative;
 }
 
+.page::-webkit-scrollbar {
+    display: none;
+}
+
 .page {
     box-sizing: border-box;
     min-height: var(--tg-viewport-height, 100dvh);
     padding: 1.25em;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

@@ -336,7 +336,13 @@ const SetupWizardPage = () => {
                                 subtitle={currentSectionHeading.subtitle}
                             />
                             <WizardSectionContext.Provider value={currentSectionState}>
-                                {currentSectionContents}
+                                <span style={{
+                                    display: "flow-root",
+                                    flexBasis: 0,
+                                    flexGrow: 1,
+                                    height: "fit-content",
+                                    marginBottom: "7em",
+                                }}>{currentSectionContents}</span>
                             </WizardSectionContext.Provider>
                         </motion.section>
                     </AnimatePresence>
@@ -347,7 +353,8 @@ const SetupWizardPage = () => {
                 text={actionButtonState.title}
                 progress={progressInfo}
                 style={{
-                    position: "absolute",
+                    zIndex: 3,
+                    position: "fixed",
                     bottom: "2em",
                     left: "1.25em",
                     right: "1.25em",

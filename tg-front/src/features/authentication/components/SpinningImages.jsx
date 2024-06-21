@@ -13,6 +13,7 @@ const ConcentratedCircle = ({ children, style: styleProps }) => {
                 display: "inline-flex",
                 justifyContent: "center",
                 alignItems: "center",
+                boxSizing: "border-box",
                 background:
                     "radial-gradient(50% 50% at 50% 50%, var(--theme_bg_color) 0%, rgba(213, 192, 252, 0) 85.37%, rgba(156, 106, 249, 0.1) 100%)",
                 aspectRatio: "1/1",
@@ -29,7 +30,12 @@ const SpinningImages = ({ children }) => {
     return (
         <div
             style={{
-                height: "100%",
+                width: "100%",
+                height: "fit-content",
+                aspectRatio: "1/1",
+                minHeight: "30dvh",
+                boxSizing: "border-box",
+                padding: "7em",
                 display: "inline-flex",
                 justifyContent: "center",
                 alignItems: "center",
