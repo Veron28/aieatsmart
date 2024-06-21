@@ -20,7 +20,7 @@ const getCheckbox = (valueName, isSelected) => {
         if (newValue) {
             sectionData.base.push(valueName)
         } else {
-            sectionData.base.remove(valueName)
+            sectionData.base = sectionData.base.filter(item => item !== valueName)
         }
     }
     return <CheckboxSelectorInput isSelected={isSelected} onChange={onChangeFn} />

@@ -101,7 +101,7 @@ const getLimitationCard = (limitation) => {
         if (isSelected) {
             sectionData.base.push(limitation.title)
         } else {
-            sectionData.base.remove(limitation.title)
+            sectionData.base = sectionData.base.filter(item => item !== limitation.title)
         }
     }
     return <LimitationCard key={limitation.title} limitation={limitation} onSelectionChange={onChangeFn} />
