@@ -21,6 +21,15 @@ services:
     ports:
       - '3000:3000'
 
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - main_net
+    expose:
+      - 5000
+
 networks:
   main_net:
     driver: bridge

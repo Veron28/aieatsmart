@@ -11,12 +11,11 @@ from backend.api.v1.setup import app
 
 
 async def on_startup(dispatcher):
-    # await db.drop_all()
     await db.create_all()
     await on_startup_notify(dispatcher)
 
     loop = asyncio.get_event_loop()
-    port = int(os.environ.get("PORT", 5004))
+    port = int(os.environ.get("PORT", 5000))
     loop.create_task(web._run_app(app, port=port))
 
 
