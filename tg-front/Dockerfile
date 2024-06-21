@@ -1,7 +1,4 @@
-FROM node:20-slim
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+FROM gplane/pnpm:9-node21-alpine
 WORKDIR /app
 COPY . .
 RUN pnpm install
