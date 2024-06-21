@@ -1,6 +1,7 @@
 import datetime
 
 from aiogram import types
+from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Command
 from aiogram.types import InputFile, Chat
 
@@ -8,7 +9,8 @@ from data.texts import start_text_reg, start_text_not_reg, start_text_not_reg_we
     start_text_not_reg_share
 from db_api.dal.user_dal import UserDAL
 from db_api.dal.user_reg_page_dal import UserRegPageDAL
-from db_api.models import User
+from db_api.dal.utc_dal import UtcDAL
+from db_api.models import User, Utc
 from keyboards.reply.start_kbd import start_kbd
 from keyboards.webapp.main import reg_kb, stat_kb
 from loader import dp, bot
@@ -17,11 +19,12 @@ from utils.premium import give_user_premium
 
 
 @dp.message_handler(Command('start'), chat_type=[types.ChatType.PRIVATE], state='*')
-async def start(message: types.Message):
+async def start(message: types.Message, state: FSMContext):
     user_id = message.chat.id
     name = message.chat.first_name
     last_name = message.chat.last_name
     deep_link = message.get_args()
+    await state.reset_state()
 
     username = ''
     if 'username' in message.chat:
@@ -53,6 +56,14 @@ async def start(message: types.Message):
             },
             user_id=user_id, name=name, last_name=last_name, username=username,
             deep_link=deep_link
+        )
+        utc = 3
+        await UtcDAL.insert_or_update(
+            index_elements=[Utc.user_id],
+            set_={
+                'utc': utc
+            },
+            user_id=user_id, utc=utc
         )
         await give_user_premium(user_id=user_id, days=3)
 
@@ -113,6 +124,14 @@ async def webapp_start(user_id: int, start_app: str):
             user_id=user_id, name=name, last_name=last_name, username=username,
             deep_link=deep_link, who_invite=who_invite
         )
+        utc = 3
+        await UtcDAL.insert_or_update(
+            index_elements=[Utc.user_id],
+            set_={
+                'utc': utc
+            },
+            user_id=user_id, utc=utc
+        )
         await give_user_premium(user_id=user_id, days=3)
 
 async def share_stat_check_user(user_id: int, user_id_to_share: int):
@@ -144,5 +163,13 @@ async def share_stat_check_user(user_id: int, user_id_to_share: int):
             },
             user_id=user_id, name=name, last_name=last_name, username=username,
             deep_link='', who_invite=who_invite
+        )
+        utc = 3
+        await UtcDAL.insert_or_update(
+            index_elements=[Utc.user_id],
+            set_={
+                'utc': utc
+            },
+            user_id=user_id, utc=utc
         )
         await give_user_premium(user_id=user_id, days=3)

@@ -79,6 +79,9 @@ settings_text = \
 Что будем редактировать?
 '''
 
+utc_text = 'По умолчанию стоит UTC+3(Москва). Если у вас другой часовой пояс, выберите его:'
+utc_edit_end = 'Часовой пояс изменен'
+
 async def share_text(user_id: int):
     return \
 f'''
