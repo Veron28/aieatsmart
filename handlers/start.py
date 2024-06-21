@@ -5,7 +5,7 @@ from aiogram.dispatcher.filters import Command
 from aiogram.types import InputFile, Chat
 
 from data.texts import start_text_reg, start_text_not_reg, start_text_not_reg_webapp, start_text_reg_webapp, \
-    start_text_not_reg_share, start_text_reg_share
+    start_text_not_reg_share
 from db_api.dal.user_dal import UserDAL
 from db_api.dal.user_reg_page_dal import UserRegPageDAL
 from db_api.models import User
@@ -126,20 +126,12 @@ async def share_stat_check_user(user_id: int, user_id_to_share: int):
 
     who_invite = user_id_to_share
     if not await UserDAL.get(user_id=user_id, type='active'):
-        if await UserRegPageDAL.get(user_id=user_id, reg_page_name='final'):
-            await send_message(
-                user_id=user_id,
-                gif=InputFile("data/video/start_video.mp4"),
-                text=start_text_not_reg_share,
-                kb=stat_kb
-            )
-        else:
-            await send_message(
-                user_id=user_id,
-                gif=InputFile("data/video/start_video.mp4"),
-                text=start_text_reg_share,
-                kb=reg_kb
-            )
+        await send_message(
+            user_id=user_id,
+            gif=InputFile("data/video/start_video.mp4"),
+            text=start_text_not_reg_share,
+            kb=reg_kb
+        )
         await UserDAL.insert_or_update(
             index_elements=[User.user_id],
             set_={
