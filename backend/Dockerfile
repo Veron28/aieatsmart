@@ -1,8 +1,8 @@
 FROM python:3.11.6
-RUN apt-get update && apt-get install libgomp1
-RUN mkdir -p /app
-COPY . /app
-EXPOSE 8080:8080
 WORKDIR /app
+COPY requirements.txt /app
+RUN python -m pip install -r requirements.txt
+EXPOSE 8080:8080
+COPY . /app
 
 CMD ["python", "app.py"]
