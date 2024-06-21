@@ -93,7 +93,7 @@ f'''
 
 <i>{data['squirrels']} белки {data['fats']} жиры {data['carbohydrates']} углеводы</i>
 
-<blockquote expandable>{data['recommendation']}</blockquote expandable>
+<blockquote expandable>{data['recommendation']}</blockquote>
 '''
 
 async def share_text(user_id: int):

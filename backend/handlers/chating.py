@@ -3,6 +3,7 @@ import datetime
 import io
 import json
 
+from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.types import ContentType, Message, ChatType, CallbackQuery
@@ -11,7 +12,7 @@ from data.texts import cal_text
 from db_api.dal.user_history_dal import UserHistoryDAL
 from keyboards.callback_data import photo_cal_callback_data
 from keyboards.inline.photo import calories_kb
-from loader import dp
+from loader import dp, bot
 from openai.base import openai_request
 from openai.prompting.photo_texts import ask_calories
 from openai.prompting.system_texts import base_text
@@ -51,8 +52,8 @@ async def text_ask(message: Message, state: FSMContext):
         data['messages'].append(
             {"role": "user", "content": text_}
         )
+        await bot.send_chat_action(user_id, action=types.ChatActions.TYPING)
         openai_request_answer = await openai_request(payload=payload(messages=data['messages']))
-        print(openai_request_answer)
         openai_request_answer_json = openai_request_answer['choices'][0]['message']['content']
         data['messages'].append(
             {
@@ -98,6 +99,7 @@ async def photo_ask(message: Message, state=FSMContext):
             ]
             }
         )
+        await bot.send_chat_action(user_id, action=types.ChatActions.TYPING)
         openai_request_answer = await openai_request(payload=payload(messages=data['messages']))
         openai_request_answer_json = openai_request_answer['choices'][0]['message']['content']
         data['messages'].append(
