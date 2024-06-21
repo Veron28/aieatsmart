@@ -1,11 +1,12 @@
 import { RiShareFill as ShareIcon } from "@remixicon/react"
 
-import SectionHeading from "../../../components/SectionHeading"
-import UltimateActionButton from "../../../components/UltimateActionButton"
+import SectionHeading from "@/components/SectionHeading"
+import UltimateActionButton from "@/components/UltimateActionButton"
 import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 import FoodIntakeSummary from "../sections/FoodIntakeSummary"
 import GrammsEatenSummary from "../sections/GrammsEatenSummary"
 import RemainingCaloriesSummary from "../sections/RemainingCaloriesSummary"
+import { getStatistics } from "../api/StatisticsApi"
 
 const getFoodIntakeData = () => ({
     current: 3,
@@ -17,7 +18,9 @@ const getCaloriesIntakeData = () => ({
     total: 1230,
 })
 
-const StatisticsPage = () => {
+const StatisticsPage = async () => {
+    const statisticsData = await getStatistics()
+    console.log("Statistics", statisticsData)
     const foodIntakeData = getFoodIntakeData()
     const caloriesConsumptionData = getCaloriesIntakeData()
 
