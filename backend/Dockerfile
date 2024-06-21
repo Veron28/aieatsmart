@@ -1,8 +1,10 @@
 FROM python:3.11.6
-WORKDIR /app
-COPY requirements.txt /app
-RUN python -m pip install -r requirements.txt
-
+RUN pip install poetry
+RUN apt-get update && apt-get install libgomp1
+RUN mkdir -p /app
 COPY . /app
-EXPOSE 5000
-CMD ["python", "app.py"]
+EXPOSE 8080:8080
+WORKDIR /app
+
+RUN poetry install
+CMD ["poetry", "run", "python", "app.py"]
