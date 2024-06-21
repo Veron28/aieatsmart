@@ -71,7 +71,7 @@ async def send_message(
             if not text:
                 msg = await send_message(
                     user_id=user_id,
-                    text = 1,
+                    text="1",
                     kb=kb
                 )
                 await bot.delete_message(chat_id=user_id, message_id=msg)
