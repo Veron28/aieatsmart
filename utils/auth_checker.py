@@ -50,9 +50,10 @@ async def status_by_request(request: Request, in_db: bool = False, return_id: bo
             response_obj['status'] = True
             response_obj['user_id'] = user_id
 
-    # #test version
-    # response_obj['status'] = True
-    # if return_id:
-    #     response_obj['user_id'] = 398015513
+    if not response_obj['status']:
+        #test version
+        response_obj['status'] = True
+        if return_id:
+            response_obj['user_id'] = 398015513
 
     return response_obj

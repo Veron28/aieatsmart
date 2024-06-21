@@ -17,7 +17,7 @@ class UserHistory(Base):
     time = Column(DateTime, default=datetime.now, onupdate=datetime.now)
 
     food_name = Column(String, default='')
-    calories = Column(Integer, default=0)
+    kcal = Column(Integer, default=0)
     grams = Column(Integer, default=0)
     squirrels = Column(Integer, default=0)
     fats = Column(Integer, default=0)

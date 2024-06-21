@@ -7,7 +7,7 @@ from base64 import b64encode
 import aiohttp_jinja2
 from aiohttp import web
 from aiohttp.web_request import Request
-from aiohttp.web_response import json_response
+from aiohttp.web_response import json_response, Response
 
 from api.v1.routes.registration import Registration
 from api.v1.routes.stat import Stat
@@ -49,34 +49,26 @@ class Routes(Registration, Stat):
         await webapp_start(user_id=user_id, start_app=start_app)
 
         if 'share_stat' in data:
-            if not data['share_stat'].isnumeric():
+            if not str(data['share_stat']).isnumeric():
                 response_obj['status'] = False
                 response_obj['text'] = 'bad share_stat user_id'
                 return json_response(response_obj)
 
             user_id_to_share = int(data['share_stat'])
             await share_stat_check_user(user_id=user_id, user_id_to_share=user_id_to_share)
-            user_stat = await get_user_stat(user_id=user_id_to_share)  # need to write funct
+            user_stat = await get_user_stat(user_id=user_id_to_share)
 
-            if user_stat:
+            if user_stat['status']:
                 response_obj['is_share'] = True
-                response_obj['stat'] = user_stat
+                response_obj.update(user_stat)
             else:
                 response_obj['status'] = False
                 response_obj['text'] = 'user not found'
             return json_response(response_obj)
 
-        response_obj.update(await stat_or_reg(user_id=user_id))  # need to write funct
-
-        return json_response(response_obj)
-
-    # just my mind
-    #
-    # if user not auth:
-    #     need registration + send add to db + take deep link
-    #     + if deeplink invites send prize to friend
-    # else:
-    #     if not registred:
-    #         need registration
-    #     else:
-    #         send stat
+        response_obj.update(await stat_or_reg(user_id=user_id))
+        return Response(
+            text=json.dumps(response_obj, ensure_ascii=False),
+            status=200,
+            content_type="application/json",
+        )

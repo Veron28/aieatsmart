@@ -147,7 +147,7 @@ info_mes = \
 async def share_text(user_id: int):
     return \
 f'''
-Вы можете поделиться своей статистикой по ссылке: https://t.me/{(await bot.get_me())}/app/share_stat?{user_id}
+Вы можете поделиться своей статистикой по ссылке: https://t.me/{(await bot.get_me())['username']}/app/share_stat?invite{user_id}
 '''
 
 

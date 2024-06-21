@@ -10,7 +10,7 @@ from db_api.dal.user_health_dal import UserHealthDAL
 from db_api.dal.user_info_dal import UserInfoDAL
 from db_api.dal.user_limit_dal import UserLimitDAL
 from db_api.dal.user_reg_page_dal import UserRegPageDAL
-from db_api.models import User, UserInfo, UserHealth
+from db_api.models import User, UserInfo, UserHealth, UserLimit
 from utils.auth_checker import status_by_request
 from utils.bot_send import send_message
 from utils.daily_norm import count_user_daily_norm
@@ -178,18 +178,18 @@ class Registration:
 
             eat_permissions = []
             for permission in data['base']:
-                eat_permissions.append(UserHealth(user_id=user_id, type='base', text=permission))
+                eat_permissions.append(UserLimit(user_id=user_id, type='base', text=permission))
 
             if 'custom' in data:
-                eat_permissions.append(UserHealth(user_id=user_id, type='custom', text=data['custom']))
+                eat_permissions.append(UserLimit(user_id=user_id, type='custom', text=data['custom']))
             print(eat_permissions)
             try:
                 await UserLimitDAL.delete(user_id=user_id)
-                await UserLimitDAL.adds(*eat_permissions)
                 await UserRegPageDAL.add(
                     user_id=user_id,
                     reg_page_name='limit_info'
                 )
+                await UserLimitDAL.adds(*eat_permissions)
                 response_obj['text'] = 'add to db'
             except Exception as e:
                 print(e)
