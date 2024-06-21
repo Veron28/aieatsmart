@@ -3,7 +3,7 @@ import aiohttp_jinja2
 import jinja2
 import aiohttp_cors
 
-from backend.api.v1.route import Routes
+from api.v1.route import Routes
 
 app = web.Application()
 app.add_routes(

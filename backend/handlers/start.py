@@ -5,16 +5,16 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Command
 from aiogram.types import InputFile, Chat
 
-from backend.data.texts import start_text_reg, start_text_not_reg, start_text_not_reg_webapp, start_text_reg_webapp, \
+from data.texts import start_text_reg, start_text_not_reg, start_text_not_reg_webapp, start_text_reg_webapp, \
     start_text_not_reg_share
-from backend.db_api.dal.user_dal import UserDAL
-from backend.db_api.dal.user_reg_page_dal import UserRegPageDAL
-from backend.db_api.dal.utc_dal import UtcDAL
-from backend.db_api.models import User, Utc
-from backend.keyboards.webapp.main import reg_kb, stat_kb
-from backend.loader import dp, bot
-from backend.utils.bot_send import send_message
-from backend.utils.premium import give_user_premium
+from db_api.dal.user_dal import UserDAL
+from db_api.dal.user_reg_page_dal import UserRegPageDAL
+from db_api.dal.utc_dal import UtcDAL
+from db_api.models import User, Utc
+from keyboards.webapp.main import reg_kb, stat_kb
+from loader import dp, bot
+from utils.bot_send import send_message
+from utils.premium import give_user_premium
 
 
 @dp.message_handler(Command('start'), chat_type=[types.ChatType.PRIVATE], state='*')

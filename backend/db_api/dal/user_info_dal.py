@@ -3,9 +3,9 @@ from typing import Type
 from sqlalchemy import select, func
 from sqlalchemy.orm import aliased
 
-from backend.db_api.dal.base_dal import BaseDAL
-from backend.db_api.models import UserInfo, UserHistory
-from backend.db_api.postgresql import Database
+from db_api.dal.base_dal import BaseDAL
+from db_api.models import UserInfo, UserHistory
+from db_api.postgresql import Database
 
 
 class UserInfoDAL(BaseDAL):

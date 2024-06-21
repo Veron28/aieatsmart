@@ -1,10 +1,10 @@
 from aiogram.dispatcher import FSMContext
 from aiogram.types import CallbackQuery
 
-from backend.data.texts import share_text
-from backend.keyboards.callback_data import payment_callback_data
-from backend.loader import dp
-from backend.utils.bot_send import edit_message
+from data.texts import share_text
+from keyboards.callback_data import payment_callback_data
+from loader import dp
+from utils.bot_send import edit_message
 
 
 @dp.callback_query_handler(payment_callback_data.filter(type='invite'), state=None)

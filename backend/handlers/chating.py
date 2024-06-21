@@ -7,17 +7,17 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.types import ContentType, Message, ChatType, CallbackQuery
 
-from backend.data.texts import cal_text
-from backend.db_api.dal.user_history_dal import UserHistoryDAL
-from backend.keyboards.callback_data import photo_cal_callback_data
-from backend.keyboards.inline.photo import calories_kb
-from backend.loader import dp
-from backend.openai.base import openai_request
-from backend.openai.prompting.photo_texts import ask_calories
-from backend.openai.prompting.system_texts import base_text
-from backend.openai.registration import payload
-from backend.utils.bot_send import send_message, edit_message
-from backend.utils.get_user_data import get_user_data
+from data.texts import cal_text
+from db_api.dal.user_history_dal import UserHistoryDAL
+from keyboards.callback_data import photo_cal_callback_data
+from keyboards.inline.photo import calories_kb
+from loader import dp
+from openai.base import openai_request
+from openai.prompting.photo_texts import ask_calories
+from openai.prompting.system_texts import base_text
+from openai.registration import payload
+from utils.bot_send import send_message, edit_message
+from utils.get_user_data import get_user_data
 
 @dp.message_handler(Text(equals='Питание'), state='*', chat_type=[ChatType.PRIVATE])
 async def text_ask(message: Message, state: FSMContext):

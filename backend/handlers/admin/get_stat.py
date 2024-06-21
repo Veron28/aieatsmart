@@ -2,10 +2,10 @@ from aiogram import types
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Command
 
-from backend.db_api.dal.user_info_dal import UserInfoDAL
-from backend.filters.users_filters import IsAdmin
-from backend.loader import dp
-from backend.utils.bot_send import send_message
+from db_api.dal.user_info_dal import UserInfoDAL
+from filters.users_filters import IsAdmin
+from loader import dp
+from utils.bot_send import send_message
 
 
 @dp.message_handler(Command('get_stat'), IsAdmin(), chat_type=[types.ChatType.PRIVATE])

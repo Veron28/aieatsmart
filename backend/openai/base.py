@@ -2,7 +2,7 @@ import json
 
 import aiohttp
 
-from backend.data.config import headers, openai_url, PROXY
+from data.config import headers, openai_url, PROXY
 
 
 async def openai_request(payload):

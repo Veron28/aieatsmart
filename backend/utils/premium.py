@@ -1,7 +1,7 @@
 import datetime
 
-from backend.db_api.dal.premium_dal import PremiumDAL
-from backend.db_api.models import Premium
+from db_api.dal.premium_dal import PremiumDAL
+from db_api.models import Premium
 
 
 async def give_user_premium(user_id: int, years: int = 0, months: int = 0, days: int = 0):

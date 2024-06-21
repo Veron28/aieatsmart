@@ -2,7 +2,7 @@ from datetime import datetime
 
 from sqlalchemy import Column, BigInteger, String, DateTime
 
-from backend.db_api.base import Base
+from db_api.base import Base
 
 
 class Log(Base):

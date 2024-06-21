@@ -2,9 +2,9 @@ from typing import Union
 
 from aiohttp.web_request import Request
 
-from backend.api.v1.web_app import safe_parse_webapp_init_data
-from backend.db_api.dal.user_dal import UserDAL
-from backend.loader import bot
+from api.v1.web_app import safe_parse_webapp_init_data
+from db_api.dal.user_dal import UserDAL
+from loader import bot
 
 
 async def _is_auth_by_init_data(init_data: str) -> Union[bool, int]:

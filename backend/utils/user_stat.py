@@ -1,8 +1,8 @@
 from typing import Union
 
-from backend.db_api.dal.user_history_dal import UserHistoryDAL
-from backend.db_api.dal.user_info_dal import UserInfoDAL
-from backend.db_api.models import UserInfo
+from db_api.dal.user_history_dal import UserHistoryDAL
+from db_api.dal.user_info_dal import UserInfoDAL
+from db_api.models import UserInfo
 
 
 async def get_user_stat(user_id: int) -> Union[bool, dict]:

@@ -1,9 +1,9 @@
-from backend.data.texts import reg_end
-from backend.db_api.dal.user_info_dal import UserInfoDAL
-from backend.db_api.models import UserInfo
-from backend.keyboards.reply.start_kbd import start_kbd
-from backend.utils.bot_send import send_message
-from backend.utils.premium import give_user_premium
+from data.texts import reg_end
+from db_api.dal.user_info_dal import UserInfoDAL
+from db_api.models import UserInfo
+from keyboards.reply.start_kbd import start_kbd
+from utils.bot_send import send_message
+from utils.premium import give_user_premium
 
 
 async def count_user_daily_norm(user_id: int):

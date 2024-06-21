@@ -3,15 +3,15 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.types import CallbackQuery
 
-from backend.data.texts import settings_text, utc_text, utc_edit_end, daily_goal_text, cansel_text, daily_goal_end
-from backend.db_api.dal.user_info_dal import UserInfoDAL
-from backend.db_api.dal.utc_dal import UtcDAL
-from backend.db_api.models import Utc, UserInfo
-from backend.keyboards.callback_data import setting_callback_data, utc_callback_data
-from backend.keyboards.inline.settings import settings_kb, utc_kb, daily_goal_kb
-from backend.loader import dp, bot
-from backend.states.settings import SettingsStates
-from backend.utils.bot_send import send_message, edit_message
+from data.texts import settings_text, utc_text, utc_edit_end, daily_goal_text, cansel_text, daily_goal_end
+from db_api.dal.user_info_dal import UserInfoDAL
+from db_api.dal.utc_dal import UtcDAL
+from db_api.models import Utc, UserInfo
+from keyboards.callback_data import setting_callback_data, utc_callback_data
+from keyboards.inline.settings import settings_kb, utc_kb, daily_goal_kb
+from loader import dp, bot
+from states.settings import SettingsStates
+from utils.bot_send import send_message, edit_message
 
 
 @dp.message_handler(Text(equals='Настройки'), chat_type=[types.ChatType.PRIVATE])

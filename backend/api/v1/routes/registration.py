@@ -1,13 +1,13 @@
 from aiohttp.web_request import Request
 from aiohttp.web_response import json_response
 
-from backend.db_api.dal.user_health_dal import UserHealthDAL
-from backend.db_api.dal.user_info_dal import UserInfoDAL
-from backend.db_api.dal.user_limit_dal import UserLimitDAL
-from backend.db_api.dal.user_reg_page_dal import UserRegPageDAL
-from backend.db_api.models import UserInfo, UserHealth, UserLimit
-from backend.utils.auth_checker import status_by_request
-from backend.utils.daily_norm import count_user_daily_norm
+from db_api.dal.user_health_dal import UserHealthDAL
+from db_api.dal.user_info_dal import UserInfoDAL
+from db_api.dal.user_limit_dal import UserLimitDAL
+from db_api.dal.user_reg_page_dal import UserRegPageDAL
+from db_api.models import UserInfo, UserHealth, UserLimit
+from utils.auth_checker import status_by_request
+from utils.daily_norm import count_user_daily_norm
 
 
 class Registration:

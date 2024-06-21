@@ -1,9 +1,9 @@
 from aiohttp.web_request import Request
 from aiohttp.web_response import json_response
 
-from backend.data.texts import share_text
-from backend.utils.auth_checker import status_by_request
-from backend.utils.bot_send import send_message
+from data.texts import share_text
+from utils.auth_checker import status_by_request
+from utils.bot_send import send_message
 
 
 class Stat:

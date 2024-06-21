@@ -1,7 +1,7 @@
 from typing import Type
 
-from backend.db_api.dal.base_dal import BaseDAL
-from backend.db_api.models import Utc
+from db_api.dal.base_dal import BaseDAL
+from db_api.models import Utc
 
 
 class UtcDAL(BaseDAL):

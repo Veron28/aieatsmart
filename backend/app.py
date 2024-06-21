@@ -2,12 +2,12 @@ import asyncio
 import os
 
 from aiogram import executor, Dispatcher
-from backend.db_api import db
+from db_api import db
 from loader import dp
-from backend.utils import on_startup_notify
+from utils import on_startup_notify
 
 from aiohttp import web
-from backend.api.v1.setup import app
+from api.v1.setup import app
 
 
 async def on_startup(dispatcher):

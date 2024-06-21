@@ -1,6 +1,6 @@
 from sqlalchemy import Column, BigInteger, String
 
-from backend.db_api.base import Base
+from db_api.base import Base
 
 
 class UserLimit(Base):

@@ -7,7 +7,7 @@ from sqlalchemy.orm import DeclarativeMeta
 from sqlalchemy.sql import or_
 from sqlalchemy.sql.functions import count
 
-from backend.db_api.postgresql import Database
+from db_api.postgresql import Database
 
 
 class BaseDAL:

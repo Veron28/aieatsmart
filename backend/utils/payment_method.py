@@ -2,7 +2,7 @@ import json
 
 import asyncio
 
-from backend.data.config import PATH_PYTHON3
+from data.config import PATH_PYTHON3
 
 
 async def get_invoice_url(data):

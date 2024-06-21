@@ -2,8 +2,8 @@ import logging
 
 from aiogram import Dispatcher
 
-from backend.data.config import ADMINS
-from backend.utils.bot_send import send_message
+from data.config import ADMINS
+from utils.bot_send import send_message
 
 
 async def on_startup_notify(dp: Dispatcher):

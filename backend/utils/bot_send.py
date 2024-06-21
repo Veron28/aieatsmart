@@ -2,8 +2,8 @@ import asyncio
 
 from aiogram.utils import exceptions
 
-from backend.db_api.dal.user_dal import UserDAL
-from backend.loader import bot
+from db_api.dal.user_dal import UserDAL
+from loader import bot
 import logging as log
 
 

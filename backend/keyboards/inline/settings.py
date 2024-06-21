@@ -1,6 +1,6 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from backend.keyboards.callback_data import setting_callback_data, utc_callback_data
+from keyboards.callback_data import setting_callback_data, utc_callback_data
 
 settings_kb = InlineKeyboardMarkup(
         inline_keyboard=[

@@ -5,11 +5,11 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.types import ContentType
 
-from backend.data.texts import successful_payment, premium_text
-from backend.keyboards.inline.payment_kb import payment_kb
-from backend.loader import dp, bot
-from backend.utils.bot_send import send_message
-from backend.utils.premium import give_user_premium
+from data.texts import successful_payment, premium_text
+from keyboards.inline.payment_kb import payment_kb
+from loader import dp, bot
+from utils.bot_send import send_message
+from utils.premium import give_user_premium
 
 comment = 'comment'
 amount_in_stars = 100

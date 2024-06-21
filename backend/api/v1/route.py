@@ -4,12 +4,12 @@ from base64 import b64encode
 from aiohttp.web_request import Request
 from aiohttp.web_response import json_response, Response
 
-from backend.api.v1.routes.registration import Registration
-from backend.api.v1.routes.stat import Stat
-from backend.handlers.start import webapp_start, share_stat_check_user
-from backend.utils.auth_checker import status_by_request
-from backend.utils.stat_and_reg import stat_or_reg
-from backend.utils.user_stat import get_user_stat
+from api.v1.routes.registration import Registration
+from api.v1.routes.stat import Stat
+from handlers.start import webapp_start, share_stat_check_user
+from utils.auth_checker import status_by_request
+from utils.stat_and_reg import stat_or_reg
+from utils.user_stat import get_user_stat
 
 
 class Base64Encoder(json.JSONEncoder):

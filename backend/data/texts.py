@@ -1,4 +1,4 @@
-from backend.loader import bot
+from loader import bot
 
 start_text_not_reg = \
 '''

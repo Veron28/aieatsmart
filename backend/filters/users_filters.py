@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram.dispatcher.filters import BoundFilter
 
-from backend.data.config import ADMINS
+from data.config import ADMINS
 
 
 class IsAdmin(BoundFilter):

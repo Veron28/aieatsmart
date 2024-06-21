@@ -1,4 +1,4 @@
-from backend.openai.prompting.system_texts import base_text
+from openai.prompting.system_texts import base_text
 
 
 def ask_calories_payload(user_text: str, photo, max_tokens: int = 300):

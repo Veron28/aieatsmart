@@ -1,8 +1,8 @@
 import datetime
 
-from backend.db_api.dal.user_reg_page_dal import UserRegPageDAL
-from backend.utils.stat_and_reg import stat_or_reg
-from backend.utils.user_stat import get_user_history
+from db_api.dal.user_reg_page_dal import UserRegPageDAL
+from utils.stat_and_reg import stat_or_reg
+from utils.user_stat import get_user_history
 
 
 async def get_user_data_dict(user_id: int):

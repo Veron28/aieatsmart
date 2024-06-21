@@ -1,6 +1,6 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from backend.keyboards.callback_data import photo_cal_callback_data
+from keyboards.callback_data import photo_cal_callback_data
 
 def calories_kb(user_id: int, message_id: int):
     return InlineKeyboardMarkup(

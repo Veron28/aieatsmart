@@ -1,7 +1,7 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from backend.keyboards.callback_data import payment_callback_data
-from backend.utils.payment_method import get_invoice_url
+from keyboards.callback_data import payment_callback_data
+from utils.payment_method import get_invoice_url
 
 
 async def payment_kb(invoice_data):
