@@ -58,9 +58,11 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
             style={{
                 display: "flex",
                 flexDirection: "column",
+                justifyContent: "center",
                 alignItems: "center",
+                aspectRatio: "1/1",
                 gap: ".7em",
-                padding: isSelected ? ".2em" : 0,
+                padding: isSelected ? "1.2em" : ".5em",
                 transition: "all .3s",
                 borderRadius: ".2em",
                 backgroundColor: isSelected ? "var(--theme_bg_secondary_color)" : "transparent",
@@ -71,15 +73,26 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
                 onSelectionChange(newState)
             }}
         >
-            {image && (
-                <img
-                    style={{
-                        aspectRatio: "1/1",
-                    }}
-                    src={image}
-                    alt={`Thumbnail for ${title}`}
-                />
-            )}
+            <span
+                style={{
+                    width: "100%",
+                    minHeight: "4em",
+                    aspectRatio: "1/1",
+                    borderRadius: ".25em",
+                    backgroundColor: "var(--theme_section_bg_color)",
+                }}
+            >
+                {image && (
+                    <img
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                        }}
+                        src={image}
+                        alt={`Thumbnail for ${title}`}
+                    />
+                )}
+            </span>
             <span
                 style={{
                     fontSize: ".875em",
@@ -101,7 +114,7 @@ const getLimitationCard = (limitation) => {
         if (isSelected) {
             sectionData.base.push(limitation.title)
         } else {
-            sectionData.base = sectionData.base.filter(item => item !== limitation.title)
+            sectionData.base = sectionData.base.filter((item) => item !== limitation.title)
         }
     }
     return <LimitationCard key={limitation.title} limitation={limitation} onSelectionChange={onChangeFn} />
