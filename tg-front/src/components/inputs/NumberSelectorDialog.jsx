@@ -2,6 +2,8 @@ import { forwardRef, useCallback } from "react"
 import PaperSection from "@/components/PaperSection"
 import SimpleButton from "@/components/SimpleButton"
 
+import CarouselNumberPicker from "./CarouselNumberPicker"
+
 const NumberSelectorDialog = forwardRef((props, ref) => {
     const { title, unitSectionText, unitShorthand, integerNumbers, onValueSelected } = props
     const onClose = useCallback(() => {
@@ -43,6 +45,8 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                 >
                     {unitSectionText}
                 </p>
+
+                <CarouselNumberPicker />
 
                 <div
                     style={{
