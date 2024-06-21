@@ -9,9 +9,10 @@ from data.texts import start_text_reg, start_text_not_reg, start_text_not_reg_we
 from db_api.dal.user_dal import UserDAL
 from db_api.dal.user_reg_page_dal import UserRegPageDAL
 from db_api.models import User
+from keyboards.reply.start_kbd import start_kbd
 from keyboards.webapp.main import reg_kb, stat_kb
 from loader import dp, bot
-from utils.bot_send import send_message
+from utils.bot_send import send_message, edit_message
 from utils.premium import give_user_premium
 
 
@@ -27,17 +28,25 @@ async def start(message: types.Message):
         username = message.chat.username
 
     if await UserRegPageDAL.get(user_id=user_id, reg_page_name='final'):
-        await send_message(
+        msg = await send_message(
             user_id=user_id,
             gif=InputFile("data/video/start_video.mp4"),
             text=start_text_not_reg,
             kb=stat_kb
         )
-    else:
         await send_message(
+            user_id=user_id,
+            kb=reg_kb
+        )
+    else:
+        msg = await send_message(
             user_id=user_id,
             gif=InputFile("data/video/start_video.mp4"),
             text=start_text_reg,
+            kb=start_kbd
+        )
+        await send_message(
+            user_id=user_id,
             kb=reg_kb
         )
 
@@ -87,17 +96,25 @@ async def webapp_start(user_id: int, start_app: str):
 
     if not await UserDAL.get(user_id=user_id, type='active'):
         if await UserRegPageDAL.get(user_id=user_id, reg_page_name='final'):
-            await send_message(
+            msg = await send_message(
                 user_id=user_id,
                 gif=InputFile("data/video/start_video.mp4"),
                 text=start_text_not_reg_webapp,
                 kb=stat_kb
             )
-        else:
             await send_message(
+                user_id=user_id,
+                kb=reg_kb
+            )
+        else:
+            msg = await send_message(
                 user_id=user_id,
                 gif=InputFile("data/video/start_video.mp4"),
                 text=start_text_reg_webapp,
+                kb=start_kbd
+            )
+            await send_message(
+                user_id=user_id,
                 kb=reg_kb
             )
         await UserDAL.insert_or_update(
@@ -126,10 +143,14 @@ async def share_stat_check_user(user_id: int, user_id_to_share: int):
 
     who_invite = user_id_to_share
     if not await UserDAL.get(user_id=user_id, type='active'):
-        await send_message(
+        msg = await send_message(
             user_id=user_id,
             gif=InputFile("data/video/start_video.mp4"),
             text=start_text_not_reg_share,
+            kb=start_kbd
+        )
+        await send_message(
+            user_id=user_id,
             kb=reg_kb
         )
         await UserDAL.insert_or_update(

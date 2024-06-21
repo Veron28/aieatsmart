@@ -68,6 +68,14 @@ async def send_message(
                 chat_id=user_id, media=media,
                 disable_notification=disable_notification, reply_to_message_id=reply_to_message_id))
         else:
+            if not text:
+                msg = await send_message(
+                    user_id=user_id,
+                    text = 1,
+                    kb=kb
+                )
+                await bot.delete_message(chat_id=user_id, message_id=msg)
+                return False
             msg = await bot.send_message(
                 chat_id=user_id, text=text, reply_markup=kb, disable_web_page_preview=True,
                 disable_notification=disable_notification, reply_to_message_id=reply_to_message_id)

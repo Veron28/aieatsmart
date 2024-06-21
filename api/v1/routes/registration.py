@@ -1,11 +1,6 @@
-import datetime
-import traceback
-
 from aiohttp.web_request import Request
 from aiohttp.web_response import json_response
 
-from data.texts import registration_end_message
-from db_api.dal.user_dal import UserDAL
 from db_api.dal.user_health_dal import UserHealthDAL
 from db_api.dal.user_info_dal import UserInfoDAL
 from db_api.dal.user_limit_dal import UserLimitDAL

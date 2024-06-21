@@ -3,7 +3,7 @@ import traceback
 from aiohttp.web_request import Request
 from aiohttp.web_response import json_response
 
-from data.texts import registration_end_message, share_text
+from data.texts import share_text
 from utils.auth_checker import status_by_request
 from utils.bot_send import send_message
 
