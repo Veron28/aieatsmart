@@ -21,12 +21,12 @@ services:
 #    ports:
 #      - '3000:3000'
 
-fbotapp:
-  build:
-    context: ./backend
-    dockerfile: Dockerfile
-  networks:
-    - main_net
+  fbotapp:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - main_net
 
 networks:
   main_net:
