@@ -3,6 +3,18 @@ import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
 import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
+const unit = {
+    title: "Кг",
+    minValue: 40,
+    maxValue: 280,
+}
+
+const subUnit = {
+    title: "г",
+    minValue: 0,
+    maxValue: 999,
+}
+
 const WeightSelectorInput = () => {
     const [selectedWeight, setSelectedWeight] = useState(undefined)
     const dialogRef = useRef(null)
@@ -20,12 +32,7 @@ const WeightSelectorInput = () => {
 
     return (
         <>
-            <NumberSelectorDialog
-                ref={dialogRef}
-                title="Ваш вес"
-                unitSectionText="Килограммы"
-                onValueSelected={onValueSelected}
-            />
+            <NumberSelectorDialog ref={dialogRef} unit={unit} subUnit={subUnit} onValueSelected={onValueSelected} />
             <button
                 style={{
                     display: "flex",

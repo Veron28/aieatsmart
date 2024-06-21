@@ -1,13 +1,33 @@
 import React from "react"
-import { IosPickerItem } from "./NumberPickerItem"
+import { NumberPickerItem } from "./NumberPickerItem"
 
-const EmblaCarousel = (props) => {
-    const { loop } = props
+const EmblaCarousel = ({ unit = { name: "something", minValue: 0, maxValue: 20 }, subUnit }) => {
+    const { name, minValue, maxValue } = unit
+
+    let subUnitSlide = null
+    if (subUnit) {
+        const { name, minValue, maxValue } = subUnit
+        subUnitSlide = (
+            <NumberPickerItem
+                minValue={minValue}
+                slideCount={maxValue - minValue}
+                perspective="right"
+                loop={true}
+                label={name}
+            />
+        )
+    }
 
     return (
         <div className="embla">
-            <IosPickerItem slideCount={24} perspective="left" loop={loop} label="hours" />
-            <IosPickerItem slideCount={60} perspective="right" loop={loop} label="min" />
+            <NumberPickerItem
+                minValue={minValue}
+                slideCount={maxValue - minValue}
+                perspective={subUnit ? "left" : undefined}
+                loop={true}
+                label={name}
+            />
+            {subUnitSlide}
         </div>
     )
 }

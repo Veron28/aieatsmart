@@ -3,6 +3,18 @@ import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
 import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
+const unit = {
+    title: "М",
+    minValue: 40,
+    maxValue: 280,
+}
+
+const subUnit = {
+    title: "см",
+    minValue: 0,
+    maxValue: 99,
+}
+
 const WeightSelectorInput = () => {
     const [selectedHeight, setSelectedHeight] = useState(undefined)
     const dialogRef = useRef(null)
@@ -26,6 +38,8 @@ const WeightSelectorInput = () => {
                 ref={dialogRef}
                 title="Ваш рост"
                 unitSectionText="Сантиметры"
+                unit={unit}
+                subUnit={subUnit}
                 onValueSelected={onValueSelected}
             />
             <button

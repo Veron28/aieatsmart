@@ -3,6 +3,13 @@ import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
 import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
+
+const unit = {
+    title: "лет",
+    minValue: 0,
+    maxValue: 120,
+}
+
 const AgeSelectorInput = () => {
     const [selectedAge, setSelectedAge] = useState(undefined)
     const dialogRef = useRef(null)
@@ -26,7 +33,7 @@ const AgeSelectorInput = () => {
                 ref={dialogRef}
                 title="Ваш возраст"
                 unitSectionText="Сколько Вам полных лет"
-                integerNumbers
+                unit={unit}
                 onValueSelected={onValueSelected}
             />
             <button

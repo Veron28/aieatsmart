@@ -49,8 +49,8 @@ export const setContainerStyles = (emblaApi, wheelRotation) => {
     emblaApi.containerNode().style.transform = `translateZ(${WHEEL_RADIUS}px) rotateX(${wheelRotation}deg)`
 }
 
-export const IosPickerItem = (props) => {
-    const { slideCount, perspective, label, loop = false } = props
+export const NumberPickerItem = (props) => {
+    const { slideCount, perspective, label, loop = false, minValue = 0 } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop,
         axis: "y",
