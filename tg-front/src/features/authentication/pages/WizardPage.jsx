@@ -73,22 +73,42 @@ const getHeadingForWizard = (sectionName) => {
         case SECTION_BASICS:
             return {
                 title: "Основное",
-                subtitle: "Чем больше мы о Вас знаем, тем лучше мы сможем Вам помочь:",
+                subtitle: (
+                    <span style={{ display: "contents" }}>
+                        Чем больше мы о Вас знаем,
+                        <wbr /> тем лучше мы сможем Вам помочь:
+                    </span>
+                ),
             }
         case SECTION_HEALTH:
             return {
                 title: "Здоровье",
-                subtitle: "Пожалуйста, укажите все имеющиеся у Вас медицинские противопоказания:",
+                subtitle: (
+                    <span style={{ display: "contents" }}>
+                        Пожалуйста, укажите все имеющиеся
+                        <wbr /> у Вас медицинские противопоказания:
+                    </span>
+                ),
             }
         case SECTION_GOALS:
             return {
                 title: "Цели",
-                subtitle: "Выберите одну или несколько целей, которые больше Вам подходят:",
+                subtitle: (
+                    <span style={{ display: "contents" }}>
+                        Выберите одну или несколько целей,
+                        <wbr /> которые больше Вам подходят:
+                    </span>
+                ),
             }
         case SECTION_LIMITATIONS:
             return {
                 title: "Предпочтения",
-                subtitle: "Выберите продукты и блюда, которые Вы предпочитаете употреблять:",
+                subtitle: (
+                    <span style={{ display: "contents" }}>
+                        Выберите продукты и блюда, которые
+                        <wbr /> Вы предпочитаете употреблять:
+                    </span>
+                ),
             }
         case SECTION_LIFESTYLE:
             return {

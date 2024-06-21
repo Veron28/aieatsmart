@@ -15,7 +15,8 @@ const SectionHeading = ({ title, subtitle }) => {
             </h1>
             <h2 style={{
                 fontSize: "0.875em",
-                color: "var(--theme_subtitle_text_color)"
+                color: "var(--theme_subtitle_text_color)",
+                fontWeight: "normal",
             }}>
                 {subtitle}
             </h2>

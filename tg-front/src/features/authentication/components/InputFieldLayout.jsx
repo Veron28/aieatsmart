@@ -10,6 +10,7 @@ const InputFieldLayout = ({ fieldIcon, fieldName, inputControl }) => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 fontSize: ".875em",
+                minHeight: "2em",
             }}
         >
             <div

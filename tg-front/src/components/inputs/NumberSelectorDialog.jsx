@@ -1,6 +1,6 @@
 import { forwardRef, useCallback } from "react"
-import PaperSection from "./PaperSection"
-import SimpleButton from "./SimpleButton"
+import PaperSection from "@/components/PaperSection"
+import SimpleButton from "@/components/SimpleButton"
 
 const NumberSelectorDialog = forwardRef((props, ref) => {
     const { title, unitSectionText, unitShorthand, integerNumbers, onValueSelected } = props

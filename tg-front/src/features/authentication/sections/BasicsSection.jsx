@@ -1,6 +1,8 @@
 import InputFieldLayout from "../components/InputFieldLayout"
 import WeightSelectorInput from "../components/WeightSelectorInput"
 import HeightSelectorInput from "../components/HeightSelectorInput"
+import GenderSelectorInput from "../components/GenderSelectorInput"
+import AgeSelectorInput from "../components/AgeSelectorInput"
 
 const BasicsSection = () => {
     return (
@@ -11,10 +13,10 @@ const BasicsSection = () => {
                 gap: ".5em",
             }}
         >
-            <InputFieldLayout fieldName="Пол" />
+            <InputFieldLayout fieldName="Пол" inputControl={<GenderSelectorInput />} />
             <InputFieldLayout fieldName="Вес" inputControl={<WeightSelectorInput />} />
             <InputFieldLayout fieldName="Рост" inputControl={<HeightSelectorInput />} />
-            <InputFieldLayout fieldName="Возраст" />
+            <InputFieldLayout fieldName="Возраст" inputControl={<AgeSelectorInput />} />
         </div>
     )
 }

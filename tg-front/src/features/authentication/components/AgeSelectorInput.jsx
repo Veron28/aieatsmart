@@ -1,29 +1,32 @@
-import { useCallback, useState, useRef, useContext } from "react"
+import { useCallback, useContext, useState, useRef } from "react"
 import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
 import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
-const WeightSelectorInput = () => {
-    const [selectedWeight, setSelectedWeight] = useState(undefined)
+const AgeSelectorInput = () => {
+    const [selectedAge, setSelectedAge] = useState(undefined)
     const dialogRef = useRef(null)
+
     const openDialogFn = useCallback(() => {
         dialogRef.current?.showModal()
     }, [dialogRef])
+
     const onValueSelected = useCallback(
-        (newWeight) => {
-            setSelectedWeight(newWeight)
+        (newAge) => {
+            setSelectedAge(newAge)
             const currentSectionData = useContext(WizardSectionContext)
-            currentSectionData.weight = newWeight
+            currentSectionData.age = newAge
         },
-        [setSelectedWeight]
+        [setSelectedAge]
     )
 
     return (
         <>
             <NumberSelectorDialog
                 ref={dialogRef}
-                title="Ваш вес"
-                unitSectionText="Килограммы"
+                title="Ваш возраст"
+                unitSectionText="Сколько Вам полных лет"
+                integerNumbers
                 onValueSelected={onValueSelected}
             />
             <button
@@ -35,14 +38,14 @@ const WeightSelectorInput = () => {
                     backgroundColor: "transparent",
                     fontSize: ".875em",
                     cursor: "pointer",
-                    color: selectedWeight ? "var(--theme_link_color)" : "var(--theme_text_hint_color)",
+                    color: selectedAge ? "var(--theme_link_color)" : "var(--theme_text_hint_color)",
                 }}
                 onClick={openDialogFn}
             >
-                {selectedWeight ? `${selectedWeight} кг` : "Выберите вес"} <ArrowDownIcon />
+                {selectedAge ? `${selectedAge} лет` : "Выберите возраст"} <ArrowDownIcon />
             </button>
         </>
     )
 }
 
-export default WeightSelectorInput
+export default AgeSelectorInput
