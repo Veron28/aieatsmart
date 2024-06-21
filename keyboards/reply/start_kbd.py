@@ -8,7 +8,7 @@ start_kbd = ReplyKeyboardMarkup(
             KeyboardButton(text='Рекомендации')
         ],
         [
-            KeyboardButton(text='Статистика'),
+            # KeyboardButton(text='Статистика'),
             KeyboardButton(text='Настройки'),
             KeyboardButton(text='Premium'),
         ]
