@@ -1,16 +1,21 @@
-import { useCallback, useState, useRef } from "react"
+import { useCallback, useContext, useState, useRef } from "react"
 import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
-import NumberSelectorDialog from "../../../components/NumberSelectorDialog"
+import NumberSelectorDialog from "@/components/NumberSelectorDialog"
+import { WizardSectionContext } from "./WizardSectionContext"
 
 const WeightSelectorInput = () => {
     const [selectedHeight, setSelectedHeight] = useState(undefined)
     const dialogRef = useRef(null)
+
     const openDialogFn = useCallback(() => {
         dialogRef.current?.showModal()
     }, [dialogRef])
+
     const onValueSelected = useCallback(
         (newHeight) => {
             setSelectedHeight(newHeight)
+            const currentSectionData = useContext(WizardSectionContext)
+            currentSectionData.height = newHeight
         },
         [setSelectedHeight]
     )

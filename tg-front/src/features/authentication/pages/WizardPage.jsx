@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
 import {
     RiArrowLeftLine as BackIcon,
@@ -7,8 +7,8 @@ import {
 } from "@remixicon/react"
 import { useNavigate } from "react-router-dom"
 
-import SectionHeading from "../../../components/SectionHeading"
-import UltimateActionButton from "../../../components/UltimateActionButton"
+import SectionHeading from "@/components/SectionHeading"
+import UltimateActionButton from "@/components/UltimateActionButton"
 
 import PageIndicator from "../components/PageIndicator"
 
@@ -29,6 +29,7 @@ import {
     storeUserLimitations,
     storeUserPhysiologyInfo,
 } from "../api/RegistrationApi"
+import { WizardSectionContext } from "../components/WizardSectionContext"
 
 const SECTION_WELCOME = "welcome"
 const SECTION_BASICS = "basics"
@@ -97,21 +98,21 @@ const getHeadingForWizard = (sectionName) => {
         case SECTION_FINAL:
             return {
                 title: "Готово",
-                subtitle: "Бонус уже ждет тебя в чате",
+                subtitle: "Бонус уже ждёт тебя в чате",
             }
         default:
             return null
     }
 }
 
-const getSectionForWizard = (sectionName, onStateUpdateFn) => {
+const getSectionForWizard = (sectionName) => {
     switch (sectionName) {
         case SECTION_WELCOME:
             return <WelcomeSection />
         case SECTION_BASICS:
-            return <BasicsSection onStateUpdate={onStateUpdateFn} />
+            return <BasicsSection />
         case SECTION_HEALTH:
-            return <HealthSection onStateUpdate={onStateUpdateFn} />
+            return <HealthSection />
         case SECTION_GOALS:
             return <GoalsSection />
         case SECTION_LIMITATIONS:
@@ -190,9 +191,29 @@ const getButtonState = (currentStageName) => {
 }
 
 const SetupWizardPage = () => {
-    const [[currentStageIndex, navigationDirection], setCurrentStageIndex] = useState([0, 0])
-    const currentStageName = WIZARD_SECTIONS[currentStageIndex]
     const navigate = useNavigate()
+    const [[currentStageIndex, navigationDirection], setCurrentStageIndex] = useState([0, 0])
+    const [wizardState, setWizardState] = useState({})
+
+    const [currentStageName, currentSectionState] = useMemo(() => {
+        const sectionName = WIZARD_SECTIONS[currentStageIndex]
+        if (!wizardState[sectionName]) {
+            wizardState[sectionName] = {}
+        }
+        return [sectionName, wizardState[sectionName]]
+    }, [currentStageIndex, wizardState])
+
+    const commitSectionState = useCallback(
+        (stageName, newSectionState) => {
+            const stateSaveHandler = getStateSaveHandler(stageName)
+            stateSaveHandler?.(newSectionState)
+            setWizardState({
+                ...wizardState,
+                [stageName]: newSectionState,
+            })
+        },
+        [wizardState, setWizardState]
+    )
 
     const progressInfo = {
         currentStage: currentStageIndex,
@@ -208,7 +229,7 @@ const SetupWizardPage = () => {
     const proceed = (direction) => {
         setCurrentStageIndex([
             Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex + direction)),
-            direction, // left
+            direction,
         ])
     }
 
@@ -216,16 +237,15 @@ const SetupWizardPage = () => {
         proceed(-1) // left
     }
     const goToNextSection = useCallback(() => {
-        const stateSaveHandler = getStateSaveHandler(currentStageName)
-        stateSaveHandler?.()
+        commitSectionState(currentStageName, currentSectionState)
 
-        if (currentStageIndex === WIZARD_SECTIONS.length - 1) {
+        if (currentStageName === SECTION_FINAL) {
             navigate("/statistics")
             return
         }
 
         proceed(+1) // right
-    }, [navigate, currentStageIndex, currentStageName])
+    }, [navigate, commitSectionState, currentStageName, currentSectionState])
 
     useOnBackListener(goToPreviousSection)
 
@@ -295,7 +315,9 @@ const SetupWizardPage = () => {
                                 title={currentSectionHeading.title}
                                 subtitle={currentSectionHeading.subtitle}
                             />
-                            {currentSectionContents}
+                            <WizardSectionContext.Provider value={currentSectionState}>
+                                {currentSectionContents}
+                            </WizardSectionContext.Provider>
                         </motion.section>
                     </AnimatePresence>
                 </section>

@@ -1,6 +1,7 @@
-import { useCallback, useState, useRef } from "react"
+import { useCallback, useState, useRef, useContext } from "react"
 import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
-import NumberSelectorDialog from "../../../components/NumberSelectorDialog"
+import NumberSelectorDialog from "@/components/NumberSelectorDialog"
+import { WizardSectionContext } from "./WizardSectionContext"
 
 const WeightSelectorInput = () => {
     const [selectedWeight, setSelectedWeight] = useState(undefined)
@@ -11,6 +12,8 @@ const WeightSelectorInput = () => {
     const onValueSelected = useCallback(
         (newWeight) => {
             setSelectedWeight(newWeight)
+            const currentSectionData = useContext(WizardSectionContext)
+            currentSectionData.weight = newWeight
         },
         [setSelectedWeight]
     )
