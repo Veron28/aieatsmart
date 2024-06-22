@@ -237,14 +237,13 @@ const SetupWizardPage = () => {
                     <motion.nav
                         key="pageIndicator"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                        animate={{ opacity: 1, position: "sticky", top: "2em", zIndex: 1, }}
                         exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
                         layout
                         style={{
                             display: "flex",
                             alignItems: "center",
                             gap: "1em",
-                            marginTop: "2em",
                             marginBottom: "2em",
                         }}
                     >
