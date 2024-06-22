@@ -17,9 +17,9 @@ async def on_startup(dispatcher):
     await db.create_all()
     await on_startup_notify(dispatcher)
 
-    # loop = asyncio.get_event_loop()
-    # port = int(os.environ.get("PORT", 5004))
-    # loop.create_task(web._run_app(app, port=port))
+    loop = asyncio.get_event_loop()
+    port = int(os.environ.get("PORT", 8080))
+    loop.create_task(web._run_app(app, port=port))
 
 
 async def on_shutdown(dp: Dispatcher):
