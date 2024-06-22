@@ -4,8 +4,8 @@ start_kbd = ReplyKeyboardMarkup(
     resize_keyboard=True,
     keyboard=[
         [
-            KeyboardButton(text='Питание'),
-            KeyboardButton(text='Рекомендации')
+            KeyboardButton(text='Что поесть'),
+            KeyboardButton(text='Анализ')
         ],
         [
             # KeyboardButton(text='Статистика'),

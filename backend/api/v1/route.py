@@ -29,7 +29,6 @@ class Routes(Registration, Stat):
         except:
             data = await request.post()
 
-        print('data: ', data)
         if not response_obj['status']:
             # add error to db
             response_obj['text'] = 'some error with auth'

@@ -88,6 +88,9 @@ base_change_text = \
 Чтобы изменить нужную категорию, достаточно просто перейти по кнопке, выбрать текущие параметры и сохранить их
 '''
 
+error_text = 'Произошла непредвиденная ошибка. Попробуйте снова'
+
+
 def daily_change_text(user):
     if user:
         return \
@@ -130,7 +133,7 @@ f'''
 
 <i>{data['squirrels']} белки {data['fats']} жиры {data['carbohydrates']} углеводы</i>
 
-<blockquote expandable>{data['recommendation']}</blockquote>
+<blockquote expandable>{data['text']}</blockquote>
 '''
 
 async def share_text(user_id: int):

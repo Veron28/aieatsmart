@@ -52,6 +52,10 @@ daily_change_kb = InlineKeyboardMarkup(
                                      callback_data=setting_callback_data.new(type='daily_eating_norm')),
             ],
             [
+                InlineKeyboardButton(text=f'Пересчитать норму',
+                                     callback_data=setting_callback_data.new(type='recount_daily_norm')),
+            ],
+            [
                 InlineKeyboardButton(text=f'← Назад',
                                      callback_data=setting_callback_data.new(type='back')),
             ]

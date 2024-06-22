@@ -101,7 +101,7 @@ class Registration:
 
             if 'custom' in data:
                 healt_permissions.append(UserHealth(user_id=user_id, type='custom', text=data['custom']))
-            print(healt_permissions)
+
             try:
                 await UserHealthDAL.delete(user_id=user_id)
                 await UserHealthDAL.adds(*healt_permissions)
@@ -176,7 +176,7 @@ class Registration:
 
             if 'custom' in data:
                 eat_permissions.append(UserLimit(user_id=user_id, type='custom', text=data['custom']))
-            print(eat_permissions)
+
             try:
                 await UserLimitDAL.delete(user_id=user_id)
                 await UserRegPageDAL.add(
