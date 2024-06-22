@@ -5,7 +5,6 @@ import WelcomePage from "@/features/registration/pages/WelcomePage"
 import WizardPage from "@/features/registration/pages/WizardPage"
 import SignupCompletePage from "@/features/registration/pages/SignupCompletedPage"
 import StatisticsPage from "@/features/statistics/pages/StatisticsPage"
-import { RedirectFunction } from "react-router-dom"
 
 const router = createBrowserRouter([
     {

@@ -28,7 +28,7 @@ const PCFBreakdownItem = ({ consumptionItem }) => {
                     color: "var(--theme_subtitle_text_color)",
                 }}
             >
-                {`${consumptionItem.calories} ккал, ${consumptionItem.gramms} гр`}
+                {`${consumptionItem.gramms} гр`}
             </p>
         </>
     )

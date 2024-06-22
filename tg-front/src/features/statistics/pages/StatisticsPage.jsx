@@ -7,19 +7,37 @@ import PageActionsBlock from "@/components/PageActionsBlock"
 
 import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 import FoodIntakeSummary from "../sections/FoodIntakeSummary"
-import GrammsEatenSummary from "../sections/GrammsEatenSummary"
+import CaloriesEatenSummary from "../sections/CalloriesEatenSummary"
 import RemainingCaloriesSummary from "../sections/RemainingCaloriesSummary"
 import { getStatistics } from "../api/StatisticsApi"
 
-const getFoodIntakeData = () => ({
-    current: 3,
-    total: 3,
+const getFoodIntakeData = ({ eating_today, eating_daily_norm }) => ({
+    current: eating_today,
+    total: eating_daily_norm,
 })
 
-const getCaloriesIntakeData = () => ({
-    current: 1000,
-    total: 1230,
+const getCaloriesIntakeData = ({ kcal_today, kcal_left }) => ({
+    current: kcal_today,
+    total: kcal_today + kcal_left,
 })
+
+const getPCFConsumptionData = ({squirrels, fats, carbohydrates }) => [
+    {
+        name: "Жиры",
+        gramms: fats,
+        color: "var(--theme_color_pcf_fats)",
+    },
+    {
+        name: "Углеводы",
+        gramms: carbohydrates,
+        color: "var(--theme_color_pcf_carbons)",
+    },
+    {
+        name: "Белки",
+        gramms: squirrels,
+        color: "var(--theme_color_pcf_proteins)",
+    },
+]
 
 const StatisticsPage = () => {
     const [statisticsData, setStatisticsData] = useState({})
@@ -28,8 +46,9 @@ const StatisticsPage = () => {
         console.log("Statistics", statisticsData)
     }, [])
 
-    const foodIntakeData = getFoodIntakeData()
-    const caloriesConsumptionData = getCaloriesIntakeData()
+    const foodIntakeData = getFoodIntakeData(statisticsData)
+    const caloriesConsumptionData = getCaloriesIntakeData(statisticsData)
+    const pcfConsumptionData = getPCFConsumptionData(statisticsData)
 
     return (
         <section
@@ -53,9 +72,10 @@ const StatisticsPage = () => {
                     style={{
                         gridColumnStart: "span 2",
                     }}
+                    pcfConsumptionData={pcfConsumptionData}
                 />
                 <FoodIntakeSummary foodIntakeData={foodIntakeData} />
-                <GrammsEatenSummary foodIntakeData={foodIntakeData} />
+                <CaloriesEatenSummary foodIntakeData={caloriesConsumptionData} />
                 <RemainingCaloriesSummary
                     style={{
                         gridColumnStart: "span 2",
