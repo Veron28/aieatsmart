@@ -7,8 +7,9 @@ const InputFieldLayout = ({ fieldIcon, fieldName, inputControl }) => {
         <PaperSection
             style={{
                 display: "flex",
+                position: "relative",
                 justifyContent: "space-between",
-                alignItems: "center",
+                alignItems: "stretch",
                 fontSize: ".875em",
                 minHeight: "2em",
             }}

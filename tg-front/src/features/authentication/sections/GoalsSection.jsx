@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useCallback, useContext } from "react"
 import CheckboxSelectorInput from "@/components/inputs/CheckboxSelectorInput"
 
 import InputFieldLayout from "../components/InputFieldLayout"
@@ -10,22 +10,21 @@ import SportResultsIcon from "@/assets/run.svg"
 
 import { WizardSectionContext } from "../components/WizardSectionContext"
 
-const getCheckbox = (valueName, isSelected) => {
-    const onChangeFn = (newValue) => {
-        const sectionData = useContext(WizardSectionContext)
-        if (!sectionData.goal) {
-            sectionData.goal = []
-        }
-        if (newValue) {
-            sectionData.goal.push(valueName)
-        } else {
-            sectionData.goal = sectionData.goal.filter((item) => item !== valueName)
-        }
-    }
-    return <CheckboxSelectorInput isSelected={isSelected} onChange={onChangeFn} />
+const getRadioButton = (valueName, sectionData) => {
+    const onChangeFn = useCallback(
+        (thisGoalIsSelected) => {
+            if (thisGoalIsSelected) {
+                sectionData.goal = valueName
+            }
+        },
+        [sectionData, valueName]
+    )
+    const thisGoalIsSelected = sectionData.goal === valueName
+    return <CheckboxSelectorInput isSelected={thisGoalIsSelected} onChange={onChangeFn} />
 }
 
 const GoalsSection = () => {
+    const sectionData = useContext(WizardSectionContext)
     return (
         <div
             style={{
@@ -37,27 +36,27 @@ const GoalsSection = () => {
             <InputFieldLayout
                 fieldIcon={WeightGainIcon}
                 fieldName="Набор массы"
-                inputControl={getCheckbox("Набор массы")}
+                inputControl={getRadioButton("Набор массы", sectionData)}
             />
             <InputFieldLayout
                 fieldIcon={WeightLossIcon}
                 fieldName="Снижение веса"
-                inputControl={getCheckbox("Снижение веса")}
+                inputControl={getRadioButton("Снижение веса", sectionData)}
             />
             <InputFieldLayout
                 fieldIcon={WeightMaintenanceIcon}
                 fieldName="Поддержание текущего веса"
-                inputControl={getCheckbox("Поддержание текущего веса")}
+                inputControl={getRadioButton("Поддержание текущего веса", sectionData)}
             />
             <InputFieldLayout
                 fieldIcon={HealthImprovementIcon}
                 fieldName="Улучшение здоровья"
-                inputControl={getCheckbox("Улучшение здоровья")}
+                inputControl={getRadioButton("Улучшение здоровья", sectionData)}
             />
             <InputFieldLayout
                 fieldIcon={SportResultsIcon}
                 fieldName="Улучшение спортивных результатов"
-                inputControl={getCheckbox("Улучшение спортивных результатов")}
+                inputControl={getRadioButton("Улучшение спортивных результатов", sectionData)}
             />
         </div>
     )
