@@ -1,20 +1,18 @@
 import { forwardRef, useCallback, useState } from "react"
 import PaperSection from "@/components/PaperSection"
 import SimpleButton from "@/components/SimpleButton"
-
-import CarouselNumberPicker from "./CarouselNumberPicker"
+import RadioButtonItems from "@/components/inputs/RadioButtonItems"
 
 const RadioSelectorDialog = forwardRef((props, ref) => {
     const { title, subtitle, selectedOption, options, onValueSelected } = props
-    const [unitValue, setUnitValue] = useState(0)
-    const [subUnitValue, setSubUnitValue] = useState(0)
+    const [currentGender, setSelectedGender] = useState(selectedOption)
     const onClose = useCallback(() => {
         ref?.current?.close()
     }, [ref])
     const onOKClick = useCallback(() => {
-        onValueSelected?.(unitValue, subUnitValue)
+        onValueSelected?.(currentGender)
         onClose()
-    }, [unitValue, subUnitValue, onValueSelected, onClose])
+    }, [currentGender, onValueSelected, onClose])
 
     return (
         <dialog
@@ -50,26 +48,14 @@ const RadioSelectorDialog = forwardRef((props, ref) => {
 
                 <span
                     style={{
-                        display: "contents",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: ".5em",
                         position: "relative",
                         color: "var(--theme_text_color)",
                     }}
                 >
-                    <CarouselNumberPicker
-                        unit={{
-                            ...unit,
-                            onChange: setUnitValue,
-                        }}
-                        divider={divider}
-                        subUnit={
-                            subUnit
-                                ? {
-                                      ...subUnit,
-                                      onChange: setSubUnitValue,
-                                  }
-                                : undefined
-                        }
-                    />
+                    <RadioButtonItems options={options} onSelectionChange={setSelectedGender} />
                 </span>
 
                 <div
