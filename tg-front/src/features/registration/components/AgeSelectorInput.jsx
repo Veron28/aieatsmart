@@ -3,9 +3,8 @@ import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
 import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
-
 const unit = {
-    name: "лет",
+    name: "год",
     minValue: 0,
     maxValue: 120,
 }
@@ -13,18 +12,18 @@ const unit = {
 const AgeSelectorInput = () => {
     const [selectedAge, setSelectedAge] = useState(undefined)
     const dialogRef = useRef(null)
+    const currentSectionData = useContext(WizardSectionContext)
 
     const openDialogFn = useCallback(() => {
         dialogRef.current?.showModal()
     }, [dialogRef])
 
     const onValueSelected = useCallback(
-        (newAge) => {
-            setSelectedAge(newAge)
-            const currentSectionData = useContext(WizardSectionContext)
-            currentSectionData.age = newAge
+        (newAgeYears) => {
+            setSelectedAge(newAgeYears)
+            currentSectionData.age = newAgeYears
         },
-        [setSelectedAge]
+        [setSelectedAge, currentSectionData]
     )
 
     return (

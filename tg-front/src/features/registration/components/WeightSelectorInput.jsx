@@ -4,15 +4,14 @@ import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
 const unit = {
-    name: "Кг",
-    minValue: 40,
-    maxValue: 280,
+    minValue: 30,
+    maxValue: 150,
 }
 
 const subUnit = {
-    name: "г",
+    name: "кг",
     minValue: 0,
-    maxValue: 999,
+    maxValue: 9,
 }
 
 const WeightSelectorInput = () => {
@@ -23,18 +22,23 @@ const WeightSelectorInput = () => {
         dialogRef.current?.showModal()
     }, [dialogRef])
     const onValueSelected = useCallback(
-        (newWeight, subUnitWeight) => {
-            setSelectedWeight(newWeight)
-            currentSectionData.weight = newWeight
-            console.log("Got value", newWeight)
-            console.log("Got value 2", subUnitWeight)
+        (newWeightKilograms, newWeightGrams) => {
+            const computedWeight = newWeightKilograms + (newWeightGrams > 0 ? 0.1 * newWeightGrams : 0)
+            setSelectedWeight(computedWeight)
+            currentSectionData.weight = computedWeight
         },
-        [setSelectedWeight, useContext]
+        [setSelectedWeight, currentSectionData]
     )
 
     return (
         <>
-            <NumberSelectorDialog ref={dialogRef} unit={unit} subUnit={subUnit} onValueSelected={onValueSelected} />
+            <NumberSelectorDialog
+                ref={dialogRef}
+                unit={unit}
+                divider=","
+                subUnit={subUnit}
+                onValueSelected={onValueSelected}
+            />
             <button
                 style={{
                     display: "flex",

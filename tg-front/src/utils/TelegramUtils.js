@@ -1,5 +1,10 @@
 import { useEffect } from "react"
 
+/*
+More info on this object:
+https://core.telegram.org/bots/webapps#initializing-mini-apps
+*/
+
 const getTelegramObject = () => {
     return window?.Telegram?.WebApp
 }
@@ -19,6 +24,14 @@ export const weAreInWebBrowser = () => {
 
 export const getTelegramInitData = () => {
     return getTelegramObject()?.initData
+}
+
+export const closeMiniApp = () => {
+    getTelegramObject()?.close()
+}
+
+export const openTelegramLink = (url) => {
+    getTelegramObject()?.openTelegramLink(url)
 }
 
 export const useTelegramOnBackListener = (onBackListener) => {

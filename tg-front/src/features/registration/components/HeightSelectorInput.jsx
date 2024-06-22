@@ -4,7 +4,6 @@ import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
 const unit = {
-    name: "М",
     minValue: 40,
     maxValue: 280,
 }
@@ -12,11 +11,12 @@ const unit = {
 const subUnit = {
     name: "см",
     minValue: 0,
-    maxValue: 99,
+    maxValue: 9,
 }
 
 const WeightSelectorInput = () => {
     const [selectedHeight, setSelectedHeight] = useState(undefined)
+    const currentSectionData = useContext(WizardSectionContext)
     const dialogRef = useRef(null)
 
     const openDialogFn = useCallback(() => {
@@ -24,12 +24,12 @@ const WeightSelectorInput = () => {
     }, [dialogRef])
 
     const onValueSelected = useCallback(
-        (newHeight) => {
-            setSelectedHeight(newHeight)
-            const currentSectionData = useContext(WizardSectionContext)
-            currentSectionData.height = newHeight
+        (newHeightMeters, newHeightCentimeters) => {
+            const computedHeight = newHeightMeters + (newHeightCentimeters > 0 ? 0.1 * newHeightCentimeters : 0)
+            setSelectedHeight(computedHeight)
+            currentSectionData.height = computedHeight
         },
-        [setSelectedHeight]
+        [setSelectedHeight, currentSectionData]
     )
 
     return (
@@ -40,6 +40,7 @@ const WeightSelectorInput = () => {
                 unitSectionText="Сантиметры"
                 unit={unit}
                 subUnit={subUnit}
+                divider=","
                 onValueSelected={onValueSelected}
             />
             <button

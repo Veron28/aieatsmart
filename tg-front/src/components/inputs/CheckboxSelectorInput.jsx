@@ -1,37 +1,63 @@
-import { memo, useState } from "react"
+import { memo, useEffect, useState } from "react"
+import { RiRadioButtonFill as RadioButtonSelectedIcon } from "@remixicon/react"
 
-const CheckboxSelectorInput = ({ isSelected: defaultIsSelected, onChange }) => {
-    const [isSelected, setSelected] = useState(defaultIsSelected ?? false)
+const CheckboxSelectorInput = ({ style: styleProps, isSelected: parentIsSelected, onChange }) => {
+    const [isSelected, setSelected] = useState(parentIsSelected ?? false)
+    useEffect(() => {
+        // We adapt to parent selection requests
+        setSelected(parentIsSelected)
+    }, [parentIsSelected])
 
     // Outer span is just a bigger tap area for better UX
     return (
         <span
             style={{
-                display: "inline-flex",
-                justifyContent: "end",
                 width: "fit-content",
                 height: "100%",
-                padding: ".9em",
-                paddingLeft: "2em",
                 boxSizing: "border-box",
+
+                position: "absolute",
+                top: 0,
+                bottom: 0,
+                right: 0,
+
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+
+                padding: ".9em",
+                paddingLeft: "4em",
+                paddingRight: "1.2em",
+                ...styleProps,
             }}
             onClick={() => {
                 setSelected(!isSelected)
-                onChange(!isSelected)
+                onChange?.(!isSelected)
             }}
         >
-            <div
+            <span
                 style={{
                     width: "1.5em",
                     height: "1.5em",
-                    boxSizing: "border-box",
-                    borderRadius: "50%",
-                    transition: "all .2s",
-                    backgroundColor: isSelected ? "var(--theme_accent_color)" : "transparent",
-                    borderColor: isSelected ? "transparent" : "var(--theme_text_hint_color)",
-                    border: isSelected ? "none" : "1px solid",
                 }}
-            ></div>
+            >
+                {isSelected ? (
+                    <RadioButtonSelectedIcon color="var(--theme_button_color)" />
+                ) : (
+                    <div
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            boxSizing: "border-box",
+                            borderRadius: "50%",
+                            transition: "all .2s",
+                            backgroundColor: "transparent",
+                            borderColor: "var(--theme_text_hint_color)",
+                            border: "1px solid",
+                        }}
+                    />
+                )}
+            </span>
         </span>
     )
 }

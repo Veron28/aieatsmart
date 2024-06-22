@@ -64,8 +64,8 @@ const getHeadingForWizard = (sectionName) => {
                 title: "Цели",
                 subtitle: (
                     <span style={{ display: "contents" }}>
-                        Выберите одну или несколько целей,
-                        <wbr /> которые больше Вам подходят:
+                        Выберите одну цель,
+                        <wbr /> которая больше Вам подходит:
                     </span>
                 ),
             }

@@ -1,9 +1,11 @@
 .embla {
     position: relative;
     display: flex;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
     height: 22.2rem;
-    max-width: 30rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -40,10 +42,12 @@
     height: 100%;
     display: flex;
     align-items: center;
-    min-width: 50%;
+    min-width: 4em;
+    max-width: 50%;
     justify-content: center;
     line-height: 1;
     font-size: 1.8rem;
+    gap: .5em;
 }
 .embla__ios-picker__scene {
     min-width: 100%;
@@ -54,7 +58,7 @@
     touch-action: pan-x;
 }
 .embla__ios-picker__viewport {
-    height: 32px;
+    height: 2em;
     width: 100%;
     perspective: 1000px;
     -webkit-user-select: none;
@@ -89,9 +93,13 @@
     justify-content: center;
     backface-visibility: hidden;
     opacity: 0;
+    transition: color .1s;
 }
 .embla__ios-picker__label {
+    display: contents;
     font-weight: 700;
     transform: translateX(-55px);
     pointer-events: none;
+    color: var(--theme_accent_color);
+    font-size: 1.8em;
 }

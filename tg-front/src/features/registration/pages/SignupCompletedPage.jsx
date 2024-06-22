@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom"
 
 import { RiArrowRightLine as ForwardIcon } from "@remixicon/react"
 
+import { getBotUrl } from "@/utils/ApplicationLinks"
+import { closeMiniApp, openTelegramLink } from "@/utils/TelegramUtils"
+
 import SectionHeading from "@/components/SectionHeading"
 import PageActionsBlock from "@/components/PageActionsBlock"
 import SimpleButton from "@/components/SimpleButton"
 import UltimateActionButton from "@/components/UltimateActionButton"
 
-import SignupCompletedSection from "@/features/authentication/sections/SignupCompletedSection"
+import SignupCompletedSection from "@/features/registration/sections/SignupCompletedSection"
 
 const SignupCompletePage = () => {
     const navigate = useNavigate()
@@ -16,7 +19,8 @@ const SignupCompletePage = () => {
         navigate("/statistics")
     }, [navigate])
     const goToChat = useCallback(() => {
-        // navigate("where?")
+        openTelegramLink(getBotUrl())
+        closeMiniApp()
     }, [navigate])
 
     return (

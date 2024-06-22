@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useRef } from "react"
+import React, { useEffect, useCallback, useMemo, useRef } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 
 const CIRCLE_DEGREES = 360
@@ -50,18 +50,35 @@ export const setContainerStyles = (emblaApi, wheelRotation) => {
 }
 
 export const NumberPickerItem = (props) => {
-    const { slideCount, perspective, label, loop = false, onChange } = props
+    const { minValue, maxValue, perspective, loop = false, onChange } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop,
         axis: "y",
         dragFree: true,
-        containScroll: false,
+        containScroll: "keepSnaps",
         watchSlides: false,
     })
     const rootNodeRef = useRef(null)
+    const [slideCount, slides, slideViews] = useMemo(() => {
+        const slideCount = Math.max(1, 1 + (maxValue ?? 0) - (minValue ?? 0))
+        const slides = [...Array(slideCount).keys()].map((i) => i + minValue)
+        const slideViews = slides.map((slideData) => (
+            <div className="embla__ios-picker__slide" key={slideData}>
+                {slideData}
+            </div>
+        ))
+
+        return [slideCount, slides, slideViews]
+    }, [minValue, maxValue])
+
+    const onSettleListener = useCallback(() => {
+        const selectedSlide = emblaApi.selectedScrollSnap()
+        const newSelectedValue = slides[selectedSlide]
+        onChange?.(newSelectedValue)
+    }, [emblaApi, slides, onChange])
+
     const totalRadius = slideCount * WHEEL_ITEM_RADIUS
     const rotationOffset = loop ? 0 : WHEEL_ITEM_RADIUS
-    const slides = Array.from(Array(slideCount).keys())
 
     const inactivateEmblaTransform = useCallback((emblaApi) => {
         if (!emblaApi) return
@@ -98,9 +115,7 @@ export const NumberPickerItem = (props) => {
         })
 
         if (onChange) {
-            emblaApi.on("settle", () => {
-                onChange(emblaApi.getCurrentSlide())
-            })
+            emblaApi.on("select", onSettleListener)
         }
 
         emblaApi.on("scroll", rotateWheel)
@@ -121,16 +136,9 @@ export const NumberPickerItem = (props) => {
                     className={`embla__ios-picker__viewport embla__ios-picker__viewport--perspective-${perspective}`}
                     ref={emblaRef}
                 >
-                    <div className="embla__ios-picker__container">
-                        {slides.map((_, index) => (
-                            <div className="embla__ios-picker__slide" key={index}>
-                                {index}
-                            </div>
-                        ))}
-                    </div>
+                    <div className="embla__ios-picker__container">{slideViews}</div>
                 </div>
             </div>
-            <div className="embla__ios-picker__label">{label}</div>
         </div>
     )
 }

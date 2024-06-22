@@ -5,8 +5,8 @@ import CellSummaryLayout from "../components/CellSummaryLayout"
 const GrammsEatenSummary = ({ foodIntakeData }) => {
     const dataToDisplay = {
         icon: <ScalesIcon />,
-        emphasis: "2,250",
-        remainingSummary: "гр",
+        emphasis: foodIntakeData.current,
+        remainingSummary: "ккал",
         actionDescription: "Съедено",
     }
     return <CellSummaryLayout dataToDisplay={dataToDisplay} />

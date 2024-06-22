@@ -4,8 +4,8 @@ import SimpleButton from "@/components/SimpleButton"
 
 import CarouselNumberPicker from "./CarouselNumberPicker"
 
-const NumberSelectorDialog = forwardRef((props, ref) => {
-    const { title, unitSectionText, unit, subUnit, divider, onValueSelected } = props
+const RadioSelectorDialog = forwardRef((props, ref) => {
+    const { title, subtitle, selectedOption, options, onValueSelected } = props
     const [unitValue, setUnitValue] = useState(0)
     const [subUnitValue, setSubUnitValue] = useState(0)
     const onClose = useCallback(() => {
@@ -45,7 +45,7 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                         color: "var(--theme_subtitle_text_color)",
                     }}
                 >
-                    {unitSectionText}
+                    {subtitle}
                 </p>
 
                 <span
@@ -103,4 +103,4 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
     )
 })
 
-export default NumberSelectorDialog
+export default RadioSelectorDialog

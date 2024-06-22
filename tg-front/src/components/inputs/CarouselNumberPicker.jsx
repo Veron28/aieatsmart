@@ -1,20 +1,20 @@
 import React from "react"
 import { NumberPickerItem } from "./NumberPickerItem"
 
-const EmblaCarousel = ({ unit, subUnit }) => {
-    const { name, minValue, maxValue, onChange } = unit
+const EmblaCarousel = ({ unit, subUnit, divider: dividerContent }) => {
+    const { minValue, maxValue, onChange } = unit
 
     let subUnitSlide = null
     if (subUnit) {
-        const { name, minValue, maxValue, onChange } = subUnit
+        const { minValue, maxValue, onChange } = subUnit
         subUnitSlide = (
             <NumberPickerItem
                 minValue={minValue}
-                slideCount={maxValue - minValue}
-                perspective="right"
-                loop={true}
-                label={name}
-                onChange={onChange}
+                maxValue={maxValue}
+                loop
+                onChange={(newSubvalue) => {
+                    onChange?.(newSubvalue)
+                }}
             />
         )
     }
@@ -23,13 +23,13 @@ const EmblaCarousel = ({ unit, subUnit }) => {
         <div className="embla">
             <NumberPickerItem
                 minValue={minValue}
-                slideCount={maxValue - minValue}
-                perspective={subUnit ? "left" : undefined}
-                loop={true}
-                label={name}
+                maxValue={maxValue}
+                loop
                 onChange={onChange}
             />
+            {subUnitSlide && <span className="embla__ios-picker__label">{dividerContent}</span>}
             {subUnitSlide}
+            <span className="embla__ios-picker__label">{subUnit?.name ?? unit.name}</span>
         </div>
     )
 }

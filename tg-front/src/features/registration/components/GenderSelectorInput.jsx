@@ -7,6 +7,7 @@ const values = ["Мужской", "Женский"]
 const GenderSelectorInput = () => {
     const currentSectionData = useContext(WizardSectionContext)
     const onSelectionChange = (newSelection) => {
+        console.log("New selected gender", newSelection)
         currentSectionData.genders = newSelection
     }
 
