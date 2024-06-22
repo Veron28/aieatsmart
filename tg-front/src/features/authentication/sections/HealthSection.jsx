@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react"
+import { memo, useCallback, useContext } from "react"
 
 import DiabetesIcon from "@/assets/icon1.svg"
 import ObesityIcon from "@/assets/icon2.svg"
@@ -10,6 +10,29 @@ import CheckboxSelectorInput from "@/components/inputs/CheckboxSelectorInput"
 
 import InputFieldLayout from "../components/InputFieldLayout"
 import { WizardSectionContext } from "../components/WizardSectionContext"
+
+const healthItemsData = [
+    {
+        name: "Диабет",
+        icon: DiabetesIcon,
+    },
+    {
+        name: "Ожирение",
+        icon: ObesityIcon,
+    },
+    {
+        name: "Гипертония",
+        icon: HypertoniaIcon,
+    },
+    {
+        name: "Сердечные заболевания",
+        icon: HeartDiseasesIcon,
+    },
+    {
+        name: "Аллергия",
+        icon: AllergiesIcon,
+    },
+]
 
 const getCheckbox = (valueName, sectionData) => {
     const onChangeFn = useCallback(
@@ -32,6 +55,10 @@ const getCheckbox = (valueName, sectionData) => {
 
 const HealthSection = () => {
     const sectionData = useContext(WizardSectionContext)
+    const inputFields = healthItemsData.map(({ name, icon }) => (
+        <InputFieldLayout key={name} fieldIcon={icon} fieldName={name} inputControl={getCheckbox(name, sectionData)} />
+    ))
+
     return (
         <div
             style={{
@@ -40,33 +67,9 @@ const HealthSection = () => {
                 gap: ".5em",
             }}
         >
-            <InputFieldLayout
-                fieldIcon={DiabetesIcon}
-                fieldName="Диабет"
-                inputControl={getCheckbox("Диабет", sectionData)}
-            />
-            <InputFieldLayout
-                fieldIcon={ObesityIcon}
-                fieldName="Ожирение"
-                inputControl={getCheckbox("Ожирение", sectionData)}
-            />
-            <InputFieldLayout
-                fieldIcon={HypertoniaIcon}
-                fieldName="Гипертония"
-                inputControl={getCheckbox("Гипертония", sectionData)}
-            />
-            <InputFieldLayout
-                fieldIcon={HeartDiseasesIcon}
-                fieldName="Сердечные заболевания"
-                inputControl={getCheckbox("Сердечные заболевания", sectionData)}
-            />
-            <InputFieldLayout
-                fieldIcon={AllergiesIcon}
-                fieldName="Аллергия"
-                inputControl={getCheckbox("Аллергия", sectionData)}
-            />
+            {inputFields}
         </div>
     )
 }
 
-export default HealthSection
+export default memo(HealthSection)
