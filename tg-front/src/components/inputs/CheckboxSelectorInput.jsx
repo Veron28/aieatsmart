@@ -1,8 +1,12 @@
-import { memo, useState } from "react"
+import { memo, useEffect, useState } from "react"
 import { RiRadioButtonFill as RadioButtonSelectedIcon } from "@remixicon/react"
 
-const CheckboxSelectorInput = ({ style: styleProps, isSelected: defaultIsSelected, onChange }) => {
-    const [isSelected, setSelected] = useState(defaultIsSelected ?? false)
+const CheckboxSelectorInput = ({ style: styleProps, isSelected: parentIsSelected, onChange }) => {
+    const [isSelected, setSelected] = useState(parentIsSelected ?? false)
+    useEffect(() => {
+        // We adapt to parent selection requests
+        setSelected(parentIsSelected)
+    }, [parentIsSelected])
 
     // Outer span is just a bigger tap area for better UX
     return (
@@ -20,11 +24,10 @@ const CheckboxSelectorInput = ({ style: styleProps, isSelected: defaultIsSelecte
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                
+
                 padding: ".9em",
                 paddingLeft: "4em",
                 paddingRight: "1.2em",
-                boxSizing: "border-box",
                 ...styleProps,
             }}
             onClick={() => {
