@@ -9,20 +9,18 @@ import { useNavigate } from "react-router-dom"
 
 import SectionHeading from "@/components/SectionHeading"
 import UltimateActionButton from "@/components/UltimateActionButton"
+import PageActionsBlock from "@/components/PageActionsBlock"
 
 import PageIndicator from "../components/PageIndicator"
 
-import WelcomeSection from "../sections/WelcomeSection"
 import BasicsSection from "../sections/BasicsSection"
 import HealthSection from "../sections/HealthSection"
 import GoalsSection from "../sections/GoalsSection"
 import LimitationsSection from "../sections/LimitationsSection"
 import LifestyleSection from "../sections/LifestyleSection"
-import FinalSection from "../sections/FinalSection"
 
-import { weAreInWebBrowser, useOnBackListener } from "@/utils/TelegramUtils"
+import { weAreInWebBrowser, useTelegramOnBackListener } from "@/utils/TelegramUtils"
 import {
-    startRegistration,
     storeUserGoals,
     storeUserHealthInfo,
     storeUserLifestyleData,
@@ -31,45 +29,16 @@ import {
 } from "../api/RegistrationApi"
 import { WizardSectionContext } from "../components/WizardSectionContext"
 
-const SECTION_WELCOME = "welcome"
 const SECTION_BASICS = "basics"
 const SECTION_HEALTH = "health"
 const SECTION_GOALS = "goals"
 const SECTION_LIMITATIONS = "limitations"
 const SECTION_LIFESTYLE = "lifestyle"
 
-const SECTION_FINAL = "final"
-
-const WIZARD_SECTIONS = [
-    SECTION_WELCOME,
-    SECTION_BASICS,
-    SECTION_HEALTH,
-    SECTION_GOALS,
-    SECTION_LIMITATIONS,
-    SECTION_LIFESTYLE,
-    SECTION_FINAL,
-]
+const WIZARD_SECTIONS = [SECTION_BASICS, SECTION_HEALTH, SECTION_GOALS, SECTION_LIMITATIONS, SECTION_LIFESTYLE]
 
 const getHeadingForWizard = (sectionName) => {
     switch (sectionName) {
-        case SECTION_WELCOME:
-            return {
-                title: "Добро пожаловать",
-                subtitle: (
-                    <span>
-                        Это{" "}
-                        <a
-                            href="#"
-                            style={{
-                                color: "var(--theme_link_color)",
-                            }}
-                        >
-                            EatSmart
-                        </a>
-                        , твой личный ИИ-гуру питания
-                    </span>
-                ),
-            }
         case SECTION_BASICS:
             return {
                 title: "Основное",
@@ -102,11 +71,11 @@ const getHeadingForWizard = (sectionName) => {
             }
         case SECTION_LIMITATIONS:
             return {
-                title: "Предпочтения",
+                title: "Исключаемые продукты",
                 subtitle: (
                     <span style={{ display: "contents" }}>
-                        Выберите продукты и блюда, которые
-                        <wbr /> Вы предпочитаете употреблять:
+                        Выберите категории продуктов,
+                        <wbr /> которые Вы не едите:
                     </span>
                 ),
             }
@@ -115,11 +84,6 @@ const getHeadingForWizard = (sectionName) => {
                 title: "Стресс и образ жизни",
                 subtitle: "Расскажите нам больше о Вашем рационе и распорядке дня:",
             }
-        case SECTION_FINAL:
-            return {
-                title: "Готово",
-                subtitle: "Бонус уже ждёт тебя в чате",
-            }
         default:
             return null
     }
@@ -127,8 +91,6 @@ const getHeadingForWizard = (sectionName) => {
 
 const getSectionForWizard = (sectionName) => {
     switch (sectionName) {
-        case SECTION_WELCOME:
-            return <WelcomeSection />
         case SECTION_BASICS:
             return <BasicsSection />
         case SECTION_HEALTH:
@@ -139,8 +101,6 @@ const getSectionForWizard = (sectionName) => {
             return <LimitationsSection />
         case SECTION_LIFESTYLE:
             return <LifestyleSection />
-        case SECTION_FINAL:
-            return <FinalSection />
         default:
             return null
     }
@@ -148,8 +108,6 @@ const getSectionForWizard = (sectionName) => {
 
 const getStateSaveHandler = (sectionName) => {
     switch (sectionName) {
-        case SECTION_WELCOME:
-            return startRegistration
         case SECTION_BASICS:
             return storeUserPhysiologyInfo
         case SECTION_HEALTH:
@@ -187,20 +145,10 @@ const variants = {
 
 const getButtonState = (currentStageName) => {
     switch (currentStageName) {
-        case SECTION_WELCOME:
-            return {
-                title: "Начать",
-                icon: <ForwardIcon />,
-            }
-        case SECTION_LIFESTYLE:
+        case WIZARD_SECTIONS[WIZARD_SECTIONS.length - 1]:
             return {
                 title: "Готово",
                 icon: <CheckmarkIcon />,
-            }
-        case SECTION_FINAL:
-            return {
-                title: "Открыть чат",
-                icon: <ForwardIcon />,
             }
         default:
             return {
@@ -216,6 +164,7 @@ const SetupWizardPage = () => {
     const [wizardState, setWizardState] = useState({})
 
     const [currentStageName, currentSectionState] = useMemo(() => {
+        // We calculate different things, that depend on stage index
         const sectionName = WIZARD_SECTIONS[currentStageIndex]
         if (!wizardState[sectionName]) {
             wizardState[sectionName] = {}
@@ -237,14 +186,14 @@ const SetupWizardPage = () => {
 
     const progressInfo = {
         currentStage: currentStageIndex,
-        totalStages: WIZARD_SECTIONS.length - 2,
+        totalStages: WIZARD_SECTIONS.length,
     }
-
-    const weAreInWizard = currentStageName !== SECTION_WELCOME && currentStageName !== SECTION_FINAL
 
     const currentSectionHeading = getHeadingForWizard(currentStageName)
     const currentSectionContents = getSectionForWizard(currentStageName)
     const actionButtonState = getButtonState(currentStageName)
+
+    // Navigation actions
 
     const proceed = (direction) => {
         setCurrentStageIndex([
@@ -253,21 +202,24 @@ const SetupWizardPage = () => {
         ])
     }
 
+    const exitAction = useCallback(() => {
+        navigate("/signup/completed")
+    }, [navigate])
+
     const goToPreviousSection = () => {
         proceed(-1) // left
     }
+    useTelegramOnBackListener(goToPreviousSection)
+
     const goToNextSection = useCallback(() => {
         commitSectionState(currentStageName, currentSectionState)
-
-        if (currentStageName === SECTION_FINAL) {
-            navigate("/statistics")
-            return
+        if (currentStageIndex == WIZARD_SECTIONS.length - 1) {
+            // This was the last section of wizard.
+            exitAction()
+        } else {
+            proceed(+1) // right
         }
-
-        proceed(+1) // right
     }, [navigate, commitSectionState, currentStageName, currentSectionState])
-
-    useOnBackListener(goToPreviousSection)
 
     return (
         <div
@@ -282,24 +234,22 @@ const SetupWizardPage = () => {
         >
             <LayoutGroup>
                 <AnimatePresence>
-                    {weAreInWizard && (
-                        <motion.nav
-                            key="pageIndicator"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "1em",
-                                marginTop: "2em",
-                                marginBottom: "2em",
-                            }}
-                        >
-                            {weAreInWebBrowser && <BackIcon onClick={goToPreviousSection} />}
-                            <PageIndicator progress={progressInfo} />
-                        </motion.nav>
-                    )}
+                    <motion.nav
+                        key="pageIndicator"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, position: "sticky", top: "2em", zIndex: 1, }}
+                        exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
+                        layout
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "1em",
+                            marginBottom: "2em",
+                        }}
+                    >
+                        {weAreInWebBrowser && currentStageIndex > 0 && <BackIcon onClick={goToPreviousSection} />}
+                        <PageIndicator progress={progressInfo} />
+                    </motion.nav>
                 </AnimatePresence>
 
                 <section
@@ -336,32 +286,31 @@ const SetupWizardPage = () => {
                                 subtitle={currentSectionHeading.subtitle}
                             />
                             <WizardSectionContext.Provider value={currentSectionState}>
-                                <span style={{
-                                    display: "flow-root",
-                                    flexBasis: 0,
-                                    flexGrow: 1,
-                                    height: "fit-content",
-                                    marginBottom: "7em",
-                                }}>{currentSectionContents}</span>
+                                <span
+                                    style={{
+                                        display: "flow-root",
+                                        flexBasis: 0,
+                                        flexGrow: 1,
+                                        height: "fit-content",
+                                        marginBottom: "7em",
+                                    }}
+                                >
+                                    {currentSectionContents}
+                                </span>
                             </WizardSectionContext.Provider>
                         </motion.section>
                     </AnimatePresence>
                 </section>
             </LayoutGroup>
 
-            <UltimateActionButton
-                text={actionButtonState.title}
-                progress={progressInfo}
-                style={{
-                    zIndex: 3,
-                    position: "fixed",
-                    bottom: "2em",
-                    left: "1.25em",
-                    right: "1.25em",
-                }}
-                icon={actionButtonState.icon}
-                onClick={goToNextSection}
-            />
+            <PageActionsBlock>
+                <UltimateActionButton
+                    text={actionButtonState.title}
+                    progress={progressInfo}
+                    icon={actionButtonState.icon}
+                    onClick={goToNextSection}
+                />
+            </PageActionsBlock>
         </div>
     )
 }

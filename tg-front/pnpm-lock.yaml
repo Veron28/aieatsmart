@@ -47,6 +47,9 @@ importers:
       react-router-dom:
         specifier: ^6.23.1
         version: 6.23.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      vite:
+        specifier: ^5.3.1
+        version: 5.3.1(@types/node@20.14.2)(terser@5.31.1)
       web-vitals:
         specifier: ^2.1.4
         version: 2.1.4
@@ -54,9 +57,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.3.1
         version: 4.3.1(vite@5.3.1(@types/node@20.14.2)(terser@5.31.1))
-      vite:
-        specifier: ^5.3.1
-        version: 5.3.1(@types/node@20.14.2)(terser@5.31.1)
 
 packages:
 

@@ -45,14 +45,14 @@ const PageIndicatorBadge = ({ badgeState }) => {
 
 const PageIndicator = ({ progress, style: styleProps }) => {
     const currentStage = progress?.currentStage ?? 1
-    const finalStage = progress?.totalStages ?? 0
+    const totalStages = progress?.totalStages ?? 0
 
-    if (finalStage === 0) {
+    if (totalStages === 0) {
         return null
     }
 
     const stepBadges = []
-    for (let stepNumber = 1; stepNumber <= finalStage; stepNumber++) {
+    for (let stepNumber = 0; stepNumber < totalStages; stepNumber++) {
         let stepType = BADGE_CURRENT
         if (stepNumber < currentStage) {
             stepType = BADGE_PAST

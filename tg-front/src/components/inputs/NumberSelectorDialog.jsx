@@ -48,20 +48,27 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                     {unitSectionText}
                 </p>
 
-                <CarouselNumberPicker
-                    unit={{
-                        ...unit,
-                        onChange: setUnitValue,
+                <span
+                    style={{
+                        display: "contents",
+                        color: "var(--theme_text_color)",
                     }}
-                    subUnit={
-                        subUnit
-                            ? {
-                                  ...subUnit,
-                                  onChange: setSubUnitValue,
-                              }
-                            : undefined
-                    }
-                />
+                >
+                    <CarouselNumberPicker
+                        unit={{
+                            ...unit,
+                            onChange: setUnitValue,
+                        }}
+                        subUnit={
+                            subUnit
+                                ? {
+                                      ...subUnit,
+                                      onChange: setSubUnitValue,
+                                  }
+                                : undefined
+                        }
+                    />
+                </span>
 
                 <div
                     style={{
@@ -73,7 +80,7 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                 >
                     <SimpleButton
                         text="Отмена"
-                        isPlain
+                        plain
                         onClick={onClose}
                         style={{
                             flexBasis: 0,
