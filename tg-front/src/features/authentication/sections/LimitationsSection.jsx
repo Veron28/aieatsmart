@@ -102,6 +102,7 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
                             width: "100%",
                             height: "100%",
                             filter: `grayscale(${isSelected ? 1 : 0})`,
+                            objectFit: "contain",
                         }}
                         className="noselect"
                         src={icon}
