@@ -1,4 +1,4 @@
-const SimpleButton = ({ onClick, text, isPlain, style: styleProps }) => {
+const SimpleButton = ({ onClick, text, plain: isPlain, style: styleProps }) => {
     return (
         <button
             style={{

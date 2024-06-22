@@ -11,6 +11,7 @@ const PageActionsBlock = ({ style: styleProps, children }) => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "stretch",
+                gap: ".5em",
 
                 ...styleProps,
             }}

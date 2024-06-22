@@ -13,13 +13,11 @@ import PageActionsBlock from "@/components/PageActionsBlock"
 
 import PageIndicator from "../components/PageIndicator"
 
-import WelcomeSection from "../sections/WelcomeSection"
 import BasicsSection from "../sections/BasicsSection"
 import HealthSection from "../sections/HealthSection"
 import GoalsSection from "../sections/GoalsSection"
 import LimitationsSection from "../sections/LimitationsSection"
 import LifestyleSection from "../sections/LifestyleSection"
-import FinalSection from "../sections/FinalSection"
 
 import { weAreInWebBrowser, useTelegramOnBackListener } from "@/utils/TelegramUtils"
 import {
@@ -37,16 +35,7 @@ const SECTION_GOALS = "goals"
 const SECTION_LIMITATIONS = "limitations"
 const SECTION_LIFESTYLE = "lifestyle"
 
-const SECTION_FINAL = "final"
-
-const WIZARD_SECTIONS = [
-    SECTION_BASICS,
-    SECTION_HEALTH,
-    SECTION_GOALS,
-    SECTION_LIMITATIONS,
-    SECTION_LIFESTYLE,
-    SECTION_FINAL,
-]
+const WIZARD_SECTIONS = [SECTION_BASICS, SECTION_HEALTH, SECTION_GOALS, SECTION_LIMITATIONS, SECTION_LIFESTYLE]
 
 const getHeadingForWizard = (sectionName) => {
     switch (sectionName) {
@@ -95,11 +84,6 @@ const getHeadingForWizard = (sectionName) => {
                 title: "Стресс и образ жизни",
                 subtitle: "Расскажите нам больше о Вашем рационе и распорядке дня:",
             }
-        case SECTION_FINAL:
-            return {
-                title: "Готово",
-                subtitle: "Бонус уже ждёт тебя в чате",
-            }
         default:
             return null
     }
@@ -117,8 +101,6 @@ const getSectionForWizard = (sectionName) => {
             return <LimitationsSection />
         case SECTION_LIFESTYLE:
             return <LifestyleSection />
-        case SECTION_FINAL:
-            return <FinalSection />
         default:
             return null
     }
@@ -163,15 +145,10 @@ const variants = {
 
 const getButtonState = (currentStageName) => {
     switch (currentStageName) {
-        case SECTION_LIFESTYLE:
+        case WIZARD_SECTIONS[WIZARD_SECTIONS.length - 1]:
             return {
                 title: "Готово",
                 icon: <CheckmarkIcon />,
-            }
-        case SECTION_FINAL:
-            return {
-                title: "Открыть чат",
-                icon: <ForwardIcon />,
             }
         default:
             return {
@@ -209,14 +186,14 @@ const SetupWizardPage = () => {
 
     const progressInfo = {
         currentStage: currentStageIndex,
-        totalStages: WIZARD_SECTIONS.length - 1,
+        totalStages: WIZARD_SECTIONS.length,
     }
-
-    const weAreInWizard = currentStageName !== SECTION_FINAL
 
     const currentSectionHeading = getHeadingForWizard(currentStageName)
     const currentSectionContents = getSectionForWizard(currentStageName)
     const actionButtonState = getButtonState(currentStageName)
+
+    // Navigation actions
 
     const proceed = (direction) => {
         setCurrentStageIndex([
@@ -232,6 +209,8 @@ const SetupWizardPage = () => {
     const goToPreviousSection = () => {
         proceed(-1) // left
     }
+    useTelegramOnBackListener(goToPreviousSection)
+
     const goToNextSection = useCallback(() => {
         commitSectionState(currentStageName, currentSectionState)
         if (currentStageIndex == WIZARD_SECTIONS.length - 1) {
@@ -241,8 +220,6 @@ const SetupWizardPage = () => {
             proceed(+1) // right
         }
     }, [navigate, commitSectionState, currentStageName, currentSectionState])
-
-    useTelegramOnBackListener(goToPreviousSection)
 
     return (
         <div
@@ -257,24 +234,23 @@ const SetupWizardPage = () => {
         >
             <LayoutGroup>
                 <AnimatePresence>
-                    {weAreInWizard && (
-                        <motion.nav
-                            key="pageIndicator"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "1em",
-                                marginTop: "2em",
-                                marginBottom: "2em",
-                            }}
-                        >
-                            {(weAreInWebBrowser && currentStageIndex > 0) && <BackIcon onClick={goToPreviousSection} />}
-                            <PageIndicator progress={progressInfo} />
-                        </motion.nav>
-                    )}
+                    <motion.nav
+                        key="pageIndicator"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
+                        layout
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "1em",
+                            marginTop: "2em",
+                            marginBottom: "2em",
+                        }}
+                    >
+                        {weAreInWebBrowser && currentStageIndex > 0 && <BackIcon onClick={goToPreviousSection} />}
+                        <PageIndicator progress={progressInfo} />
+                    </motion.nav>
                 </AnimatePresence>
 
                 <section
