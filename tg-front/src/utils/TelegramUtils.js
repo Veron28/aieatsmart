@@ -14,14 +14,14 @@ export const waitForTelegramLoad = async () => {
 }
 
 export const weAreInWebBrowser = () => {
-    return !getTelegramObject()?.version
+    return !getTelegramObject()?.platform
 }
 
 export const getTelegramInitData = () => {
     return getTelegramObject()?.initData
 }
 
-export const useOnBackListener = (onBackListener) => {
+export const useTelegramOnBackListener = (onBackListener) => {
     useEffect(() => {
         const backButton = getTelegramObject()?.BackButton
         backButton?.onClick(onBackListener)

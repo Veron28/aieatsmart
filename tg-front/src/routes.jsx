@@ -15,7 +15,9 @@ const router = createBrowserRouter([
             {
                 path: "signup",
                 element: <WizardPage />,
-                children: [{ path: "complete", element: <SignupCompletePage /> }],
+                children: [
+                    { path: "completed", element: <SignupCompletePage /> }
+                ],
             },
             ,
             { path: "statistics", element: <StatisticsPage /> },

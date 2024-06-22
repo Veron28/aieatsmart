@@ -21,7 +21,7 @@ import LimitationsSection from "../sections/LimitationsSection"
 import LifestyleSection from "../sections/LifestyleSection"
 import FinalSection from "../sections/FinalSection"
 
-import { weAreInWebBrowser, useOnBackListener } from "@/utils/TelegramUtils"
+import { weAreInWebBrowser, useTelegramOnBackListener } from "@/utils/TelegramUtils"
 import {
     storeUserGoals,
     storeUserHealthInfo,
@@ -187,6 +187,7 @@ const SetupWizardPage = () => {
     const [wizardState, setWizardState] = useState({})
 
     const [currentStageName, currentSectionState] = useMemo(() => {
+        // We calculate different things, that depend on stage index
         const sectionName = WIZARD_SECTIONS[currentStageIndex]
         if (!wizardState[sectionName]) {
             wizardState[sectionName] = {}
@@ -224,21 +225,24 @@ const SetupWizardPage = () => {
         ])
     }
 
+    const exitAction = useCallback(() => {
+        navigate("/signup/completed")
+    }, [navigate])
+
     const goToPreviousSection = () => {
         proceed(-1) // left
     }
     const goToNextSection = useCallback(() => {
         commitSectionState(currentStageName, currentSectionState)
-
-        if (currentStageName === SECTION_FINAL) {
-            navigate("/statistics")
-            return
+        if (currentStageIndex == WIZARD_SECTIONS.length - 1) {
+            // This was the last section of wizard.
+            exitAction()
+        } else {
+            proceed(+1) // right
         }
-
-        proceed(+1) // right
     }, [navigate, commitSectionState, currentStageName, currentSectionState])
 
-    useOnBackListener(goToPreviousSection)
+    useTelegramOnBackListener(goToPreviousSection)
 
     return (
         <div
@@ -267,7 +271,7 @@ const SetupWizardPage = () => {
                                 marginBottom: "2em",
                             }}
                         >
-                            {weAreInWebBrowser && <BackIcon onClick={goToPreviousSection} />}
+                            {(weAreInWebBrowser && currentStageIndex > 0) && <BackIcon onClick={goToPreviousSection} />}
                             <PageIndicator progress={progressInfo} />
                         </motion.nav>
                     )}

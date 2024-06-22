@@ -47,11 +47,7 @@ const WelcomePage = () => {
                 }
             />
             <PageActionsBlock>
-                <UltimateActionButton
-                    text="Начать"
-                    icon={<ForwardIcon />}
-                    onClick={onStartClick}
-                    />
+                <UltimateActionButton text="Начать" icon={<ForwardIcon />} onClick={onStartClick} />
             </PageActionsBlock>
             <WelcomeSection />
         </div>
