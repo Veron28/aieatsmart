@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom"
 
 import App from "@/App"
-import WelcomePage from "@/features/authentication/pages/WelcomePage"
-import WizardPage from "@/features/authentication/pages/WizardPage"
-import SignupCompletePage from "@/features/authentication/pages/SignupCompletedPage"
+import WelcomePage from "@/features/registration/pages/WelcomePage"
+import WizardPage from "@/features/registration/pages/WizardPage"
+import SignupCompletePage from "@/features/registration/pages/SignupCompletedPage"
 import StatisticsPage from "@/features/statistics/pages/StatisticsPage"
 
 const router = createBrowserRouter([

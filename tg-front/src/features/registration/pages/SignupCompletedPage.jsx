@@ -8,7 +8,7 @@ import PageActionsBlock from "@/components/PageActionsBlock"
 import SimpleButton from "@/components/SimpleButton"
 import UltimateActionButton from "@/components/UltimateActionButton"
 
-import SignupCompletedSection from "@/features/authentication/sections/SignupCompletedSection"
+import SignupCompletedSection from "@/features/registration/sections/SignupCompletedSection"
 
 const SignupCompletePage = () => {
     const navigate = useNavigate()
