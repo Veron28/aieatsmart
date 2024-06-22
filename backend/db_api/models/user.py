@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import Column, BigInteger, String, DateTime
+from sqlalchemy import Column, BigInteger, String, DateTime, Integer
 
 from db_api.base import Base
 
@@ -19,3 +19,4 @@ class User(Base):
 
     deep_link = Column(String, default='')
     who_invite = Column(BigInteger, default=0)
+    utc = Column(Integer, default=3)

@@ -8,4 +8,3 @@ from .prompt import Prompt
 from .user_history import UserHistory
 from .error import Error
 from .user_reg_page import UserRegPage
-from .utc import Utc

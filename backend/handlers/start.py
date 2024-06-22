@@ -9,8 +9,7 @@ from data.texts import start_text_reg, start_text_not_reg, start_text_not_reg_we
     start_text_not_reg_share
 from db_api.dal.user_dal import UserDAL
 from db_api.dal.user_reg_page_dal import UserRegPageDAL
-from db_api.dal.utc_dal import UtcDAL
-from db_api.models import User, Utc
+from db_api.models import User
 from keyboards.webapp.main import reg_kb, stat_kb
 from loader import dp, bot
 from utils.bot_send import send_message
@@ -56,14 +55,7 @@ async def start(message: types.Message, state: FSMContext):
             user_id=user_id, name=name, last_name=last_name, username=username,
             deep_link=deep_link
         )
-        utc = 3
-        await UtcDAL.insert_or_update(
-            index_elements=[Utc.user_id],
-            set_={
-                'utc': utc
-            },
-            user_id=user_id, utc=utc
-        )
+
         await give_user_premium(user_id=user_id, days=3)
 
 
@@ -123,14 +115,7 @@ async def webapp_start(user_id: int, start_app: str):
             user_id=user_id, name=name, last_name=last_name, username=username,
             deep_link=deep_link, who_invite=who_invite
         )
-        utc = 3
-        await UtcDAL.insert_or_update(
-            index_elements=[Utc.user_id],
-            set_={
-                'utc': utc
-            },
-            user_id=user_id, utc=utc
-        )
+
         await give_user_premium(user_id=user_id, days=3)
 
 async def share_stat_check_user(user_id: int, user_id_to_share: int):
@@ -163,12 +148,5 @@ async def share_stat_check_user(user_id: int, user_id_to_share: int):
             user_id=user_id, name=name, last_name=last_name, username=username,
             deep_link='', who_invite=who_invite
         )
-        utc = 3
-        await UtcDAL.insert_or_update(
-            index_elements=[Utc.user_id],
-            set_={
-                'utc': utc
-            },
-            user_id=user_id, utc=utc
-        )
+
         await give_user_premium(user_id=user_id, days=3)
