@@ -71,11 +71,11 @@ const getHeadingForWizard = (sectionName) => {
             }
         case SECTION_LIMITATIONS:
             return {
-                title: "Предпочтения",
+                title: "Исключаемые продукты",
                 subtitle: (
                     <span style={{ display: "contents" }}>
-                        Выберите продукты и блюда, которые
-                        <wbr /> Вы предпочитаете употреблять:
+                        Выберите категории продуктов,
+                        <wbr /> которые Вы не едите:
                     </span>
                 ),
             }
