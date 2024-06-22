@@ -1,5 +1,10 @@
 import { useEffect } from "react"
 
+/*
+More info on this object:
+https://core.telegram.org/bots/webapps#initializing-mini-apps
+*/
+
 const getTelegramObject = () => {
     return window?.Telegram?.WebApp
 }
