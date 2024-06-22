@@ -10,8 +10,7 @@ const EmblaCarousel = ({ unit, subUnit, divider: dividerContent }) => {
         subUnitSlide = (
             <NumberPickerItem
                 minValue={minValue}
-                slideCount={maxValue - minValue}
-                perspective="right"
+                maxValue={maxValue}
                 loop={true}
                 label={name}
                 onChange={onChange}
@@ -23,24 +22,14 @@ const EmblaCarousel = ({ unit, subUnit, divider: dividerContent }) => {
         <div className="embla">
             <NumberPickerItem
                 minValue={minValue}
-                slideCount={maxValue - minValue}
-                perspective={subUnit ? "left" : undefined}
+                maxValue={maxValue}
                 loop={true}
                 label={name}
                 onChange={onChange}
             />
-            {subUnitSlide && (
-                <span
-                    className="embla__ios-picker__label"
-                    style={{
-                        display: "contents",
-                        fontSize: "1.8em",
-                    }}
-                >
-                    {dividerContent}
-                </span>
-            )}
+            {subUnitSlide && <span className="embla__ios-picker__label">{dividerContent}</span>}
             {subUnitSlide}
+            <span className="embla__ios-picker__label">{subUnit?.name ?? unit.name}</span>
         </div>
     )
 }

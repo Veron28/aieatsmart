@@ -50,7 +50,7 @@ export const setContainerStyles = (emblaApi, wheelRotation) => {
 }
 
 export const NumberPickerItem = (props) => {
-    const { slideCount, perspective, label, loop = false, onChange } = props
+    const { minValue, maxValue, perspective, label, loop = false, onChange } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop,
         axis: "y",
@@ -59,9 +59,13 @@ export const NumberPickerItem = (props) => {
         watchSlides: false,
     })
     const rootNodeRef = useRef(null)
+    const slideCount = Math.max(1, 1 + maxValue ?? 0 - minValue ?? 0)
+
     const totalRadius = slideCount * WHEEL_ITEM_RADIUS
     const rotationOffset = loop ? 0 : WHEEL_ITEM_RADIUS
-    const slides = Array.from(Array(slideCount).keys())
+
+    const slides =  [...Array(slideCount).keys()].map(i => i + minValue);
+    console.log("These are the slides", slides)
 
     const inactivateEmblaTransform = useCallback((emblaApi) => {
         if (!emblaApi) return
@@ -99,7 +103,8 @@ export const NumberPickerItem = (props) => {
 
         if (onChange) {
             emblaApi.on("settle", () => {
-                onChange(emblaApi.getCurrentSlide())
+                // TODO
+                // onChange(emblaApi.getCurrentSlide())
             })
         }
 
@@ -122,15 +127,14 @@ export const NumberPickerItem = (props) => {
                     ref={emblaRef}
                 >
                     <div className="embla__ios-picker__container">
-                        {slides.map((_, index) => (
-                            <div className="embla__ios-picker__slide" key={index}>
-                                {index}
+                        {slides.map((slideData) => (
+                            <div className="embla__ios-picker__slide" key={slideData}>
+                                {slideData}
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
-            <div className="embla__ios-picker__label">{label}</div>
         </div>
     )
 }

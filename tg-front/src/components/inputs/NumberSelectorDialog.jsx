@@ -51,6 +51,7 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                 <span
                     style={{
                         display: "contents",
+                        position: "relative",
                         color: "var(--theme_text_color)",
                     }}
                 >
