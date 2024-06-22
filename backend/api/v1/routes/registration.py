@@ -6,6 +6,7 @@ from db_api.dal.user_info_dal import UserInfoDAL
 from db_api.dal.user_limit_dal import UserLimitDAL
 from db_api.dal.user_reg_page_dal import UserRegPageDAL
 from db_api.models import UserInfo, UserHealth, UserLimit
+from handlers.start import webapp_start
 from utils.auth_checker import status_by_request
 from utils.daily_norm import count_user_daily_norm
 
@@ -16,6 +17,7 @@ class Registration:
         response_obj = await status_by_request(request, return_id=True)
         if response_obj['status']:
             user_id = response_obj['user_id']
+            await webapp_start(user_id)
 
             await UserRegPageDAL.add(
                 user_id=user_id,
@@ -204,9 +206,11 @@ class Registration:
             if 'stress_level' not in data:
                 response_obj['status'] = False
                 response_obj['text'] = 'stress_level not in data'
+                stress_level = 1
             if 'activity_level' not in data:
                 response_obj['status'] = False
                 response_obj['text'] = 'activity_level not in data'
+                activity_level = 3
             if not response_obj['status']:
                 return json_response(response_obj)
 
