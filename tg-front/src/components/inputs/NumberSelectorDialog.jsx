@@ -5,7 +5,7 @@ import SimpleButton from "@/components/SimpleButton"
 import CarouselNumberPicker from "./CarouselNumberPicker"
 
 const NumberSelectorDialog = forwardRef((props, ref) => {
-    const { title, unitSectionText, unit, subUnit, onValueSelected } = props
+    const { title, unitSectionText, unit, subUnit, divider, onValueSelected } = props
     const [unitValue, setUnitValue] = useState(0)
     const [subUnitValue, setSubUnitValue] = useState(0)
     const onClose = useCallback(() => {
@@ -59,6 +59,7 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                             ...unit,
                             onChange: setUnitValue,
                         }}
+                        divider={divider}
                         subUnit={
                             subUnit
                                 ? {

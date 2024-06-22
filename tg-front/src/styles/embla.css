@@ -1,6 +1,8 @@
 .embla {
     position: relative;
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 22.2rem;
     max-width: 30rem;
@@ -94,4 +96,5 @@
     font-weight: 700;
     transform: translateX(-55px);
     pointer-events: none;
+    color: var(--theme_accent_color);
 }

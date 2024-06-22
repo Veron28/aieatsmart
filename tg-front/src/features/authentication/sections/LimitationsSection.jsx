@@ -91,7 +91,7 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
                         width: "100%",
                         aspectRatio: "1/1",
                         boxSizing: "border-box",
-                        padding: isSelected ? "30%" : "20%",
+                        padding: isSelected ? "25%" : "20%",
                         borderRadius: ".5em",
                         backgroundColor: isSelected ? "var(--theme_accent_color)" : "transparent",
                         transition: "all .1s",

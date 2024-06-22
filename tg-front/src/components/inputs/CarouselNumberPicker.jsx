@@ -1,7 +1,7 @@
 import React from "react"
 import { NumberPickerItem } from "./NumberPickerItem"
 
-const EmblaCarousel = ({ unit, subUnit }) => {
+const EmblaCarousel = ({ unit, subUnit, divider: dividerContent }) => {
     const { name, minValue, maxValue, onChange } = unit
 
     let subUnitSlide = null
@@ -29,6 +29,17 @@ const EmblaCarousel = ({ unit, subUnit }) => {
                 label={name}
                 onChange={onChange}
             />
+            {subUnitSlide && (
+                <span
+                    className="embla__ios-picker__label"
+                    style={{
+                        display: "contents",
+                        fontSize: "1.8em",
+                    }}
+                >
+                    {dividerContent}
+                </span>
+            )}
             {subUnitSlide}
         </div>
     )

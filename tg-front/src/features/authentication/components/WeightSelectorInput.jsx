@@ -4,15 +4,14 @@ import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
 const unit = {
-    name: "Кг",
     minValue: 40,
     maxValue: 280,
 }
 
 const subUnit = {
-    name: "г",
+    name: "кг",
     minValue: 0,
-    maxValue: 999,
+    maxValue: 9,
 }
 
 const WeightSelectorInput = () => {
@@ -34,7 +33,13 @@ const WeightSelectorInput = () => {
 
     return (
         <>
-            <NumberSelectorDialog ref={dialogRef} unit={unit} subUnit={subUnit} onValueSelected={onValueSelected} />
+            <NumberSelectorDialog
+                ref={dialogRef}
+                unit={unit}
+                divider=","
+                subUnit={subUnit}
+                onValueSelected={onValueSelected}
+                />
             <button
                 style={{
                     display: "flex",
