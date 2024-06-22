@@ -18,6 +18,9 @@ services:
       dockerfile: Dockerfile
     networks:
       - main_net
+    environment:
+      - EATSMART_API_URL=https://eat-smart.ru
+      - EATSMART_HOME_URL=https://t.me/eat_smart_bot
 
   fbotapp:
     build:
