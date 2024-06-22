@@ -205,10 +205,10 @@ class Registration:
                 data = await request.post()
 
             if 'stress_level' not in data:
-                response_obj['status'] = False
+                # response_obj['status'] = False
                 response_obj['text'] = 'stress_level not in data'
             if 'activity_level' not in data:
-                response_obj['status'] = False
+                # response_obj['status'] = False
                 response_obj['text'] = 'activity_level not in data'
             if not response_obj['status']:
                 await send_message(
