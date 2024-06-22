@@ -1,7 +1,8 @@
 import datetime
 
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
+from data.config import WEBAPP_URL
 from keyboards.callback_data import setting_callback_data, utc_callback_data
 
 settings_kb = InlineKeyboardMarkup(
@@ -13,6 +14,47 @@ settings_kb = InlineKeyboardMarkup(
         [
             InlineKeyboardButton(text='Ежедневные цели', callback_data=setting_callback_data.new(type='daily_goal'))
         ],
+    ]
+)
+
+base_change_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text='Антропометрия', web_app=WebAppInfo(url=f'{WEBAPP_URL}/'))
+            ],
+            [
+                InlineKeyboardButton(text='Здоровье', web_app=WebAppInfo(url=f'{WEBAPP_URL}/'))
+            ],
+            [
+                InlineKeyboardButton(text='Цели', web_app=WebAppInfo(url=f'{WEBAPP_URL}/'))
+            ],
+            [
+                InlineKeyboardButton(text='Исключаемые продукты', web_app=WebAppInfo(url=f'{WEBAPP_URL}/'))
+            ],
+            [
+                InlineKeyboardButton(text='Уровень активности', web_app=WebAppInfo(url=f'{WEBAPP_URL}/'))
+            ],
+            [
+                InlineKeyboardButton(text=f'← Назад',
+                                     callback_data=setting_callback_data.new(type='back')),
+            ]
+    ]
+)
+
+daily_change_kb = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text=f'Суточная норма калорий',
+                                     callback_data=setting_callback_data.new(type='daily_kcal_norm')),
+            ],
+            [
+                InlineKeyboardButton(text=f'Количество приемов пищи',
+                                     callback_data=setting_callback_data.new(type='daily_eating_norm')),
+            ],
+            [
+                InlineKeyboardButton(text=f'← Назад',
+                                     callback_data=setting_callback_data.new(type='back')),
+            ]
     ]
 )
 

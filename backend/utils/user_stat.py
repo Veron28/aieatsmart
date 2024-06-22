@@ -29,7 +29,7 @@ async def get_user_stat(user_id: int) -> Union[bool, dict]:
 
             user_info : UserInfo = await UserInfoDAL.get(user_id=user_id)
             if user_info:
-                response_obj['eating_daily_norm'] = user_info.dayly_eating_norm
+                response_obj['eating_daily_norm'] = user_info.daily_eating_norm
                 response_obj['kcal_left'] = user_info.daily_kcal_norm
             else:
                 response_obj['eating_daily_norm'] = 0

@@ -32,7 +32,7 @@ class UserInfoDAL(BaseDAL):
                 query = select(
                     UserInfo.user_id,
                     UserInfo.daily_kcal_norm,
-                    UserInfo.dayly_eating_norm,
+                    UserInfo.daily_eating_norm,
                     subquery_alias.c.count_user_id,
                     subquery_alias.c.sum_kcal,
                     subquery_alias.c.sum_squirrels,

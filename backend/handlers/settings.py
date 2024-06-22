@@ -3,12 +3,13 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.types import CallbackQuery
 
-from data.texts import settings_text, utc_text, utc_edit_end, daily_goal_text, cansel_text, daily_goal_end
+from data.texts import settings_text, utc_text, utc_edit_end, daily_goal_text, cansel_text, daily_goal_end, \
+    base_change_text, daily_change_text
 from db_api.dal.user_dal import UserDAL
 from db_api.dal.user_info_dal import UserInfoDAL
 from db_api.models import UserInfo, User
 from keyboards.callback_data import setting_callback_data, utc_callback_data
-from keyboards.inline.settings import settings_kb, utc_kb, daily_goal_kb
+from keyboards.inline.settings import settings_kb, utc_kb, daily_goal_kb, base_change_kb, daily_change_kb
 from loader import dp, bot
 from states.settings import SettingsStates
 from utils.bot_send import send_message, edit_message
@@ -36,6 +37,19 @@ async def settings(message: types.Message, state: FSMContext):
 
     await send_settings_mes(user_id=user_id)
 
+
+@dp.callback_query_handler(setting_callback_data.filter(type='base'), chat_type=[types.ChatType.PRIVATE])
+async def base(call: CallbackQuery, state: FSMContext):
+    user_id = call.message.chat.id
+    message_id = call.message.message_id
+    await state.reset_state()
+
+    await edit_message(
+        user_id=user_id,
+        message_id=message_id,
+        text=base_change_text,
+        kb=base_change_kb
+    )
 
 @dp.callback_query_handler(setting_callback_data.filter(type='utc'), chat_type=[types.ChatType.PRIVATE])
 async def utc(call: CallbackQuery, state: FSMContext):
@@ -88,6 +102,18 @@ async def back(call: CallbackQuery, state: FSMContext):
 
 
 @dp.callback_query_handler(setting_callback_data.filter(type='daily_goal'), state='*')
+async def daily_goal_start(call: CallbackQuery, state: FSMContext):
+    user_id = call.message.chat.id
+    message_id = call.message.message_id
+
+    await edit_message(
+        user_id=user_id,
+        message_id=message_id,
+        text=daily_change_text(await UserInfoDAL.get(user_id=user_id)),
+        kb=daily_change_kb
+    )
+
+@dp.callback_query_handler(setting_callback_data.filter(type='daily_kcal_norm'), state='*')
 async def daily_goal_start(call: CallbackQuery, state: FSMContext):
     user_id = call.message.chat.id
     message_id = call.message.message_id
