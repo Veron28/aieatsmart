@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 
 import { RiArrowRightLine as ForwardIcon } from "@remixicon/react"
 
+import { getBotUrl } from "@/utils/ApplicationLinks"
+
 import SectionHeading from "@/components/SectionHeading"
 import PageActionsBlock from "@/components/PageActionsBlock"
 import SimpleButton from "@/components/SimpleButton"
@@ -16,7 +18,7 @@ const SignupCompletePage = () => {
         navigate("/statistics")
     }, [navigate])
     const goToChat = useCallback(() => {
-        // navigate("where?")
+        navigate(getBotUrl)
     }, [navigate])
 
     return (

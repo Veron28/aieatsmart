@@ -6,6 +6,8 @@ import SectionHeading from "@/components/SectionHeading"
 import PageActionsBlock from "@/components/PageActionsBlock"
 import UltimateActionButton from "@/components/UltimateActionButton"
 
+import { getBotUrl } from "@/utils/ApplicationLinks"
+
 import WelcomeSection from "@/features/registration/sections/WelcomeSection"
 
 import { startRegistration } from "@/features/registration/api/RegistrationApi"
@@ -35,10 +37,11 @@ const WelcomePage = () => {
                     <span>
                         Это{" "}
                         <a
-                            href="#"
+                            href={getBotUrl()}
                             style={{
                                 color: "var(--theme_link_color)",
                             }}
+                            target="__blank"
                         >
                             EatSmart
                         </a>
