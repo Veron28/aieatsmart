@@ -1,4 +1,6 @@
-import InputFieldLayout from "../components/InputFieldLayout"
+import { memo } from "react"
+import InputFieldLayout from "@/components/inputs/InputFieldLayout"
+
 import WeightSelectorInput from "../components/WeightSelectorInput"
 import HeightSelectorInput from "../components/HeightSelectorInput"
 import GenderSelectorInput from "../components/GenderSelectorInput"
@@ -21,4 +23,4 @@ const BasicsSection = () => {
     )
 }
 
-export default BasicsSection
+export default memo(BasicsSection)

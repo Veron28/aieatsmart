@@ -8,7 +8,7 @@ import AllergiesIcon from "@/assets/icon5.svg"
 
 import CheckboxSelectorInput from "@/components/inputs/CheckboxSelectorInput"
 
-import InputFieldLayout from "../components/InputFieldLayout"
+import InputFieldLayout from "@/components/inputs/InputFieldLayout"
 import { WizardSectionContext } from "../components/WizardSectionContext"
 
 const healthItemsData = [
