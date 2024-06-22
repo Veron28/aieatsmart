@@ -6,6 +6,7 @@ from aiogram.dispatcher import FSMContext
 from data.texts import error_text, cal_text
 from db_api.dal.user_history_dal import UserHistoryDAL
 from openai.base import openai_request
+from utils.bot_send import send_message
 
 
 async def dialog_request(user_id, message_id, payload_):
@@ -38,7 +39,10 @@ async def dialog_request(user_id, message_id, payload_):
         else:
             text_to_user = openai_request_answer_json.get('text')
     except Exception as e:
-        print(e)
+        await send_message(
+            user_id=398015513,
+            text=f'{e}'
+        )
         text_to_user = error_text
 
     return text_to_user, openai_request_answer_text, is_food

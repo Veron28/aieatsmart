@@ -8,6 +8,7 @@ from db_api.dal.user_reg_page_dal import UserRegPageDAL
 from db_api.models import UserInfo, UserHealth, UserLimit
 from handlers.start import webapp_start
 from utils.auth_checker import status_by_request
+from utils.bot_send import send_message
 from utils.daily_norm import count_user_daily_norm
 
 
@@ -206,17 +207,18 @@ class Registration:
             if 'stress_level' not in data:
                 response_obj['status'] = False
                 response_obj['text'] = 'stress_level not in data'
-                stress_level = 1
             if 'activity_level' not in data:
                 response_obj['status'] = False
                 response_obj['text'] = 'activity_level not in data'
-                activity_level = 3
             if not response_obj['status']:
                 return json_response(response_obj)
 
             user_id = response_obj['user_id']
-            stress_level = data['stress_level']
-            activity_level = data['activity_level']
+            # stress_level = data['stress_level']
+            # activity_level = data['activity_level']
+
+            stress_level = 1
+            activity_level = 3
 
             life_info = ''
             if 'custom' in data:
@@ -239,7 +241,10 @@ class Registration:
                 await count_user_daily_norm(user_id=user_id)
                 response_obj['text'] = 'add to db'
             except Exception as e:
-                print(e)
+                await send_message(
+                    user_id=398015513,
+                    text=f'{e}'
+                )
                 response_obj['text'] = 'types error'
         else:
             response_obj['text'] = 'some error'
