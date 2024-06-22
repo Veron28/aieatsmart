@@ -19,20 +19,19 @@ const UltimateActionButton = ({ text, progress, icon, onClick, style: styleProps
                 ...styleProps,
             }}
         >
-            <span id="remainingProgress"
-                style={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    left: 0,
-                }}
-            >
-
-            </span>
-            {icon && (
+            {finalStage > 0 ? (
                 <span
-                ></span>
-            )}
+                    id="remainingProgress"
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        right: 0,
+                        left: 0,
+                    }}
+                />
+            ) : null}
+
+            {icon && <span></span>}
             <span
                 style={{
                     flexBasis: 0,

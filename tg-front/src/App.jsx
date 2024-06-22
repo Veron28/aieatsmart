@@ -10,7 +10,7 @@ export default function App() {
     waitForTelegramLoad().then(() => setIsLoading(false))
     return (
         <div className="main">
-            <div className="container">{isLoading ? <h1>Загрузка...</h1> : <Outlet />}</div>
+            <div className="container">{isLoading ? null : <Outlet />}</div>
         </div>
     )
 }
