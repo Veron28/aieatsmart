@@ -14,7 +14,7 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
     const onOKClick = useCallback(() => {
         onValueSelected?.(unitValue, subUnitValue)
         onClose()
-    }, [onValueSelected, onClose])
+    }, [unitValue, subUnitValue, onValueSelected, onClose])
 
     return (
         <dialog

@@ -22,13 +22,12 @@ const WeightSelectorInput = () => {
         dialogRef.current?.showModal()
     }, [dialogRef])
     const onValueSelected = useCallback(
-        (newWeight, subUnitWeight) => {
-            setSelectedWeight(newWeight)
-            currentSectionData.weight = newWeight
-            console.log("Got value", newWeight)
-            console.log("Got value 2", subUnitWeight)
+        (newWeightKilograms, newWeightGrams) => {
+            const computedWeight = newWeightKilograms + (newWeightGrams > 0 ? 0.1 * newWeightGrams : 0)
+            setSelectedWeight(computedWeight)
+            currentSectionData.weight = computedWeight
         },
-        [setSelectedWeight, useContext]
+        [setSelectedWeight, currentSectionData]
     )
 
     return (
@@ -39,7 +38,7 @@ const WeightSelectorInput = () => {
                 divider=","
                 subUnit={subUnit}
                 onValueSelected={onValueSelected}
-                />
+            />
             <button
                 style={{
                     display: "flex",

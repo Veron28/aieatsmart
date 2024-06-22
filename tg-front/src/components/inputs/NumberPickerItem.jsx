@@ -50,7 +50,7 @@ export const setContainerStyles = (emblaApi, wheelRotation) => {
 }
 
 export const NumberPickerItem = (props) => {
-    const { minValue, maxValue, perspective, label, loop = false, onChange } = props
+    const { minValue, maxValue, perspective, loop = false, onChange } = props
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop,
         axis: "y",
@@ -73,9 +73,9 @@ export const NumberPickerItem = (props) => {
 
     const onSettleListener = useCallback(() => {
         const selectedSlide = emblaApi.selectedScrollSnap()
-        console.log("Settle callback was triggered", selectedSlide)
-        console.log("Selected element is: ", slides[selectedSlide])
-    }, [emblaApi, slides])
+        const newSelectedValue = slides[selectedSlide]
+        onChange?.(newSelectedValue)
+    }, [emblaApi, slides, onChange])
 
     const totalRadius = slideCount * WHEEL_ITEM_RADIUS
     const rotationOffset = loop ? 0 : WHEEL_ITEM_RADIUS

@@ -16,6 +16,7 @@ const subUnit = {
 
 const WeightSelectorInput = () => {
     const [selectedHeight, setSelectedHeight] = useState(undefined)
+    const currentSectionData = useContext(WizardSectionContext)
     const dialogRef = useRef(null)
 
     const openDialogFn = useCallback(() => {
@@ -23,12 +24,12 @@ const WeightSelectorInput = () => {
     }, [dialogRef])
 
     const onValueSelected = useCallback(
-        (newHeight) => {
-            setSelectedHeight(newHeight)
-            const currentSectionData = useContext(WizardSectionContext)
-            currentSectionData.height = newHeight
+        (newHeightMeters, newHeightCentimeters) => {
+            const computedHeight = newHeightMeters + (newHeightCentimeters > 0 ? 0.1 * newHeightCentimeters : 0)
+            setSelectedHeight(computedHeight)
+            currentSectionData.height = computedHeight
         },
-        [setSelectedHeight]
+        [setSelectedHeight, currentSectionData]
     )
 
     return (

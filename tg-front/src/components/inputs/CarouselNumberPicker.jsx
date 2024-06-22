@@ -2,18 +2,19 @@ import React from "react"
 import { NumberPickerItem } from "./NumberPickerItem"
 
 const EmblaCarousel = ({ unit, subUnit, divider: dividerContent }) => {
-    const { name, minValue, maxValue, onChange } = unit
+    const { minValue, maxValue, onChange } = unit
 
     let subUnitSlide = null
     if (subUnit) {
-        const { name, minValue, maxValue, onChange } = subUnit
+        const { minValue, maxValue, onChange } = subUnit
         subUnitSlide = (
             <NumberPickerItem
                 minValue={minValue}
                 maxValue={maxValue}
-                loop={true}
-                label={name}
-                onChange={onChange}
+                loop
+                onChange={(newSubvalue) => {
+                    onChange?.(newSubvalue)
+                }}
             />
         )
     }
@@ -23,8 +24,7 @@ const EmblaCarousel = ({ unit, subUnit, divider: dividerContent }) => {
             <NumberPickerItem
                 minValue={minValue}
                 maxValue={maxValue}
-                loop={true}
-                label={name}
+                loop
                 onChange={onChange}
             />
             {subUnitSlide && <span className="embla__ios-picker__label">{dividerContent}</span>}
