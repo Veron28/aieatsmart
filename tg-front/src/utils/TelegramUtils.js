@@ -21,6 +21,14 @@ export const getTelegramInitData = () => {
     return getTelegramObject()?.initData
 }
 
+export const closeMiniApp = () => {
+    getTelegramObject()?.close()
+}
+
+export const openTelegramLink = (url) => {
+    getTelegramObject()?.openTelegramLink(url)
+}
+
 export const useTelegramOnBackListener = (onBackListener) => {
     useEffect(() => {
         const backButton = getTelegramObject()?.BackButton

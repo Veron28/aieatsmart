@@ -1,15 +1,17 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { RiShareFill as ShareIcon } from "@remixicon/react"
 
 import SectionHeading from "@/components/SectionHeading"
 import UltimateActionButton from "@/components/UltimateActionButton"
 import PageActionsBlock from "@/components/PageActionsBlock"
 
+import { closeMiniApp } from "@/utils/TelegramUtils"
+
 import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 import FoodIntakeSummary from "../sections/FoodIntakeSummary"
 import CaloriesEatenSummary from "../sections/CalloriesEatenSummary"
 import RemainingCaloriesSummary from "../sections/RemainingCaloriesSummary"
-import { getStatistics } from "../api/StatisticsApi"
+import { getStatistics, shareStatistics } from "../api/StatisticsApi"
 
 const getFoodIntakeData = ({ eating_today, eating_daily_norm }) => ({
     current: eating_today,
@@ -21,7 +23,7 @@ const getCaloriesIntakeData = ({ kcal_today, kcal_left }) => ({
     total: kcal_today + kcal_left,
 })
 
-const getPCFConsumptionData = ({squirrels, fats, carbohydrates }) => [
+const getPCFConsumptionData = ({ squirrels, fats, carbohydrates }) => [
     {
         name: "Жиры",
         gramms: fats,
@@ -45,6 +47,12 @@ const StatisticsPage = () => {
         getStatistics().then(setStatisticsData)
         console.log("Statistics", statisticsData)
     }, [])
+
+    const onShareClick = () => {
+        console.log("On share clicked")
+        shareStatistics()
+        closeMiniApp()
+    }
 
     const foodIntakeData = getFoodIntakeData(statisticsData)
     const caloriesConsumptionData = getCaloriesIntakeData(statisticsData)
@@ -84,7 +92,7 @@ const StatisticsPage = () => {
                 />
             </div>
             <PageActionsBlock>
-                <UltimateActionButton text="Поделиться" icon={<ShareIcon />} />
+                <UltimateActionButton text="Поделиться" icon={<ShareIcon />} onClick={onShareClick} />
             </PageActionsBlock>
         </section>
     )
