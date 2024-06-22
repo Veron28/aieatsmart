@@ -80,7 +80,7 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                 >
                     <SimpleButton
                         text="Отмена"
-                        isPlain
+                        plain
                         onClick={onClose}
                         style={{
                             flexBasis: 0,
