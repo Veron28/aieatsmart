@@ -22,12 +22,14 @@ async def get_user_data(user_id: int):
     user_data_dict = await get_user_data_dict(user_id=user_id)
 
     if user_data_dict['user_reg']:
+        if not user_data_dict.get('limit'):
+            user_data_dict['limit'] = {}
         user_data += \
 f'''
-рост: {user_data_dict['height']} см, вес: {user_data_dict['weight']} кг, пол: {user_data_dict['gender']}, возраст: {user_data_dict['age']},
-цель: {user_data_dict['goal']}, уровень стресса по 5-ти балльной шкале, где 5 — это высокий уровень стресса: {user_data_dict['stress_level']}, уровень активности по 5-ти балльной шкале, где 5 — это высокий уровень активности: {user_data_dict['activity_level']}
+рост: {user_data_dict.get('height')} см, вес: {user_data_dict.get('weight')} кг, пол: {user_data_dict.get('gender')}, возраст: {user_data_dict.get('age')},
+цель: {user_data_dict.get('goal')}, уровень стресса по 5-ти балльной шкале, где 5 — это высокий уровень стресса: {user_data_dict.get('stress_level')}, уровень активности по 5-ти балльной шкале, где 5 — это высокий уровень активности: {user_data_dict.get('activity_level')}
 Противопоказания по здоровью (если нет, то пусто): {user_data_dict['health']['base']} {user_data_dict['health'].get('custom')}
-Не употребляю (если нет, то пусто): {user_data_dict['limit']['base']} {user_data_dict['limit'].get('custom')}
+Не употребляю (если нет, то пусто): {user_data_dict['limit'].get('base')} {user_data_dict['limit'].get('custom')}
 '''
     if user_data_dict['history']:
         user_data += f'История питания за последнее время (если что сейчас {datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")}):\n'
