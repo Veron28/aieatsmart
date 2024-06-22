@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react"
+import { useRouteLoaderData } from "react-router-dom"
 import { RiShareFill as ShareIcon } from "@remixicon/react"
 
 import SectionHeading from "@/components/SectionHeading"
@@ -11,7 +11,7 @@ import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 import FoodIntakeSummary from "../sections/FoodIntakeSummary"
 import CaloriesEatenSummary from "../sections/CalloriesEatenSummary"
 import RemainingCaloriesSummary from "../sections/RemainingCaloriesSummary"
-import { getStatistics, shareStatistics } from "../api/StatisticsApi"
+import { shareStatistics } from "../api/StatisticsApi"
 
 const getFoodIntakeData = ({ eating_today, eating_daily_norm }) => ({
     current: eating_today,
@@ -42,21 +42,19 @@ const getPCFConsumptionData = ({ squirrels, fats, carbohydrates }) => [
 ]
 
 const StatisticsPage = () => {
-    const [statisticsData, setStatisticsData] = useState({})
-    useEffect(() => {
-        getStatistics().then(setStatisticsData)
-        console.log("Statistics", statisticsData)
-    }, [])
+    const loaderData = useRouteLoaderData("root")
+    console.log("This is the loader data we got so far", loaderData)
+
+    const { userInformation } = loaderData
 
     const onShareClick = () => {
-        console.log("On share clicked")
         shareStatistics()
         closeMiniApp()
     }
 
-    const foodIntakeData = getFoodIntakeData(statisticsData)
-    const caloriesConsumptionData = getCaloriesIntakeData(statisticsData)
-    const pcfConsumptionData = getPCFConsumptionData(statisticsData)
+    const foodIntakeData = getFoodIntakeData(userInformation)
+    const caloriesConsumptionData = getCaloriesIntakeData(userInformation)
+    const pcfConsumptionData = getPCFConsumptionData(userInformation)
 
     return (
         <section

@@ -9,16 +9,17 @@ import WizardPage from "@/features/registration/pages/WizardPage"
 import SignupCompletePage from "@/features/registration/pages/SignupCompletedPage"
 import StatisticsPage from "@/features/statistics/pages/StatisticsPage"
 
-async function rootLoader() {
+const rootLoader = async () => {
     const statistics = await getStatistics()
-    return statistics
+    return { userInformation: statistics }
 }
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
-        // loader: rootLoader,
+        id: "root",
+        loader: rootLoader,
         children: [
             { index: true, element: <WelcomePage /> },
             {
