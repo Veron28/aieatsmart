@@ -15,9 +15,20 @@ const UltimateActionButton = ({ text, progress, icon, onClick, style: styleProps
                 color: "var(--theme_button_text_color)",
                 borderRadius: ".5em",
                 padding: "1em",
+                position: "relative",
                 ...styleProps,
             }}
         >
+            <span id="remainingProgress"
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    left: 0,
+                }}
+            >
+
+            </span>
             {icon && (
                 <span
                 ></span>
