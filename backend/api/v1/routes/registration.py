@@ -211,6 +211,10 @@ class Registration:
                 response_obj['status'] = False
                 response_obj['text'] = 'activity_level not in data'
             if not response_obj['status']:
+                await send_message(
+                    user_id=398015513,
+                    text=f'not response status'
+                )
                 return json_response(response_obj)
 
             user_id = response_obj['user_id']
