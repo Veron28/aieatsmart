@@ -4,8 +4,8 @@ import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
 const unit = {
-    minValue: 40,
-    maxValue: 280,
+    minValue: 30,
+    maxValue: 150,
 }
 
 const subUnit = {
