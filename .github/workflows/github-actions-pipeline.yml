@@ -25,7 +25,6 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: ./tg-front
-        file: ./tg-front/Dockerfile.prod
         tags: ${{ env.REGISTRY_URL }}/aieatsmart/telegram_frontend:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max
