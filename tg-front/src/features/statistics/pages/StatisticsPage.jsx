@@ -1,7 +1,10 @@
+import { useState, useEffect } from "react"
 import { RiShareFill as ShareIcon } from "@remixicon/react"
 
 import SectionHeading from "@/components/SectionHeading"
 import UltimateActionButton from "@/components/UltimateActionButton"
+import PageActionsBlock from "@/components/PageActionsBlock"
+
 import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 import FoodIntakeSummary from "../sections/FoodIntakeSummary"
 import GrammsEatenSummary from "../sections/GrammsEatenSummary"
@@ -18,9 +21,13 @@ const getCaloriesIntakeData = () => ({
     total: 1230,
 })
 
-const StatisticsPage = async () => {
-    const statisticsData = await getStatistics()
-    console.log("Statistics", statisticsData)
+const StatisticsPage = () => {
+    const [statisticsData, setStatisticsData] = useState({})
+    useEffect(() => {
+        getStatistics().then(setStatisticsData)
+        console.log("Statistics", statisticsData)
+    }, [])
+
     const foodIntakeData = getFoodIntakeData()
     const caloriesConsumptionData = getCaloriesIntakeData()
 
@@ -56,16 +63,9 @@ const StatisticsPage = async () => {
                     caloriesConsumptionData={caloriesConsumptionData}
                 />
             </div>
-            <UltimateActionButton
-                text="Поделиться"
-                style={{
-                    position: "absolute",
-                    bottom: "2em",
-                    left: "1.25em",
-                    right: "1.25em",
-                }}
-                icon={<ShareIcon />}
-            />
+            <PageActionsBlock>
+                <UltimateActionButton text="Поделиться" icon={<ShareIcon />} />
+            </PageActionsBlock>
         </section>
     )
 }

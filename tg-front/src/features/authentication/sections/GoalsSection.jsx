@@ -48,6 +48,8 @@ const getRadioButton = (goalName, sectionData, setSelectionState) => {
 
 const GoalsSection = () => {
     const sectionData = useContext(WizardSectionContext)
+    // We use this state to trigger whole section's rerender
+    // This rerender is necessary, so all checkboxes refresh. Only one can be selected.
     const [sectionSelection, setSelection] = useState(sectionData.goal ?? "")
     const inputFields = goalsDataItems.map(({name, icon}) => (
         <InputFieldLayout
