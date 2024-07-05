@@ -3,6 +3,14 @@
 @import url("theme_components.css");
 @import url("embla.css");
 
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
 body,
 #root,
 .main {
