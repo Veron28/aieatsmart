@@ -1,4 +1,4 @@
-const SectionHeading = ({ title, subtitle }) => {
+export default ({ title, subtitle }) => {
     return (
         <div style={{
             display: "flex",
@@ -23,5 +23,3 @@ const SectionHeading = ({ title, subtitle }) => {
         </div>
     )
 }
-
-export default SectionHeading

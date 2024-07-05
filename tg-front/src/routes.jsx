@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter, redirect } from "react-router-dom"
 
 import App from "@/App"
 
@@ -10,8 +10,27 @@ import SignupCompletePage from "@/features/registration/pages/SignupCompletedPag
 import StatisticsPage from "@/features/statistics/pages/StatisticsPage"
 
 const rootLoader = async () => {
-    const statistics = await getStatistics()
-    return { userInformation: statistics }
+    try {
+        const statistics = await getStatistics()
+        return { userInformation: statistics }
+    } catch (error) {
+        return redirect("/welcome")
+    }
+}
+
+const unprotectedLoader = (allParams) => {
+    console.log("Unprotected loader...", allParams)
+    if (allParams?.request?.userInformation?.is_stat) {
+        redirect("/statistics")
+    }
+    return {}
+}
+
+const protectedLoader = ({ request }) => {
+    if (!request?.userInformation?.is_stat) {
+        redirect("/welcome")
+    }
+    return {}
 }
 
 const router = createBrowserRouter([
@@ -21,15 +40,15 @@ const router = createBrowserRouter([
         id: "root",
         loader: rootLoader,
         children: [
-            { index: true, element: <WelcomePage /> },
+            { path: "welcome", loader: unprotectedLoader, element: <WelcomePage /> },
             {
                 path: "signup",
                 children: [
-                    { index: true, element: <WizardPage /> },
+                    { index: true, loader: unprotectedLoader, element: <WizardPage /> },
                     { path: "completed", element: <SignupCompletePage /> },
                 ],
             },
-            { path: "statistics", element: <StatisticsPage /> },
+            { path: "statistics", loader: protectedLoader, element: <StatisticsPage /> },
         ],
     },
 ])

@@ -1,4 +1,4 @@
-const PageActionsBlock = ({ style: styleProps, children }) => {
+export default ({ style: styleProps, children }) => {
     return (
         <section
             style={{
@@ -20,5 +20,3 @@ const PageActionsBlock = ({ style: styleProps, children }) => {
         </section>
     )
 }
-
-export default PageActionsBlock

@@ -56,7 +56,7 @@ const StatisticsPage = () => {
     const caloriesConsumptionData = getCaloriesIntakeData(userInformation)
     const pcfConsumptionData = getPCFConsumptionData(userInformation)
 
-    return (
+    return userInformation ? (
         <section
             className="page"
             style={{
@@ -93,7 +93,7 @@ const StatisticsPage = () => {
                 <UltimateActionButton text="Поделиться" icon={<ShareIcon />} onClick={onShareClick} />
             </PageActionsBlock>
         </section>
-    )
+    ) : null
 }
 
 export default StatisticsPage

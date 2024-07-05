@@ -1,4 +1,4 @@
-const PaperSection = ({ children, style: styleProps }) => {
+export default ({ children, style: styleProps }) => {
     return (
         <div
             style={{
@@ -14,5 +14,3 @@ const PaperSection = ({ children, style: styleProps }) => {
         </div>
     )
 }
-
-export default PaperSection
