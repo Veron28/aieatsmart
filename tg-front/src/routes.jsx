@@ -1,22 +1,17 @@
-import { createBrowserRouter, redirect } from "react-router-dom"
+import { createBrowserRouter } from "react-router-dom"
 
 import App from "@/App"
 
-import { getStatistics } from "@/features/statistics/api/StatisticsApi"
+import {
+    rootLoader,
+    authenticatedOnlyProtector,
+    guestOnlyProtector,
+} from "@/features/authentication/data/UserDataLoaders"
 
 import WelcomePage from "@/features/registration/pages/WelcomePage"
 import WizardPage from "@/features/registration/pages/WizardPage"
 import SignupCompletePage from "@/features/registration/pages/SignupCompletedPage"
 import StatisticsPage from "@/features/statistics/pages/StatisticsPage"
-
-const rootLoader = async () => {
-    try {
-        const statistics = await getStatistics()
-        return { userInformation: statistics }
-    } catch (error) {
-        return redirect("/welcome")
-    }
-}
 
 const router = createBrowserRouter([
     {
@@ -25,15 +20,16 @@ const router = createBrowserRouter([
         id: "root",
         loader: rootLoader,
         children: [
-            { path: "welcome", element: <WelcomePage /> },
+            { path: "welcome", loader: guestOnlyProtector, element: <WelcomePage /> },
             {
                 path: "signup",
+                loader: guestOnlyProtector,
                 children: [
                     { index: true, element: <WizardPage /> },
                     { path: "completed", element: <SignupCompletePage /> },
                 ],
             },
-            { path: "statistics", element: <StatisticsPage /> },
+            { path: "statistics", loader: authenticatedOnlyProtector, element: <StatisticsPage /> },
         ],
     },
 ])
