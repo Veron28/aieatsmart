@@ -18,21 +18,6 @@ const rootLoader = async () => {
     }
 }
 
-const unprotectedLoader = (allParams) => {
-    console.log("Unprotected loader...", allParams)
-    if (allParams?.request?.userInformation?.is_stat) {
-        redirect("/statistics")
-    }
-    return {}
-}
-
-const protectedLoader = ({ request }) => {
-    if (!request?.userInformation?.is_stat) {
-        redirect("/welcome")
-    }
-    return {}
-}
-
 const router = createBrowserRouter([
     {
         path: "/",
@@ -40,15 +25,15 @@ const router = createBrowserRouter([
         id: "root",
         loader: rootLoader,
         children: [
-            { path: "welcome", loader: unprotectedLoader, element: <WelcomePage /> },
+            { path: "welcome", element: <WelcomePage /> },
             {
                 path: "signup",
                 children: [
-                    { index: true, loader: unprotectedLoader, element: <WizardPage /> },
+                    { index: true, element: <WizardPage /> },
                     { path: "completed", element: <SignupCompletePage /> },
                 ],
             },
-            { path: "statistics", loader: protectedLoader, element: <StatisticsPage /> },
+            { path: "statistics", element: <StatisticsPage /> },
         ],
     },
 ])
