@@ -14,6 +14,10 @@ export const callBackend = (url, ...args) => {
                 Authorization: authHeader,
             },
         },
+        {
+            retry: 3,
+            retryDelay: 500, // ms
+        },
         ...args
     )
 

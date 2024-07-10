@@ -20,7 +20,7 @@ export const rootLoader = async ({ request }) => {
 export const authenticatedOnlyProtector = async () => {
     // If the user is not logged in and tries to a
     if (!isAuthenticated()) {
-        return redirect("/welcome")
+        // return redirect("/welcome")
     }
     return null
 }
@@ -28,7 +28,7 @@ export const authenticatedOnlyProtector = async () => {
 export const guestOnlyProtector = async () => {
     // If the user is not logged in and tries to a
     if (isAuthenticated()) {
-        return redirect("/statistics")
+        // return redirect("/statistics")
     }
     return null
 }

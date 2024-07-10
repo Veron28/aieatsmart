@@ -8,28 +8,48 @@ import {
     guestOnlyProtector,
 } from "@/features/authentication/data/UserDataLoaders"
 
-import WelcomePage from "@/features/registration/pages/WelcomePage"
-import WizardPage from "@/features/registration/pages/WizardPage"
-import SignupCompletePage from "@/features/registration/pages/SignupCompletedPage"
-import StatisticsPage from "@/features/statistics/pages/StatisticsPage"
-
 const router = createBrowserRouter([
     {
+        id: "root",
         path: "/",
         element: <App />,
-        id: "root",
-        loader: rootLoader,
+        // loader: rootLoader,
         children: [
-            { path: "welcome", loader: guestOnlyProtector, element: <WelcomePage /> },
+            {
+                path: "welcome",
+                async lazy() {
+                    const { default: importedPage } = await import("@/features/registration/pages/WelcomePage")
+                    return { Component: importedPage }
+                },
+            },
             {
                 path: "signup",
-                loader: guestOnlyProtector,
                 children: [
-                    { index: true, element: <WizardPage /> },
-                    { path: "completed", element: <SignupCompletePage /> },
+                    {
+                        index: true,
+                        async lazy() {
+                            const { default: importedPage } = await import("@/features/registration/pages/WizardPage")
+                            return { Component: importedPage }
+                        },
+                    },
+                    {
+                        path: "completed",
+                        async lazy() {
+                            const { default: importedPage } = await import(
+                                "@/features/registration/pages/SignupCompletedPage"
+                            )
+                            return { Component: importedPage }
+                        },
+                    },
                 ],
             },
-            { path: "statistics", loader: authenticatedOnlyProtector, element: <StatisticsPage /> },
+            {
+                path: "statistics",
+                async lazy() {
+                    const { default: importedPage } = await import("@/features/statistics/pages/StatisticsPage")
+                    return { Component: importedPage }
+                },
+            },
         ],
     },
 ])
