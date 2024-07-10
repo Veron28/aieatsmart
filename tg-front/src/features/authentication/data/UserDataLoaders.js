@@ -1,34 +1,14 @@
-import { redirect } from "react-router-dom"
-import { getStatistics } from "@/features/statistics/api/StatisticsApi"
+import { defer } from "react-router-dom"
 
-import { setIsAuthenticated, isAuthenticated } from "@/features/authentication/data/AuthenticationProvider"
+import { getUserData } from "@/features/authentication/api/AuthenticationApi"
+import { waitForTelegramLoad } from "@/utils/TelegramUtils"
 
-export const rootLoader = async ({ request }) => {
-    try {
-        const statisticsData = await getStatistics()
-        setIsAuthenticated(statisticsData?.is_stat ?? false)
+export const rootLoader = async () => {
+    const userDataPromise = getUserData()
+    const telegramLoadPromise = waitForTelegramLoad()
 
-        console.log("Request is: ", new URL(request.url).pathname)
-        console.log("We got this data", statisticsData)
-
-        return { userInformation: statistics }
-    } catch (error) {
-        return redirect("/welcome")
-    }
-}
-
-export const authenticatedOnlyProtector = async () => {
-    // If the user is not logged in and tries to a
-    if (!isAuthenticated()) {
-        // return redirect("/welcome")
-    }
-    return null
-}
-
-export const guestOnlyProtector = async () => {
-    // If the user is not logged in and tries to a
-    if (isAuthenticated()) {
-        // return redirect("/statistics")
-    }
-    return null
+    return defer({
+        userInformation: userDataPromise,
+        compositePromise: Promise.all([userDataPromise, telegramLoadPromise])
+    })
 }

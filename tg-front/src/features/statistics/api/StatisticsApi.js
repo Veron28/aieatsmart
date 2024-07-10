@@ -1,8 +1,6 @@
-import { callBackend } from "@/api/client"
+import { getUserData } from "@/features/authentication/api/AuthenticationApi"
 
-export function getStatistics() {
-    return callBackend("/api/v1/auth", { method: "POST" })
-}
+export const getStatistics = getUserData
 
 export function shareStatistics() {
     return callBackend("/api/v1/share_stat", { method: "POST" })

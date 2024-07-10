@@ -1,54 +1,42 @@
+import { lazy } from "react"
 import { createBrowserRouter } from "react-router-dom"
 
 import App from "@/App"
 
-import {
-    rootLoader,
-    authenticatedOnlyProtector,
-    guestOnlyProtector,
-} from "@/features/authentication/data/UserDataLoaders"
+const WelcomePage = lazy(() => import("@/features/registration/pages/WelcomePage"))
+const SignupPage = lazy(() => import("@/features/registration/pages/WizardPage"))
+const SignupCompletedPage = lazy(() => import("@/features/registration/pages/SignupCompletedPage"))
+const UserStatisticsPage = lazy(() => import("@/features/statistics/pages/StatisticsPage"))
+
+import { rootLoader } from "@/features/authentication/data/UserDataLoaders"
 
 const router = createBrowserRouter([
     {
         id: "root",
         path: "/",
         element: <App />,
-        // loader: rootLoader,
+        loader: rootLoader,
         children: [
             {
                 path: "welcome",
-                lazy: async () => {
-                    const { default: importedPage } = await import("@/features/registration/pages/WelcomePage")
-                    return { Component: importedPage }
-                },
+                element: <WelcomePage />,
             },
             {
                 path: "signup",
                 children: [
                     {
                         index: true,
-                        lazy: async () => {
-                            const { default: importedPage } = await import("@/features/registration/pages/WizardPage")
-                            return { Component: importedPage }
-                        },
+                        element: <SignupPage />,
                     },
                     {
                         path: "completed",
-                        lazy: async () => {
-                            const { default: importedPage } = await import(
-                                "@/features/registration/pages/SignupCompletedPage"
-                            )
-                            return { Component: importedPage }
-                        },
+                        element: <SignupCompletedPage />,
                     },
                 ],
             },
             {
                 path: "statistics",
-                lazy: async () => {
-                    const { default: importedPage } = await import("@/features/statistics/pages/StatisticsPage")
-                    return { Component: importedPage }
-                },
+                element: <UserStatisticsPage />,
             },
         ],
     },
