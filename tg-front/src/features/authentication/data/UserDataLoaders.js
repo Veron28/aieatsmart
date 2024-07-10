@@ -9,6 +9,6 @@ export const rootLoader = async () => {
 
     return defer({
         userInformation: userDataPromise,
-        compositePromise: Promise.all([userDataPromise, telegramLoadPromise])
+        applicationIsReady: Promise.all([userDataPromise, telegramLoadPromise]),
     })
 }

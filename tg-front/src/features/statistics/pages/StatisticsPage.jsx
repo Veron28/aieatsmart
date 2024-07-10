@@ -42,6 +42,7 @@ const getPCFConsumptionData = ({ squirrels, fats, carbohydrates }) => [
 ]
 
 const StatisticsPage = () => {
+    console.log("We are in statistics page!")
     const loaderData = useRouteLoaderData("root")
     console.log("This is the loader data we got so far", loaderData)
 

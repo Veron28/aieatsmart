@@ -1,16 +1,36 @@
-import { Suspense, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 import { Await, Outlet, useRouteLoaderData } from "react-router-dom"
 
 import "./styles/application.css"
+import { AuthenticationContext } from "@/features/authentication/components/AuthenticationLayouts"
+import { isAuthenticatedFn } from "@/features/authentication/api/AuthenticationApi"
 
 export default function App() {
-    const initialData = useRouteLoaderData("root")
+    const [authFlag, setAuthFlag] = useState(false)
+    const initialApplicationData = useRouteLoaderData("root")
+
+    useEffect(() => {
+        initialApplicationData.userInformation
+            .then(isAuthenticatedFn)
+            .then(setAuthFlag)
+            .catch((error) => {
+                console.log("User retrieval error: ", error)
+                setAuthFlag(false)
+            })
+    }, [initialApplicationData])
+
     return (
         <div className="main">
             <div className="container">
                 <Suspense fallback={<p>Loading...</p>}>
-                    <Await resolve={initialData?.compositePromise}>
-                        <Outlet />
+                    <Await resolve={initialApplicationData?.applicationIsReady}>
+                        <AuthenticationContext.Provider
+                            value={{
+                                isAuthenticated: authFlag,
+                            }}
+                        >
+                            <Outlet />
+                        </AuthenticationContext.Provider>
                     </Await>
                 </Suspense>
             </div>

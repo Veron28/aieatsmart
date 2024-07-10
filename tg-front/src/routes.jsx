@@ -9,6 +9,11 @@ const SignupCompletedPage = lazy(() => import("@/features/registration/pages/Sig
 const UserStatisticsPage = lazy(() => import("@/features/statistics/pages/StatisticsPage"))
 
 import { rootLoader } from "@/features/authentication/data/UserDataLoaders"
+import {
+    AuthenticationRedirector,
+    AuthenticatedOnly,
+    UnauthenticatedOnly,
+} from "@/features/authentication/components/AuthenticationLayouts"
 
 const router = createBrowserRouter([
     {
@@ -18,11 +23,22 @@ const router = createBrowserRouter([
         loader: rootLoader,
         children: [
             {
+                index: true,
+                element: <AuthenticationRedirector />,
+            },
+            {
                 path: "welcome",
-                element: <WelcomePage />,
+                element: <UnauthenticatedOnly />,
+                children: [
+                    {
+                        index: true,
+                        element: <WelcomePage />,
+                    },
+                ],
             },
             {
                 path: "signup",
+                element: <UnauthenticatedOnly />,
                 children: [
                     {
                         index: true,
@@ -36,7 +52,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "statistics",
-                element: <UserStatisticsPage />,
+                element: <AuthenticatedOnly />,
+                children: [
+                    {
+                        index: true,
+                        element: <UserStatisticsPage />,
+                    },
+                ],
             },
         ],
     },
