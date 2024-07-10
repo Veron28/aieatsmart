@@ -1,4 +1,4 @@
-name: 🍏🥦 EatSmart CI pipeline
+name: 🍏🤖 EatSmart CI pipeline
 run-name: 🚀 ${{ github.actor }} have started the pipeline
 on:
   push:
