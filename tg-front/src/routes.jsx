@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "welcome",
-                async lazy() {
+                lazy: async () => {
                     const { default: importedPage } = await import("@/features/registration/pages/WelcomePage")
                     return { Component: importedPage }
                 },
@@ -27,14 +27,14 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        async lazy() {
+                        lazy: async () => {
                             const { default: importedPage } = await import("@/features/registration/pages/WizardPage")
                             return { Component: importedPage }
                         },
                     },
                     {
                         path: "completed",
-                        async lazy() {
+                        lazy: async () => {
                             const { default: importedPage } = await import(
                                 "@/features/registration/pages/SignupCompletedPage"
                             )
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "statistics",
-                async lazy() {
+                lazy: async () => {
                     const { default: importedPage } = await import("@/features/statistics/pages/StatisticsPage")
                     return { Component: importedPage }
                 },
