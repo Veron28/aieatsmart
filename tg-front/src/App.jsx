@@ -1,5 +1,6 @@
 import { Suspense, useEffect, useState } from "react"
 import { Await, Outlet, useRouteLoaderData } from "react-router-dom"
+import { LazyMotion, domMax } from "framer-motion"
 
 import "./styles/application.css"
 import { AuthenticationContext } from "@/features/authentication/components/AuthenticationLayouts"
@@ -22,17 +23,19 @@ export default function App() {
     return (
         <div className="main">
             <div className="container">
-                <Suspense fallback={<p>Loading...</p>}>
-                    <Await resolve={initialApplicationData?.applicationIsReady}>
-                        <AuthenticationContext.Provider
-                            value={{
-                                isAuthenticated: authFlag,
-                            }}
-                        >
-                            <Outlet />
-                        </AuthenticationContext.Provider>
-                    </Await>
-                </Suspense>
+                <LazyMotion features={domMax} strict>
+                    <Suspense fallback={<p>Loading...</p>}>
+                        <Await resolve={initialApplicationData?.applicationIsReady}>
+                            <AuthenticationContext.Provider
+                                value={{
+                                    isAuthenticated: authFlag,
+                                }}
+                            >
+                                <Outlet />
+                            </AuthenticationContext.Provider>
+                        </Await>
+                    </Suspense>
+                </LazyMotion>
             </div>
         </div>
     )

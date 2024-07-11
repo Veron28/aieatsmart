@@ -1,5 +1,4 @@
 import { memo } from "react"
-import { AnimatePresence, motion } from "framer-motion"
 import PaperSection from "@/components/PaperSection"
 
 const InputFieldLayout = ({ fieldIcon, fieldName, inputControl }) => {

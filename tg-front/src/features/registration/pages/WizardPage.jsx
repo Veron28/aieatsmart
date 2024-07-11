@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react"
-import { AnimatePresence, LayoutGroup, motion } from "framer-motion"
+import { AnimatePresence, LayoutGroup, m as motion } from "framer-motion"
 import {
     RiArrowLeftLine as BackIcon,
     RiArrowRightLine as ForwardIcon,
