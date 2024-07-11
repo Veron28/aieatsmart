@@ -7,6 +7,8 @@ export default defineConfig(() => {
         envPrefix: "EATSMART_",
         build: {
             outDir: "build",
+            minify: "esbuild",
+            cssMinify: "lightningcss",
         },
         plugins: [react()],
         resolve: {
