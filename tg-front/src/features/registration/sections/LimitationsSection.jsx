@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { AnimatePresence } from "framer-motion"
+import SmoothImg from "@/components/SmoothImg"
 
 import MeatIcon from "@/assets/ingridients/meat.png"
 import FishIcon from "@/assets/ingridients/fish.png"
@@ -97,7 +98,7 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
                         transition: "all .1s",
                     }}
                 >
-                    <img
+                    <SmoothImg
                         style={{
                             width: "100%",
                             height: "100%",
