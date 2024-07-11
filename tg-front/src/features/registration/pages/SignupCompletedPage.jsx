@@ -15,9 +15,6 @@ import SignupCompletedSection from "@/features/registration/sections/SignupCompl
 
 const SignupCompletePage = () => {
     const navigate = useNavigate()
-    // Preloading, but not entering for now
-    navigate("/statistics", { replace: false, preload: true })
-
     const goToStatistics = useCallback(() => {
         navigate("/statistics")
     }, [navigate])
