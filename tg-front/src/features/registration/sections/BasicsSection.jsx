@@ -8,13 +8,7 @@ import AgeSelectorInput from "../components/AgeSelectorInput"
 
 const BasicsSection = () => {
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: ".5em",
-            }}
-        >
+        <div className="grid gap-2">
             <InputFieldLayout fieldName="Пол" inputControl={<GenderSelectorInput />} />
             <InputFieldLayout fieldName="Вес" inputControl={<WeightSelectorInput />} />
             <InputFieldLayout fieldName="Рост" inputControl={<HeightSelectorInput />} />

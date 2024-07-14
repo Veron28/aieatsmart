@@ -222,46 +222,26 @@ const SetupWizardPage = () => {
     }, [navigate, commitSectionState, currentStageName, currentSectionState])
 
     return (
-        <div
-            className="page"
-            style={{
-                width: "100%",
-                display: "flex",
-                position: "relative",
-                flexDirection: "column",
-                alignItems: "stretch",
-            }}
-        >
+        <div className="w-full relative flex flex-col items-stretch page">
             <LayoutGroup>
                 <AnimatePresence>
                     <motion.nav
+                        className="h-fit flex items-center gap-4 mb-8"
                         key="pageIndicator"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, position: "sticky", top: "2em", zIndex: 1, }}
+                        animate={{ opacity: 1, position: "sticky", top: "2em", zIndex: 1 }}
                         exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
                         layout
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "1em",
-                            marginBottom: "2em",
-                        }}
                     >
                         {weAreInWebBrowser && currentStageIndex > 0 && <BackIcon onClick={goToPreviousSection} />}
                         <PageIndicator progress={progressInfo} />
                     </motion.nav>
                 </AnimatePresence>
 
-                <section
-                    style={{
-                        display: "flex",
-                        width: "100%",
-                        minHeight: 0,
-                        flexGrow: 1,
-                    }}
-                >
+                <section className="w-full flex min-h-0 grow">
                     <AnimatePresence custom={navigationDirection}>
                         <motion.section
+                            className="w-full grid gap-6"
                             key={currentStageName}
                             initial="enter"
                             animate="center"
@@ -272,29 +252,13 @@ const SetupWizardPage = () => {
                                 ease: "easeOut",
                                 duration: 0.25,
                             }}
-                            style={{
-                                width: "100%",
-                                boxSizing: "border-box",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "stretch",
-                                gap: "1.5em",
-                            }}
                         >
                             <SectionHeading
                                 title={currentSectionHeading.title}
                                 subtitle={currentSectionHeading.subtitle}
                             />
                             <WizardSectionContext.Provider value={currentSectionState}>
-                                <span
-                                    style={{
-                                        display: "flow-root",
-                                        flexBasis: 0,
-                                        flexGrow: 1,
-                                        height: "fit-content",
-                                        marginBottom: "7em",
-                                    }}
-                                >
+                                <span className="flow-root basis-0 grow h-fit mb-28">
                                     {currentSectionContents}
                                 </span>
                             </WizardSectionContext.Provider>

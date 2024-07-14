@@ -59,17 +59,7 @@ const HealthSection = () => {
         <InputFieldLayout key={name} fieldIcon={icon} fieldName={name} inputControl={getCheckbox(name, sectionData)} />
     ))
 
-    return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: ".5em",
-            }}
-        >
-            {inputFields}
-        </div>
-    )
+    return <div className="grid gap-2">{inputFields}</div>
 }
 
 export default memo(HealthSection)

@@ -2,26 +2,13 @@ import { useState } from "react"
 import PaperSection from "@/components/PaperSection"
 import GradualSliderInput from "@/components/inputs/GradualSliderInput"
 
-const SliderInputLayout = ({ title, subtitle, initialValue, minValue, maxValue, classifierFn, onChange }) => {
+export default ({ title, subtitle, initialValue, minValue = 1, maxValue = 5, classifierFn, onChange }) => {
     const [currentValue, setCurrentValue] = useState(initialValue ?? minValue)
 
     return (
         <PaperSection>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "1.75em",
-                    fontSize: ".875em",
-                }}
-            >
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        gap: "1em",
-                    }}
-                >
+            <div className="flex flex-col gap-6 text-sm">
+                <div className="flex justify-between gap-4">
                     <span style={{ fontWeight: 500, color: "var(--theme_text_color)" }}>{title}</span>
                     <span style={{ color: "var(--theme_accent_color)" }}>{classifierFn?.(currentValue)}</span>
                 </div>
@@ -31,5 +18,3 @@ const SliderInputLayout = ({ title, subtitle, initialValue, minValue, maxValue, 
         </PaperSection>
     )
 }
-
-export default SliderInputLayout

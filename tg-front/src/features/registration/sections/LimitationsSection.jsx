@@ -70,15 +70,7 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
     const { title, icon } = limitation
 
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: ".7em",
-                transition: "all .2s",
-            }}
+        <div className="flex flex-col justify-center items-center gap-[.7em] transition-all"
             onClick={() => {
                 const newState = !isSelected
                 setIsSelected(newState)
@@ -100,12 +92,9 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
                 >
                     <SmoothImg
                         style={{
-                            width: "100%",
-                            height: "100%",
                             filter: `grayscale(${isSelected ? 1 : 0})`,
-                            objectFit: "contain",
                         }}
-                        className="noselect"
+                        className="noselect size-full object-contain"
                         src={icon}
                         alt={`Thumbnail for ${title}`}
                     />

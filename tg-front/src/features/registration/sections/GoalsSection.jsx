@@ -2,9 +2,13 @@ import { memo, useCallback, useContext, useState } from "react"
 import CheckboxSelectorInput from "@/components/inputs/CheckboxSelectorInput"
 import WeightGainIcon from "@/assets/up.svg"
 import WeightLossIcon from "@/assets/down.svg"
-import WeightMaintenanceIcon from "@/assets/icon2.svg"
+// import WeightMaintenanceIcon from "@/assets/icon2.svg"
 import HealthImprovementIcon from "@/assets/heart.svg"
 import SportResultsIcon from "@/assets/run.svg"
+
+import {
+    RiScalesFill as WeightMaintenanceIcon
+} from "@remixicon/react"
 
 import RadioButtonItems from "@/components/inputs/RadioButtonItems"
 
