@@ -1,15 +1,12 @@
-import SpinningImages from "../components/SpinningImages"
-import WeightsGraphics from "@/assets/firstAnimationImages/variant1.png"
+import StyledIcon from "@/components/StyledIcon"
+import { RiScales2Fill } from "@remixicon/react"
 
-const WelcomeSection = () => {
+import SpinningImages from "../components/SpinningImages"
+
+export default () => {
     return (
         <SpinningImages>
-            <img
-                alt="Weights logo"
-                src={WeightsGraphics}
-                />
+            <StyledIcon iconShape={<RiScales2Fill size={130} />} />
         </SpinningImages>
     )
 }
-
-export default WelcomeSection
