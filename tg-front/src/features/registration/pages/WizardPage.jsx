@@ -1,15 +1,21 @@
 import { useCallback, useMemo, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { AnimatePresence, LayoutGroup, m as motion } from "framer-motion"
 import {
     RiArrowLeftLine as BackIcon,
     RiArrowRightLine as ForwardIcon,
     RiCheckFill as CheckmarkIcon,
+    RiEmpathizeFill as BasicsiStageIcon,
+    RiHealthBookFill as HealthStageIcon,
+    RiCheckboxCircleFill as GoalsStageIcon,
+    RiCake3Fill as LimitationsStageIcon,
+    RiMentalHealthFill as LifestyleStageIcon,
 } from "@remixicon/react"
-import { useNavigate } from "react-router-dom"
 
 import SectionHeading from "@/components/SectionHeading"
 import UltimateActionButton from "@/components/UltimateActionButton"
 import PageActionsBlock from "@/components/PageActionsBlock"
+import StyledIcon from "@/components/StyledIcon"
 
 import PageIndicator from "../components/PageIndicator"
 
@@ -143,6 +149,23 @@ const variants = {
     },
 }
 
+const getIconForWizard = (currentStageName) => {
+    switch (currentStageName) {
+        case SECTION_BASICS:
+            return <BasicsiStageIcon />
+        case SECTION_HEALTH:
+            return <HealthStageIcon />
+        case SECTION_GOALS:
+            return <GoalsStageIcon />
+        case SECTION_LIMITATIONS:
+            return <LimitationsStageIcon />
+        case SECTION_LIFESTYLE:
+            return <LifestyleStageIcon />
+        default:
+            return null
+    }
+}
+
 const getButtonState = (currentStageName) => {
     switch (currentStageName) {
         case WIZARD_SECTIONS[WIZARD_SECTIONS.length - 1]:
@@ -191,6 +214,7 @@ const SetupWizardPage = () => {
 
     const currentSectionHeading = getHeadingForWizard(currentStageName)
     const currentSectionContents = getSectionForWizard(currentStageName)
+    const currentSectionIcon = getIconForWizard(currentStageName)
     const actionButtonState = getButtonState(currentStageName)
 
     // Navigation actions
@@ -226,8 +250,8 @@ const SetupWizardPage = () => {
             <LayoutGroup>
                 <AnimatePresence>
                     <motion.nav
+                        key="wizardStageIndicator"
                         className="h-fit flex items-center gap-4 mb-8"
-                        key="pageIndicator"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1, position: "sticky", top: "2em", zIndex: 1 }}
                         exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
@@ -237,6 +261,14 @@ const SetupWizardPage = () => {
                         <PageIndicator progress={progressInfo} />
                     </motion.nav>
                 </AnimatePresence>
+                <span
+                    key="wizardStageIcon"
+                    className="size-12 rounded-full bg-white p-1 flex justify-center items-center absolute top-8 right-0 drop-shadow-2xl"
+                >
+                    <span className="p-1.5">
+                        <StyledIcon iconShape={currentSectionIcon} />
+                    </span>
+                </span>
 
                 <section className="w-full flex min-h-0 grow">
                     <AnimatePresence custom={navigationDirection}>
@@ -258,9 +290,7 @@ const SetupWizardPage = () => {
                                 subtitle={currentSectionHeading.subtitle}
                             />
                             <WizardSectionContext.Provider value={currentSectionState}>
-                                <span className="flow-root basis-0 grow h-fit mb-28">
-                                    {currentSectionContents}
-                                </span>
+                                <span className="flow-root basis-0 grow h-fit mb-28">{currentSectionContents}</span>
                             </WizardSectionContext.Provider>
                         </motion.section>
                     </AnimatePresence>
