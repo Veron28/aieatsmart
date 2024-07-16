@@ -3,7 +3,7 @@ import PaperSection from "@/components/PaperSection"
 import SimpleButton from "@/components/SimpleButton"
 import RadioButtonItems from "@/components/inputs/RadioButtonItems"
 
-const RadioSelectorDialog = forwardRef((props, ref) => {
+export default forwardRef((props, ref) => {
     const { title, subtitle, selectedOption, options, onValueSelected } = props
     const [currentGender, setSelectedGender] = useState(selectedOption)
     const onClose = useCallback(() => {
@@ -15,78 +15,32 @@ const RadioSelectorDialog = forwardRef((props, ref) => {
     }, [currentGender, onValueSelected, onClose])
 
     return (
-        <dialog
-            ref={ref}
-            style={{
-                width: "100%",
-            }}
-        >
-            <PaperSection
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "stretch",
-                }}
-            >
-                <h1
+        <dialog ref={ref} className="w-full">
+            <PaperSection className="flex flex-col items-center">
+                <h1 className="text-4xl font-bold">{title}</h1>
+                <span
+                    className="text-sm mt-1 mb-4"
                     style={{
-                        fontSize: "2em",
-                        fontWeight: "bold",
-                    }}
-                >
-                    {title}
-                </h1>
-                <p
-                    style={{
-                        marginTop: ".25em",
-                        fontSize: ".875em",
                         color: "var(--theme_subtitle_text_color)",
                     }}
                 >
                     {subtitle}
-                </p>
+                </span>
 
                 <span
+                    className="w-full grid gap-1"
                     style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: ".5em",
-                        position: "relative",
                         color: "var(--theme_text_color)",
                     }}
                 >
                     <RadioButtonItems options={options} onSelectionChange={setSelectedGender} />
                 </span>
 
-                <div
-                    style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "stretch",
-                        gap: ".5em",
-                    }}
-                >
-                    <SimpleButton
-                        text="Отмена"
-                        plain
-                        onClick={onClose}
-                        style={{
-                            flexBasis: 0,
-                            flexGrow: 1,
-                        }}
-                    />
-                    <SimpleButton
-                        text="ОК"
-                        onClick={onOKClick}
-                        style={{
-                            flexBasis: 0,
-                            flexGrow: 1,
-                        }}
-                    />
+                <div className="w-full grid grid-flow-col gap-2 mt-4">
+                    <SimpleButton text="Отмена" plain onClick={onClose} />
+                    <SimpleButton text="ОК" onClick={onOKClick} />
                 </div>
             </PaperSection>
         </dialog>
     )
 })
-
-export default RadioSelectorDialog

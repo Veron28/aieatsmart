@@ -3,15 +3,16 @@ import { RiArrowDownSFill as ArrowDownIcon, RiMenFill as MaleIcon, RiWomenFill a
 
 import RadioSelectorDialog from "@/components/inputs/RadioSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
+import StyledIcon from "@/components/StyledIcon"
 
 const values = [
     {
         name: "Мужской",
-        icon: <MaleIcon color="var(--theme_accent_color)" />,
+        icon: <StyledIcon iconShape={<MaleIcon />} />,
     },
     {
         name: "Женский",
-        icon: <FemaleIcon color="var(--theme_accent_color)" />,
+        icon: <StyledIcon iconShape={<FemaleIcon />} />,
     },
 ]
 
@@ -34,6 +35,8 @@ const GenderSelectorInput = () => {
             <RadioSelectorDialog
                 ref={dialogRef}
                 options={values}
+                title="Ваш пол"
+                subtitle="Выберите Ваш пол"
                 selectedOption={selectedGender}
                 onValueSelected={onSelectionChange}
             />
