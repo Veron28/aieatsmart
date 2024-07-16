@@ -1,43 +1,42 @@
-import { memo, useCallback, useContext, useState } from "react"
-import CheckboxSelectorInput from "@/components/inputs/CheckboxSelectorInput"
-import WeightGainIcon from "@/assets/up.svg"
-import WeightLossIcon from "@/assets/down.svg"
-// import WeightMaintenanceIcon from "@/assets/icon2.svg"
-import HealthImprovementIcon from "@/assets/heart.svg"
-import SportResultsIcon from "@/assets/run.svg"
+import { memo, useCallback, useContext } from "react"
 
 import {
-    RiScalesFill as WeightMaintenanceIcon
+    RiArrowUpFill as WeightGainIcon,
+    RiArrowDownFill as WeightLossIcon,
+    RiScalesFill as WeightMaintenanceIcon,
+    RiUserHeartFill as HealthImprovementIcon,
+    RiRunFill as SportResultsIcon,
 } from "@remixicon/react"
 
 import RadioButtonItems from "@/components/inputs/RadioButtonItems"
+import StyledIcon from "@/components/StyledIcon"
 
 import { WizardSectionContext } from "../components/WizardSectionContext"
 
 const goalsDataItems = [
     {
         name: "Набор массы",
-        icon: WeightGainIcon,
+        icon: <StyledIcon iconShape={<WeightGainIcon />} />,
     },
     {
         name: "Снижение веса",
-        icon: WeightLossIcon,
+        icon: <StyledIcon iconShape={<WeightLossIcon />} />,
     },
     {
         name: "Поддержание текущего веса",
-        icon: WeightMaintenanceIcon,
+        icon: <StyledIcon iconShape={<WeightMaintenanceIcon />} />,
     },
     {
         name: "Улучшение здоровья",
-        icon: HealthImprovementIcon,
+        icon: <StyledIcon iconShape={<HealthImprovementIcon />} />,
     },
     {
         name: "Улучшение спортивных результатов",
-        icon: SportResultsIcon,
+        icon: <StyledIcon iconShape={<SportResultsIcon />} />,
     },
 ]
 
-const GoalsSection = () => {
+export default memo(() => {
     const sectionData = useContext(WizardSectionContext)
     const updateGoalInSectionData = useCallback(
         (newGoal) => {
@@ -47,16 +46,8 @@ const GoalsSection = () => {
     )
 
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: ".5em",
-            }}
-        >
+        <div className="grid gap-2">
             <RadioButtonItems options={goalsDataItems} onSelectionChange={updateGoalInSectionData} />
         </div>
     )
-}
-
-export default memo(GoalsSection)
+})
