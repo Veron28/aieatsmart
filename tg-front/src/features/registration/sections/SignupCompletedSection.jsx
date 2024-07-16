@@ -1,15 +1,11 @@
+import StyledIcon from "@/components/StyledIcon"
 import SpinningImages from "../components/SpinningImages"
-import CheckmarkGraphics from "@/assets/firstAnimationImages/variant8.png"
+import { RiCheckFill as CheckmarkIcon } from "@remixicon/react"
 
-const WelcomeSection = () => {
+export default () => {
     return (
         <SpinningImages>
-            <img
-                alt="Checkbox logo"
-                src={CheckmarkGraphics}
-                />
+            <StyledIcon iconShape={<CheckmarkIcon size={130} />} />
         </SpinningImages>
     )
 }
-
-export default WelcomeSection

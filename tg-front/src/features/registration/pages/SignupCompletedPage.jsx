@@ -1,4 +1,4 @@
-import { useCallback } from "react"
+import { memo, useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { RiArrowRightLine as ForwardIcon } from "@remixicon/react"
@@ -13,7 +13,7 @@ import UltimateActionButton from "@/components/UltimateActionButton"
 
 import SignupCompletedSection from "@/features/registration/sections/SignupCompletedSection"
 
-const SignupCompletePage = () => {
+export default memo(() => {
     const navigate = useNavigate()
     const goToStatistics = useCallback(() => {
         navigate("/statistics")
@@ -24,16 +24,7 @@ const SignupCompletePage = () => {
     }, [navigate])
 
     return (
-        <div
-            className="page"
-            style={{
-                width: "100%",
-                display: "flex",
-                position: "relative",
-                flexDirection: "column",
-                alignItems: "stretch",
-            }}
-        >
+        <div className="page w-full flex flex-col items-stretch relative">
             <SectionHeading title="Готово" subtitle={<span>Бонус уже ждёт тебя в чате</span>} />
             <PageActionsBlock>
                 <SimpleButton plain onClick={goToStatistics} text="Перейти в статистику" />
@@ -42,6 +33,4 @@ const SignupCompletePage = () => {
             <SignupCompletedSection />
         </div>
     )
-}
-
-export default SignupCompletePage
+})
