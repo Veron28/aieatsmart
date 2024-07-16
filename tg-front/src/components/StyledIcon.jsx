@@ -2,7 +2,7 @@ import { memo, useMemo } from "react"
 import EatSmartGradient from "@/assets/EatSmart_gradient.jpg"
 
 export default memo(({ size, iconShape }) => {
-    const maskId = useMemo(() => "mask" + performance.now(), [])
+    const maskId = useMemo(() => "mask" + performance.now() + Math.random(), [])
 
     const sizeToUse = size ?? iconShape.props.size ?? 24
     return (

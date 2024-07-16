@@ -1,36 +1,40 @@
 import { memo, useCallback, useContext } from "react"
 
-import DiabetesIcon from "@/assets/icon1.svg"
-import ObesityIcon from "@/assets/icon2.svg"
-import HypertoniaIcon from "@/assets/icon3.svg"
-import HeartDiseasesIcon from "@/assets/icon4.svg"
-import AllergiesIcon from "@/assets/icon5.svg"
+import {
+    RiDropFill as DiabetesIcon,
+    RiScalesFill as ObesityIcon,
+    RiPulseLine as HypertoniaIcon,
+    RiHeartPulseFill as HeartDiseasesIcon,
+    RiFlaskFill as AllergiesIcon,
+} from "@remixicon/react"
+
+import StyledIcon from "@/components/StyledIcon"
 
 import CheckboxSelectorInput from "@/components/inputs/CheckboxSelectorInput"
-
 import InputFieldLayout from "@/components/inputs/InputFieldLayout"
+
 import { WizardSectionContext } from "../components/WizardSectionContext"
 
 const healthItemsData = [
     {
         name: "Диабет",
-        icon: DiabetesIcon,
+        icon: <StyledIcon iconShape={<DiabetesIcon />} />,
     },
     {
         name: "Ожирение",
-        icon: ObesityIcon,
+        icon: <StyledIcon iconShape={<ObesityIcon />} />,
     },
     {
         name: "Гипертония",
-        icon: HypertoniaIcon,
+        icon: <StyledIcon iconShape={<HypertoniaIcon />} />,
     },
     {
         name: "Сердечные заболевания",
-        icon: HeartDiseasesIcon,
+        icon: <StyledIcon iconShape={<HeartDiseasesIcon />} />,
     },
     {
         name: "Аллергия",
-        icon: AllergiesIcon,
+        icon: <StyledIcon iconShape={<AllergiesIcon />} />,
     },
 ]
 
