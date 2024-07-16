@@ -42,9 +42,7 @@ const getPCFConsumptionData = ({ squirrels, fats, carbohydrates }) => [
 ]
 
 const StatisticsPage = () => {
-    console.log("We are in statistics page!")
     const loaderData = useRouteLoaderData("root")
-    console.log("This is the loader data we got so far", loaderData)
 
     const { userInformation } = loaderData
 
@@ -58,23 +56,9 @@ const StatisticsPage = () => {
     const pcfConsumptionData = getPCFConsumptionData(userInformation)
 
     return userInformation ? (
-        <section
-            className="page"
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "stretch",
-                gap: "14px",
-            }}
-        >
+        <section className="page flex flex-col items-stretch gap-3.5">
             <SectionHeading title="Статистика" subtitle="За сегодня" />
-            <div
-                style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(2, 1fr)",
-                    gap: ".5em",
-                }}
-            >
+            <div className="grid gap-2 grid-cols-2">
                 <PCFConsumptionSummary
                     style={{
                         gridColumnStart: "span 2",

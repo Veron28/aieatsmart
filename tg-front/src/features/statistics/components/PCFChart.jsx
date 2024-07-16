@@ -1,10 +1,10 @@
 import { memo } from "react"
 
-const PCFChart = ({ pcfConsumption, style: styleProps }) => {
+export default memo(({ pcfConsumption }) => {
     const totalConsumption = pcfConsumption.map((dataItem) => dataItem.calories).reduce((a, b) => a + b, 0)
     const consuptionBars = pcfConsumption.map((dataItem, index) => {
         const topRadius = index === 0 ? ".5em" : ".25em"
-        const bottomRadius = index === pcfConsumption.length - 1  ? ".5em" : ".25em"
+        const bottomRadius = index === pcfConsumption.length - 1 ? ".5em" : ".25em"
 
         return (
             <span
@@ -19,23 +19,7 @@ const PCFChart = ({ pcfConsumption, style: styleProps }) => {
                 }}
             ></span>
         )
+    })
 
-    } )
-
-    return (
-        <div
-            style={{
-                minWidth: "1.25em",
-                display: "flex",
-                flexDirection: "column",
-                flexWrap: "nowrap",
-                gap: ".25em",
-                ...styleProps,
-            }}
-        >
-            {consuptionBars}
-        </div>
-    )
-}
-
-export default memo(PCFChart)
+    return <figure className="min-w-5 flex flex-col flex-nowrap gap-1">{consuptionBars}</figure>
+})

@@ -4,31 +4,20 @@ const PCFBreakdownItem = ({ consumptionItem }) => {
     return (
         <>
             <span
+                className="size-2 aspect-square rounded-full self-center"
                 style={{
-                    width: ".5em",
-                    height: ".5em",
-                    aspectRatio: "1/1",
-                    borderRadius: "50%",
-                    boxSizing: "border-box",
-                    alignSelf: "center",
                     backgroundColor: consumptionItem.color,
                 }}
-            ></span>
-            <h3
-                style={{
-                    fontWeight: 500,
-                }}
-            >
-                {consumptionItem.name}
-            </h3>
-            <span></span>
+            />
+            <h3 className="font-medium">{consumptionItem.name}</h3>
+            <span />
             <p
+                className="text-sm"
                 style={{
-                    fontSize: ".875em",
                     color: "var(--theme_subtitle_text_color)",
                 }}
             >
-                {`${consumptionItem.gramms} гр`}
+                {consumptionItem.gramms ? `${consumptionItem.gramms} гр` : "Нет данных"}
             </p>
         </>
     )
@@ -41,8 +30,8 @@ const PCFBreakdown = ({ pcfConsumption }) => {
 
     return (
         <div
+            className="grid"
             style={{
-                display: "grid",
                 gridTemplateColumns: "auto 1fr",
                 rowGap: ".7em",
                 columnGap: ".4em",

@@ -2,12 +2,11 @@ import PaperSection from "@/components/PaperSection"
 import PCFBreakdown from "../components/PCFBreakdown"
 import PCFChart from "../components/PCFChart"
 
-const PCFConsumptionSummary = ({ pcfConsumptionData, style: styleProps }) => {
+export default ({ pcfConsumptionData, style: styleProps }) => {
     return (
         <PaperSection
+            className="flex gap-5"
             style={{
-                display: "flex",
-                gap: "1.25em",
                 ...styleProps,
             }}
         >
@@ -16,5 +15,3 @@ const PCFConsumptionSummary = ({ pcfConsumptionData, style: styleProps }) => {
         </PaperSection>
     )
 }
-
-export default PCFConsumptionSummary

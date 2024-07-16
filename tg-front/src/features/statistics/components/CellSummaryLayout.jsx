@@ -1,28 +1,40 @@
 import PaperSection from "@/components/PaperSection"
 
-const CellSummaryLayout = ({ dataToDisplay }) => {
+export default ({ dataToDisplay }) => {
     const { icon, emphasis, remainingSummary, actionDescription } = dataToDisplay
+
+    const cellContents =
+        emphasis && remainingSummary ? (
+            <p>
+                <span
+                    style={{
+                        fontSize: "1em",
+                        color: "var(--theme_text_color)",
+                        fontWeight: 500,
+                    }}
+                >
+                    {emphasis}
+                </span>{" "}
+                <span
+                    style={{
+                        display: "contents",
+                        fontSize: ".825em",
+                    }}
+                >
+                    {remainingSummary}
+                </span>
+            </p>
+        ) : (
+            <p>Нет данных</p>
+        )
+
     return (
-        <PaperSection
-            style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "start",
-                justifyContent: "end",
-                gap: "1.5em",
-            }}
-        >
+        <PaperSection className="flex flex-col items-start justify-end gap-6">
             <span
+                className="p-4 flex justify-center rounded-full aspect-square"
                 style={{
-                    boxSizing: "border-box",
                     width: "3.25em",
                     height: "3.25em",
-                    padding: "1em",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: "50%",
-                    aspectRatio: "1/1",
                     backgroundColor: "var(--theme_button_color)",
                     color: "var(--theme_accent_light_color)",
                 }}
@@ -30,30 +42,12 @@ const CellSummaryLayout = ({ dataToDisplay }) => {
                 {icon}
             </span>
 
-            <p
+            <div
                 style={{
                     color: "var(--theme_subtitle_text_color)",
                 }}
             >
-                <p>
-                    <span
-                        style={{
-                            fontSize: "1em",
-                            color: "var(--theme_text_color)",
-                            fontWeight: 500,
-                        }}
-                    >
-                        {emphasis}
-                    </span>{" "}
-                    <span
-                        style={{
-                            display: "contents",
-                            fontSize: ".825em",
-                        }}
-                    >
-                        {remainingSummary}
-                    </span>
-                </p>
+                {cellContents}
                 <p
                     style={{
                         display: "contents",
@@ -63,9 +57,7 @@ const CellSummaryLayout = ({ dataToDisplay }) => {
                 >
                     {actionDescription}
                 </p>
-            </p>
+            </div>
         </PaperSection>
     )
 }
-
-export default CellSummaryLayout
