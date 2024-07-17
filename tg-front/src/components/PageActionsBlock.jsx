@@ -1,16 +1,10 @@
 export default ({ style: styleProps, children }) => {
     return (
-        <section
+        <section className="z-[3] fixed flex flex-col items-stretch"
             style={{
-                zIndex: 3,
-                position: "fixed",
                 bottom: "2em",
                 left: "1.25em",
                 right: "1.25em",
-
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "stretch",
                 gap: ".5em",
 
                 ...styleProps,

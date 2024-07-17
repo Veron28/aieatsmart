@@ -181,7 +181,7 @@ const getButtonState = (currentStageName) => {
     }
 }
 
-const SetupWizardPage = () => {
+export default () => {
     const navigate = useNavigate()
     const [[currentStageIndex, navigationDirection], setCurrentStageIndex] = useState([0, 0])
     const [wizardState, setWizardState] = useState({})
@@ -210,6 +210,18 @@ const SetupWizardPage = () => {
     const progressInfo = {
         currentStage: currentStageIndex + 1,
         totalStages: WIZARD_SECTIONS.length,
+    }
+    let stagesLeft = WIZARD_SECTIONS.length - 1 - currentStageIndex
+    switch (stagesLeft) {
+        case 0:
+            stagesLeft = "этот этап"
+            break
+        case 1:
+            stagesLeft = "1 этап"
+            break
+        default:
+            stagesLeft = `${stagesLeft} этапа`
+            break
     }
 
     const currentSectionHeading = getHeadingForWizard(currentStageName)
@@ -304,9 +316,10 @@ const SetupWizardPage = () => {
                     icon={actionButtonState.icon}
                     onClick={goToNextSection}
                 />
+                <span className="mt-4 text-center text-sm text-[--theme_text_hint_color]">
+                    Ещё <span className="text-[--theme_accent_color]">{stagesLeft}</span> до конца регистрации
+                </span>
             </PageActionsBlock>
         </div>
     )
 }
-
-export default SetupWizardPage
