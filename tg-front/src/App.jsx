@@ -5,6 +5,7 @@ import { LazyMotion, domMax } from "framer-motion"
 import "./styles/application.css"
 import { AuthenticationContext } from "@/features/authentication/components/AuthenticationLayouts"
 import { isAuthenticatedFn } from "@/features/authentication/api/AuthenticationApi"
+import LoadingFallback from "./components/LoadingFallback"
 
 export default function App() {
     const [authFlag, setAuthFlag] = useState(false)
@@ -24,7 +25,7 @@ export default function App() {
         <div className="main">
             <div className="container">
                 <LazyMotion features={domMax} strict>
-                    <Suspense fallback={<p>Loading...</p>}>
+                    <Suspense fallback={<LoadingFallback />}>
                         <Await resolve={initialApplicationData?.applicationIsReady}>
                             <AuthenticationContext.Provider
                                 value={{

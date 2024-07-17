@@ -35,7 +35,7 @@ export const AuthenticatedOnly = () => {
         }
     }, [authData])
 
-    return <Outlet />
+    return authData?.isAuthenticated ? <Outlet /> : null
 }
 
 export const UnauthenticatedOnly = () => {
@@ -48,5 +48,5 @@ export const UnauthenticatedOnly = () => {
         }
     }, [authData])
 
-    return <Outlet />
+    return authData?.isAuthenticated ? null : <Outlet />
 }

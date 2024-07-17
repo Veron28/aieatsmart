@@ -4,7 +4,7 @@ export default memo(({ text, progress, icon, onClick }) => {
     const currentStage = progress?.currentStage ?? 0
     const finalStage = progress?.totalStages ?? 0
     const completePercentage =
-        finalStage <= 0 ? 0 : currentStage === finalStage ? 100 : Math.round(100 * (currentStage / finalStage))
+        finalStage <= 0 ? 100 : currentStage === finalStage ? 100 : Math.round(100 * (currentStage / finalStage))
 
     return (
         <button
