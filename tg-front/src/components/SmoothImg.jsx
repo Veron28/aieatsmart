@@ -16,18 +16,15 @@ export default ({ className, ...imgProps }) => {
     }
 
     return (
-        <motion.div
+        <motion.img
             className={className}
             animate={{ opacity: isLoaded ? 1 : 0 }}
             transition={{ duration: 0.5 }}
-        >
-            <img
-                onLoad={handleImageLoaded}
-                ref={imageRef}
-                style={{ display: isLoaded ? 'block' : 'none' }}
-                {...imgProps}
-            />
-            {!isLoaded && <div className="placeholder" />}
-        </motion.div>
+            onLoad={handleImageLoaded}
+            ref={imageRef}
+            decoding="async"
+            style={{ display: isLoaded ? "block" : "none" }}
+            {...imgProps}
+        />
     )
 }
