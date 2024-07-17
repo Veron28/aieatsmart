@@ -29,22 +29,16 @@ const PageIndicatorBadge = ({ badgeState }) => {
     }
 
     return (
-        <span
+        <span className="size-3 rounded-full border-solid transition-all duration-300"
             style={{
-                width: "12px",
-                height: "12px",
-                boxSizing: "border-box",
-                border: "solid",
-                borderRadius: "50%",
-                transition: "all .3s",
                 ...badgeStylingProps,
             }}
         />
     )
 }
 
-const PageIndicator = ({ progress, style: styleProps }) => {
-    const currentStage = progress?.currentStage ?? 1
+export default memo(({ progress, style: styleProps }) => {
+    const currentStage = progress?.currentStage ?? 0
     const totalStages = progress?.totalStages ?? 0
 
     if (totalStages === 0) {
@@ -52,7 +46,7 @@ const PageIndicator = ({ progress, style: styleProps }) => {
     }
 
     const stepBadges = []
-    for (let stepNumber = 0; stepNumber < totalStages; stepNumber++) {
+    for (let stepNumber = 1; stepNumber <= totalStages; stepNumber++) {
         let stepType = BADGE_CURRENT
         if (stepNumber < currentStage) {
             stepType = BADGE_PAST
@@ -65,15 +59,9 @@ const PageIndicator = ({ progress, style: styleProps }) => {
     }
 
     return (
-        <div
+        <div className="w-fit flex items-center p-2 gap-2.5 rounded-full"
             style={{
-                width: "fit-content",
                 backgroundColor: "var(--theme_section_bg_color)",
-                display: "flex",
-                alignItems: "center",
-                padding: "8px",
-                gap: "10px",
-                borderRadius: "60px",
                 boxShadow: "0px 4px 52px 8px rgba(0, 0, 0, 0.15)",
                 ...styleProps,
             }}
@@ -81,6 +69,4 @@ const PageIndicator = ({ progress, style: styleProps }) => {
             {stepBadges}
         </div>
     )
-}
-
-export default memo(PageIndicator)
+})

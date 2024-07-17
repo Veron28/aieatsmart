@@ -208,7 +208,7 @@ const SetupWizardPage = () => {
     )
 
     const progressInfo = {
-        currentStage: currentStageIndex,
+        currentStage: currentStageIndex + 1,
         totalStages: WIZARD_SECTIONS.length,
     }
 
@@ -237,7 +237,7 @@ const SetupWizardPage = () => {
 
     const goToNextSection = useCallback(() => {
         commitSectionState(currentStageName, currentSectionState)
-        if (currentStageIndex == WIZARD_SECTIONS.length - 1) {
+        if (currentStageIndex == WIZARD_SECTIONS.length) {
             // This was the last section of wizard.
             exitAction()
         } else {

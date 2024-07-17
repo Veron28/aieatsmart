@@ -12,6 +12,7 @@ body {
 
     --theme_accent_color: #9C6AF9;
     --theme_accent_light_color: #EBE1FE;
+    --theme_accent_progress_color: #C3A5FB;
 
     /* Can be connected to Telegram */
     --theme_link_color: var(--theme_accent_color);

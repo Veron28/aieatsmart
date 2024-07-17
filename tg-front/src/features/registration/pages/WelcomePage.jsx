@@ -50,7 +50,17 @@ const WelcomePage = () => {
                 }
             />
             <PageActionsBlock>
-                <UltimateActionButton text="Начать" icon={<ForwardIcon />} onClick={onStartClick} />
+                <div className="flex flex-col items-stretch gap-4">
+                    <span className="p-4 rounded-lg text-sm"
+                        style={{
+                            color: "var(--theme_text_hint_color)",
+                            backgroundColor: "var(--theme_section_bg_color)",
+                        }}
+                    >
+                    Пройдите короткую регистрацию <wbr />и расскажите о себе, <wbr />чтобы бот работал максимально точно
+                    </span>
+                    <UltimateActionButton text="Начать" icon={<ForwardIcon />} onClick={onStartClick} />
+                </div>
             </PageActionsBlock>
             <WelcomeSection />
         </div>

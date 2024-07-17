@@ -1,49 +1,34 @@
 import { memo } from "react"
 
-const UltimateActionButton = ({ text, progress, icon, onClick, style: styleProps }) => {
+export default memo(({ text, progress, icon, onClick }) => {
     const currentStage = progress?.currentStage ?? 0
     const finalStage = progress?.totalStages ?? 0
+    const completePercentage =
+        finalStage <= 0 ? 0 : currentStage === finalStage ? 100 : Math.round(100 * (currentStage / finalStage))
 
     return (
         <button
+            className="inline-grid rounded-lg overflow-clip grid-cols-[1fr] grid-rows-[1fr] *:col-span-full *:row-span-full"
             onClick={onClick}
             style={{
-                display: "inline-flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                backgroundColor: "var(--theme_button_color)",
                 color: "var(--theme_button_text_color)",
-                borderRadius: ".5em",
-                padding: "1em",
-                position: "relative",
-                ...styleProps,
             }}
         >
-            {finalStage > 0 ? (
+            <span className="flex items-stretch">
                 <span
-                    id="remainingProgress"
+                    className="bg-[--theme_button_color] transition-[width]"
                     style={{
-                        position: "absolute",
-                        top: 0,
-                        right: 0,
-                        left: 0,
+                        width: `${completePercentage}%`,
                     }}
                 />
-            ) : null}
-
-            {icon && <span></span>}
-            <span
-                style={{
-                    flexBasis: 0,
-                    flexGrow: 1,
-                    fontWeight: "500",
-                }}
-            >
-                {text}
+                <span className="grow transition-[width] bg-[--theme_accent_progress_color]" />
             </span>
-            {icon}
+
+            <div className="flex p-4 gap-4 items-center justify-between">
+                {icon ? <span /> : null}
+                <span className="basis-0 grow font-medium">{text}</span>
+                {icon}
+            </div>
         </button>
     )
-}
-
-export default memo(UltimateActionButton)
+})
