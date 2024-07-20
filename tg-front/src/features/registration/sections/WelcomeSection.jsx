@@ -29,13 +29,17 @@ const icons = [
 const rotationDelta = 30
 const scaleDelta = 0.1
 const opacityFadeIn = { opacity: [0, 1] }
-const circlesRevealDuration = .3
+const fadeInDuration = 0.3
 
 const IconsOrbit = ({ orbitRadius = "200px", className }) => {
     const [scope, animate] = useAnimate()
 
     useEffect(() => {
-        animate("div", opacityFadeIn, { duration: 0.3, delay: stagger(0.1, { startDelay: circlesRevealDuration * 3 }) })
+        animate("div", opacityFadeIn, {
+            ease: "easeOut",
+            duration: fadeInDuration,
+            delay: stagger(0.1, { startDelay: fadeInDuration * 3 }),
+        })
     })
 
     const orbitItems = useMemo(
@@ -71,7 +75,7 @@ const IconsOrbit = ({ orbitRadius = "200px", className }) => {
 }
 
 const CirclesWithScales = () => {
-    const transition = { ease: "easeOut", duration: circlesRevealDuration }
+    const transition = { ease: "easeIn", duration: fadeInDuration }
 
     return (
         <MotionGradientCircle animate={opacityFadeIn} transition={transition}>
@@ -87,12 +91,8 @@ const CirclesWithScales = () => {
 export default memo(() => {
     return (
         <LayerStackLayout>
-            <div id="circlesWithScales">
-                <CirclesWithScales />
-            </div>
-            <div id="iconsOrbit">
-                <IconsOrbit className="size-full" />
-            </div>
+            <CirclesWithScales />
+            <IconsOrbit className="size-full" />
         </LayerStackLayout>
     )
 })
