@@ -1,10 +1,11 @@
 import { memo, useMemo } from "react"
 import EatSmartGradient from "@/assets/EatSmart_gradient.jpg"
 
-export default memo(({ size, iconShape }) => {
+export default memo(({ iconShape }) => {
     const maskId = useMemo(() => "mask" + performance.now() + Math.random(), [])
 
-    const sizeToUse = size ?? iconShape.props.size ?? 24
+    const sizeToUse = iconShape.props.size ?? 24
+
     return (
         <svg width={sizeToUse} height={sizeToUse} xmlns="http://www.w3.org/2000/svg">
             <defs>
