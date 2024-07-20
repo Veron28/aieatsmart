@@ -1,17 +1,15 @@
 import { useCallback } from "react"
-
+import { useNavigate } from "react-router-dom"
 import { RiArrowRightLine as ForwardIcon } from "@remixicon/react"
+
+import { getBotUrl } from "@/utils/ApplicationLinks"
 
 import SectionHeading from "@/components/SectionHeading"
 import PageActionsBlock from "@/components/PageActionsBlock"
 import UltimateActionButton from "@/components/UltimateActionButton"
 
-import { getBotUrl } from "@/utils/ApplicationLinks"
-
 import WelcomeSection from "@/features/registration/sections/WelcomeSection"
-
 import { startRegistration } from "@/features/registration/api/RegistrationApi"
-import { useNavigate } from "react-router-dom"
 
 const WelcomePage = () => {
     const navigate = useNavigate()
@@ -21,16 +19,7 @@ const WelcomePage = () => {
     }, [navigate])
 
     return (
-        <div
-            className="page"
-            style={{
-                width: "100%",
-                display: "flex",
-                position: "relative",
-                flexDirection: "column",
-                alignItems: "stretch",
-            }}
-        >
+        <div className="page w-full flex relative flex-col items-stretch">
             <SectionHeading
                 title="Добро пожаловать"
                 subtitle={
@@ -51,13 +40,15 @@ const WelcomePage = () => {
             />
             <PageActionsBlock>
                 <div className="flex flex-col items-stretch gap-4">
-                    <span className="p-4 rounded-lg text-sm"
+                    <span
+                        className="p-4 rounded-lg text-sm"
                         style={{
                             color: "var(--theme_text_hint_color)",
                             backgroundColor: "var(--theme_section_bg_color)",
                         }}
                     >
-                    Пройдите короткую регистрацию <wbr />и расскажите о себе, <wbr />чтобы бот работал максимально точно
+                        Пройдите короткую регистрацию <wbr />и расскажите о себе, <wbr />
+                        чтобы бот работал максимально точно
                     </span>
                     <UltimateActionButton text="Начать" icon={<ForwardIcon />} onClick={onStartClick} />
                 </div>

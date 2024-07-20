@@ -1,15 +1,8 @@
-export default ({ style: styleProps, children }) => {
-    return (
-        <section className="z-[3] fixed flex flex-col items-stretch"
-            style={{
-                bottom: "2em",
-                left: "1.25em",
-                right: "1.25em",
-                gap: ".5em",
+import { twMerge } from "tailwind-merge"
 
-                ...styleProps,
-            }}
-        >
+export default ({ children, className }) => {
+    return (
+        <section className={twMerge("z-10 absolute bottom-8 inset-x-5 flex flex-col items-stretch gap-2", className)}>
             {children}
         </section>
     )
