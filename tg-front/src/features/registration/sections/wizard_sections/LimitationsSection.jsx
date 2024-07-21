@@ -152,14 +152,26 @@ const LimitationsSectionContents = memo(() => {
     const limitationCards = limitationsList.map(getLimitationCard)
 
     return (
-        <div
-            style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: ".6em",
-            }}
-        >
-            {limitationCards}
+        <div className="flex flex-col items-stretch">
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(3, 1fr)",
+                    gap: ".6em",
+                }}
+            >
+                {limitationCards}
+            </div>
+            <span className="mt-8 mb-3">Не нашли в списке?</span>
+            <textarea
+                className="rounded-lg drop-shadow-2xl bg-white min-h-16 p-4 text-sm"
+                placeholder="Перечислите здесь продукты, которые вы не едите.&#10;Не более 600 символов."
+                autocomplete="off"
+                autocapitalize="sentences"
+                style={{
+                    resize: "none",
+                }}
+            />
         </div>
     )
 })

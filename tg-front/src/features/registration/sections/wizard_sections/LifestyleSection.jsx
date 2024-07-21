@@ -46,7 +46,7 @@ const LifestyleSectionContents = memo(() => {
     }
 
     return (
-        <div className="grid gap-2">
+        <div className="flex flex-col items-stretch gap-2">
             <GradualSliderSection
                 title="Уровень активности"
                 subtitle={activityLevelSubtext}
@@ -58,6 +58,15 @@ const LifestyleSectionContents = memo(() => {
                 subtitle={stressLevelSubtext}
                 classifierFn={gradeClassifier}
                 onChange={onStressLevelChangeFn}
+            />
+            <textarea
+                className="rounded-lg drop-shadow-2xl bg-white min-h-36 p-4 text-sm"
+                placeholder="Например: хожу в тренажерный зал, 3 тренировки в неделю, тренировка длится час, во время тренировки бегаю на дорожке.&#10;&#10;Если физической активности нет, оставьте поле пустым."
+                autocomplete="off"
+                autocapitalize="sentences"
+                style={{
+                    resize: "none",
+                }}
             />
         </div>
     )

@@ -45,8 +45,20 @@ const GoalsSectionContents = memo(() => {
     }
 
     return (
-        <div className="grid gap-2">
-            <RadioButtonItems options={goalsDataItems} onSelectionChange={updateGoalInSectionData} />
+        <div className="flex flex-col items-stretch">
+            <div className="grid gap-2">
+                <RadioButtonItems options={goalsDataItems} onSelectionChange={updateGoalInSectionData} />
+            </div>
+            <span className="mt-8 mb-3">Не нашли в списке?</span>
+            <textarea
+                className="rounded-lg drop-shadow-2xl bg-white min-h-20 p-4 text-sm"
+                placeholder="Напишите здесь цель, которую вы хотите достичь с помощью правильного питания. Не более 600 символов."
+                autocomplete="off"
+                autocapitalize="sentences"
+                style={{
+                    resize: "none",
+                }}
+            />
         </div>
     )
 })

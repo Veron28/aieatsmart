@@ -64,7 +64,21 @@ const HealthSectionContents = memo(() => {
         <InputFieldLayout key={name} fieldIcon={icon} fieldName={name} inputControl={getCheckbox(name, sectionData)} />
     ))
 
-    return <div className="grid gap-2">{inputFields}</div>
+    return (
+        <div className="flex flex-col items-stretch">
+            <div className="grid gap-2">{inputFields}</div>
+            <span className="mt-8 mb-3">Не нашли в списке?</span>
+            <textarea
+                className="rounded-lg drop-shadow-2xl bg-white min-h-16 p-4 text-sm"
+                placeholder="Введите здесь все имеющиеся медицинские противопоказания.&#10;Не более 600 символов"
+                autocomplete="off"
+                autocapitalize="sentences"
+                style={{
+                    resize: "none",
+                }}
+            />
+        </div>
+    )
 })
 
 export default {
