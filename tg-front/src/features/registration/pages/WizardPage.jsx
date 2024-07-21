@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AnimatePresence, LayoutGroup, m as motion } from "framer-motion"
 import {
@@ -71,13 +71,11 @@ export default () => {
         if (!wizardState[sectionName]) {
             wizardState[sectionName] = {}
         }
+
         return [sectionName, wizardState[sectionName]]
     }, [currentStageIndex, wizardState])
 
-    const currentSectionContents = useMemo(
-        () => WIZARD_SECTIONS[currentStageIndex].sectionContents,
-        [WIZARD_SECTIONS, currentStageIndex]
-    )
+    const currentSectionContents = WIZARD_SECTIONS[currentStageIndex].sectionContents
     const currentSectionMetaContents = WIZARD_SECTIONS[currentStageIndex].metaContents
     const actionButtonState = getButtonState(currentStageIndex)
 
@@ -99,27 +97,16 @@ export default () => {
     }
 
     // Navigation actions
-
-    const proceed = useCallback(
-        (direction) => {
-            setCurrentStageIndex([
-                Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex + direction)),
-                direction,
-            ])
-        },
-        [currentStageIndex, setCurrentStageIndex]
-    )
-
-    const exitAction = useCallback(() => {
-        navigate("/signup/completed")
-    }, [navigate])
-
-    const goToPreviousSection = useCallback(() => {
-        proceed(-1) // left
-    }, [proceed])
+    const proceed = (direction) => {
+        setCurrentStageIndex([
+            Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex + direction)),
+            direction,
+        ])
+    }
+    const exitAction = () => navigate("/signup/completed")
+    const goToPreviousSection = () => proceed(-1) // left
     useTelegramOnBackListener(goToPreviousSection)
-
-    const goToNextSection = useCallback(() => {
+    const goToNextSection = () => {
         const { canProceed: canProceedFn, saveState: stateSaveHandler } =
             WIZARD_SECTIONS[currentStageIndex].dataHandlers
 
@@ -141,7 +128,7 @@ export default () => {
         } else {
             proceed(+1) // right
         }
-    }, [wizardState, setWizardState, proceed, exitAction])
+    }
 
     return (
         <div className="w-full relative flex flex-col items-stretch page">
@@ -175,7 +162,7 @@ export default () => {
                             initial="enter"
                             animate="center"
                             exit="exit"
-                            key={currentStageName}
+                            key={currentStageIndex}
                             custom={navigationDirection}
                             variants={variants}
                             transition={{
