@@ -1,6 +1,7 @@
-import { memo, useCallback, useContext } from "react"
+import { memo, useContext } from "react"
 
 import {
+    RiCheckboxCircleFill,
     RiArrowUpFill as WeightGainIcon,
     RiArrowDownFill as WeightLossIcon,
     RiScalesFill as WeightMaintenanceIcon,
@@ -11,7 +12,8 @@ import {
 import RadioButtonItems from "@/components/inputs/RadioButtonItems"
 import StyledIcon from "@/components/StyledIcon"
 
-import { WizardSectionContext } from "../components/WizardSectionContext"
+import { storeUserGoals } from "@/features/registration/api/RegistrationApi"
+import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"
 
 const goalsDataItems = [
     {
@@ -36,14 +38,11 @@ const goalsDataItems = [
     },
 ]
 
-export default memo(() => {
+const GoalsSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
-    const updateGoalInSectionData = useCallback(
-        (newGoal) => {
-            sectionData.goal = newGoal
-        },
-        [sectionData]
-    )
+    const updateGoalInSectionData = (newGoal) => {
+        sectionData.goal = newGoal
+    }
 
     return (
         <div className="grid gap-2">
@@ -51,3 +50,21 @@ export default memo(() => {
         </div>
     )
 })
+
+export default {
+    sectionContents: <GoalsSectionContents />,
+    metaContents: {
+        sectionName: "goals",
+        title: "Цели",
+        subtitle: (
+            <span style={{ display: "contents" }}>
+                Выберите одну цель,
+                <wbr /> которая больше Вам подходит:
+            </span>
+        ),
+        sectionIcon: <RiCheckboxCircleFill />,
+    },
+    dataHandlers: {
+        saveState: storeUserGoals,
+    },
+}

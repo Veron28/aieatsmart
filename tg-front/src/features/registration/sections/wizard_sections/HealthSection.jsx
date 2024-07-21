@@ -1,6 +1,7 @@
 import { memo, useCallback, useContext } from "react"
 
 import {
+    RiHealthBookFill,
     RiDropFill as DiabetesIcon,
     RiScalesFill as ObesityIcon,
     RiPulseLine as HypertoniaIcon,
@@ -9,11 +10,11 @@ import {
 } from "@remixicon/react"
 
 import StyledIcon from "@/components/StyledIcon"
-
 import CheckboxSelectorInput from "@/components/inputs/CheckboxSelectorInput"
 import InputFieldLayout from "@/components/inputs/InputFieldLayout"
 
-import { WizardSectionContext } from "../components/WizardSectionContext"
+import { storeUserHealthInfo } from "@/features/registration/api/RegistrationApi"
+import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"
 
 const healthItemsData = [
     {
@@ -57,13 +58,29 @@ const getCheckbox = (valueName, sectionData) => {
     return <CheckboxSelectorInput isSelected={thisCheckboxIsSelected} onChange={onChangeFn} />
 }
 
-const HealthSection = () => {
+const HealthSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
     const inputFields = healthItemsData.map(({ name, icon }) => (
         <InputFieldLayout key={name} fieldIcon={icon} fieldName={name} inputControl={getCheckbox(name, sectionData)} />
     ))
 
     return <div className="grid gap-2">{inputFields}</div>
-}
+})
 
-export default memo(HealthSection)
+export default {
+    sectionContents: <HealthSectionContents />,
+    metaContents: {
+        sectionName: "health",
+        title: "Здоровье",
+        subtitle: (
+            <span style={{ display: "contents" }}>
+                Пожалуйста, укажите все имеющиеся
+                <wbr /> у Вас медицинские противопоказания:
+            </span>
+        ),
+        sectionIcon: <RiHealthBookFill />,
+    },
+    dataHandlers: {
+        saveState: storeUserHealthInfo,
+    },
+}

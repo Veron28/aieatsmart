@@ -1,5 +1,8 @@
-import { useContext, useState } from "react"
+import { memo, useContext, useState } from "react"
 import { AnimatePresence } from "framer-motion"
+
+import { RiCake3Fill } from "@remixicon/react"
+
 import SmoothImg from "@/components/SmoothImg"
 
 import MeatIcon from "@/assets/ingridients/meat.png"
@@ -16,7 +19,8 @@ import NutsIcon from "@/assets/ingridients/nuts.png"
 
 import CrossOutIcon from "@/assets/crossout.svg"
 
-import { WizardSectionContext } from "../components/WizardSectionContext"
+import { storeUserLimitations } from "@/features/registration/api/RegistrationApi"
+import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"
 
 const limitationsList = [
     {
@@ -70,7 +74,8 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
     const { title, icon } = limitation
 
     return (
-        <div className="flex flex-col justify-center items-center gap-[.7em] transition-all"
+        <div
+            className="flex flex-col justify-center items-center gap-[.7em] transition-all"
             onClick={() => {
                 const newState = !isSelected
                 setIsSelected(newState)
@@ -143,7 +148,7 @@ const getLimitationCard = (limitation) => {
     return <LimitationCard key={limitation.title} limitation={limitation} onSelectionChange={onChangeFn} />
 }
 
-const LimitationsSection = () => {
+const LimitationsSectionContents = memo(() => {
     const limitationCards = limitationsList.map(getLimitationCard)
 
     return (
@@ -157,6 +162,22 @@ const LimitationsSection = () => {
             {limitationCards}
         </div>
     )
-}
+})
 
-export default LimitationsSection
+export default {
+    sectionContents: <LimitationsSectionContents />,
+    metaContents: {
+        sectionName: "limitations",
+        title: "Исключаемые продукты",
+        subtitle: (
+            <span style={{ display: "contents" }}>
+                Выберите категории продуктов,
+                <wbr /> которые Вы не едите:
+            </span>
+        ),
+        sectionIcon: <RiCake3Fill />,
+    },
+    dataHandlers: {
+        saveState: storeUserLimitations,
+    },
+}

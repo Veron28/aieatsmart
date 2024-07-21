@@ -5,12 +5,9 @@ import {
     RiArrowLeftLine as BackIcon,
     RiArrowRightLine as ForwardIcon,
     RiCheckFill as CheckmarkIcon,
-    RiEmpathizeFill as BasicsiStageIcon,
-    RiHealthBookFill as HealthStageIcon,
-    RiCheckboxCircleFill as GoalsStageIcon,
-    RiCake3Fill as LimitationsStageIcon,
-    RiMentalHealthFill as LifestyleStageIcon,
 } from "@remixicon/react"
+
+import { weAreInWebBrowser, useTelegramOnBackListener } from "@/utils/TelegramUtils"
 
 import SectionHeading from "@/components/SectionHeading"
 import UltimateActionButton from "@/components/UltimateActionButton"
@@ -18,116 +15,15 @@ import PageActionsBlock from "@/components/PageActionsBlock"
 import StyledIcon from "@/components/StyledIcon"
 
 import PageIndicator from "../components/PageIndicator"
-
-import BasicsSection from "../sections/BasicsSection"
-import HealthSection from "../sections/HealthSection"
-import GoalsSection from "../sections/GoalsSection"
-import LimitationsSection from "../sections/LimitationsSection"
-import LifestyleSection from "../sections/LifestyleSection"
-
-import { weAreInWebBrowser, useTelegramOnBackListener } from "@/utils/TelegramUtils"
-import {
-    storeUserGoals,
-    storeUserHealthInfo,
-    storeUserLifestyleData,
-    storeUserLimitations,
-    storeUserPhysiologyInfo,
-} from "../api/RegistrationApi"
 import { WizardSectionContext } from "../components/WizardSectionContext"
 
-const SECTION_BASICS = "basics"
-const SECTION_HEALTH = "health"
-const SECTION_GOALS = "goals"
-const SECTION_LIMITATIONS = "limitations"
-const SECTION_LIFESTYLE = "lifestyle"
+import SectionBasics from "../sections/wizard_sections/BasicsSection"
+import SectionHealth from "../sections/wizard_sections/HealthSection"
+import SectionGoals from "../sections/wizard_sections/GoalsSection"
+import SectionLimitations from "../sections/wizard_sections/LimitationsSection"
+import SectionLifestyle from "../sections/wizard_sections/LifestyleSection"
 
-const WIZARD_SECTIONS = [SECTION_BASICS, SECTION_HEALTH, SECTION_GOALS, SECTION_LIMITATIONS, SECTION_LIFESTYLE]
-
-const getHeadingForWizard = (sectionName) => {
-    switch (sectionName) {
-        case SECTION_BASICS:
-            return {
-                title: "Основное",
-                subtitle: (
-                    <span style={{ display: "contents" }}>
-                        Чем больше мы о Вас знаем,
-                        <wbr /> тем лучше мы сможем Вам помочь:
-                    </span>
-                ),
-            }
-        case SECTION_HEALTH:
-            return {
-                title: "Здоровье",
-                subtitle: (
-                    <span style={{ display: "contents" }}>
-                        Пожалуйста, укажите все имеющиеся
-                        <wbr /> у Вас медицинские противопоказания:
-                    </span>
-                ),
-            }
-        case SECTION_GOALS:
-            return {
-                title: "Цели",
-                subtitle: (
-                    <span style={{ display: "contents" }}>
-                        Выберите одну цель,
-                        <wbr /> которая больше Вам подходит:
-                    </span>
-                ),
-            }
-        case SECTION_LIMITATIONS:
-            return {
-                title: "Исключаемые продукты",
-                subtitle: (
-                    <span style={{ display: "contents" }}>
-                        Выберите категории продуктов,
-                        <wbr /> которые Вы не едите:
-                    </span>
-                ),
-            }
-        case SECTION_LIFESTYLE:
-            return {
-                title: "Стресс и образ жизни",
-                subtitle: "Расскажите нам больше о Вашем рационе и распорядке дня:",
-            }
-        default:
-            return null
-    }
-}
-
-const getSectionForWizard = (sectionName) => {
-    switch (sectionName) {
-        case SECTION_BASICS:
-            return <BasicsSection />
-        case SECTION_HEALTH:
-            return <HealthSection />
-        case SECTION_GOALS:
-            return <GoalsSection />
-        case SECTION_LIMITATIONS:
-            return <LimitationsSection />
-        case SECTION_LIFESTYLE:
-            return <LifestyleSection />
-        default:
-            return null
-    }
-}
-
-const getStateSaveHandler = (sectionName) => {
-    switch (sectionName) {
-        case SECTION_BASICS:
-            return storeUserPhysiologyInfo
-        case SECTION_HEALTH:
-            return storeUserHealthInfo
-        case SECTION_GOALS:
-            return storeUserGoals
-        case SECTION_LIMITATIONS:
-            return storeUserLimitations
-        case SECTION_LIFESTYLE:
-            return storeUserLifestyleData
-        default:
-            return null
-    }
-}
+const WIZARD_SECTIONS = [SectionBasics, SectionHealth, SectionGoals, SectionLimitations, SectionLifestyle]
 
 const variants = {
     enter: (direction) => {
@@ -149,26 +45,20 @@ const variants = {
     },
 }
 
-const getIconForWizard = (currentStageName) => {
-    switch (currentStageName) {
-        case SECTION_BASICS:
-            return <BasicsiStageIcon />
-        case SECTION_HEALTH:
-            return <HealthStageIcon />
-        case SECTION_GOALS:
-            return <GoalsStageIcon />
-        case SECTION_LIMITATIONS:
-            return <LimitationsStageIcon />
-        case SECTION_LIFESTYLE:
-            return <LifestyleStageIcon />
+const getStageContentsSection = (stageName) => {
+    switch (stageName) {
+        case SectionBasics.metaContents.sectionName:
+            return <SectionContentsBasics />
+        case SectionGoals.metaContents.sectionName:
+            return <SectionContentsGoals />
         default:
             return null
     }
 }
 
-const getButtonState = (currentStageName) => {
-    switch (currentStageName) {
-        case WIZARD_SECTIONS[WIZARD_SECTIONS.length - 1]:
+const getButtonState = (currentStageIndex) => {
+    switch (currentStageIndex) {
+        case WIZARD_SECTIONS.length - 1:
             return {
                 title: "Готово",
                 icon: <CheckmarkIcon />,
@@ -188,7 +78,7 @@ export default () => {
 
     const [currentStageName, currentSectionState] = useMemo(() => {
         // We calculate different things, that depend on stage index
-        const sectionName = WIZARD_SECTIONS[currentStageIndex]
+        const sectionName = WIZARD_SECTIONS[currentStageIndex].metaContents.stageName
         if (!wizardState[sectionName]) {
             wizardState[sectionName] = {}
         }
@@ -197,7 +87,7 @@ export default () => {
 
     const commitSectionState = useCallback(
         (stageName, newSectionState) => {
-            const stateSaveHandler = getStateSaveHandler(stageName)
+            const stateSaveHandler = WIZARD_SECTIONS[currentStageIndex].dataHandlers.saveState
             stateSaveHandler?.(newSectionState)
             setWizardState({
                 ...wizardState,
@@ -224,10 +114,9 @@ export default () => {
             break
     }
 
-    const currentSectionHeading = getHeadingForWizard(currentStageName)
-    const currentSectionContents = getSectionForWizard(currentStageName)
-    const currentSectionIcon = getIconForWizard(currentStageName)
-    const actionButtonState = getButtonState(currentStageName)
+    const currentSectionContents =  WIZARD_SECTIONS[currentStageIndex].sectionContents //getStageContentsSection(WIZARD_SECTIONS[currentStageIndex].metaContents.sectionName)
+    const currentSectionMetaContents = WIZARD_SECTIONS[currentStageIndex].metaContents
+    const actionButtonState = getButtonState(currentStageIndex)
 
     // Navigation actions
 
@@ -238,9 +127,9 @@ export default () => {
         ])
     }
 
-    const exitAction = useCallback(() => {
+    const exitAction = () => {
         navigate("/signup/completed")
-    }, [navigate])
+    }
 
     const goToPreviousSection = () => {
         proceed(-1) // left
@@ -278,7 +167,7 @@ export default () => {
                     className="size-12 rounded-full bg-white p-1 flex justify-center items-center absolute top-8 right-0 drop-shadow-2xl"
                 >
                     <span className="p-1.5">
-                        <StyledIcon iconShape={currentSectionIcon} />
+                        <StyledIcon iconShape={currentSectionMetaContents.sectionIcon} />
                     </span>
                 </span>
 
@@ -298,8 +187,8 @@ export default () => {
                             }}
                         >
                             <SectionHeading
-                                title={currentSectionHeading.title}
-                                subtitle={currentSectionHeading.subtitle}
+                                title={currentSectionMetaContents.title}
+                                subtitle={currentSectionMetaContents.subtitle}
                             />
                             <WizardSectionContext.Provider value={currentSectionState}>
                                 <span className="flow-root basis-0 grow h-fit mb-28">{currentSectionContents}</span>
