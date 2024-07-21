@@ -110,9 +110,9 @@ export default () => {
         const { canProceed: canProceedFn, saveState: stateSaveHandler } =
             WIZARD_SECTIONS[currentStageIndex].dataHandlers
 
-        const canProceed = canProceedFn?.(currentSectionState) ?? true
+        const canProceed = canProceedFn ? canProceedFn(currentSectionState) : true
         if (!canProceed) {
-            // TODO print some info message
+            // TODO maybe print some info message
             return
         }
 

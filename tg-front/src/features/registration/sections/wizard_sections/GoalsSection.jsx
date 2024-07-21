@@ -51,6 +51,10 @@ const GoalsSectionContents = memo(() => {
     )
 })
 
+const canProceed = (sectionData) => {
+    return sectionData?.goal
+}
+
 export default {
     sectionContents: <GoalsSectionContents />,
     metaContents: {
@@ -66,5 +70,6 @@ export default {
     },
     dataHandlers: {
         saveState: storeUserGoals,
+        canProceed,
     },
 }

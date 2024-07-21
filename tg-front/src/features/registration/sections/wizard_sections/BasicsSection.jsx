@@ -22,8 +22,7 @@ const BasicsSectionContents = memo(() => {
 })
 
 const canProceed = (sectionData) => {
-    console.log("This is the data", sectionData)
-    return true
+    return sectionData?.weight && sectionData?.height && sectionData?.age && sectionData?.gender
 }
 
 export default {
