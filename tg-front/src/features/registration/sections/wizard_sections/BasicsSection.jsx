@@ -21,6 +21,11 @@ const BasicsSectionContents = memo(() => {
     )
 })
 
+const canProceed = (sectionData) => {
+    console.log("This is the data", sectionData)
+    return true
+}
+
 export default {
     sectionContents: <BasicsSectionContents />,
     metaContents: {
@@ -36,5 +41,6 @@ export default {
     },
     dataHandlers: {
         saveState: storeUserPhysiologyInfo,
-    }
+        canProceed,
+    },
 }

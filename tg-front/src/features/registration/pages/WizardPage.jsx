@@ -45,17 +45,6 @@ const variants = {
     },
 }
 
-const getStageContentsSection = (stageName) => {
-    switch (stageName) {
-        case SectionBasics.metaContents.sectionName:
-            return <SectionContentsBasics />
-        case SectionGoals.metaContents.sectionName:
-            return <SectionContentsGoals />
-        default:
-            return null
-    }
-}
-
 const getButtonState = (currentStageIndex) => {
     switch (currentStageIndex) {
         case WIZARD_SECTIONS.length - 1:
@@ -85,17 +74,12 @@ export default () => {
         return [sectionName, wizardState[sectionName]]
     }, [currentStageIndex, wizardState])
 
-    const commitSectionState = useCallback(
-        (stageName, newSectionState) => {
-            const stateSaveHandler = WIZARD_SECTIONS[currentStageIndex].dataHandlers.saveState
-            stateSaveHandler?.(newSectionState)
-            setWizardState({
-                ...wizardState,
-                [stageName]: newSectionState,
-            })
-        },
-        [wizardState, setWizardState]
+    const currentSectionContents = useMemo(
+        () => WIZARD_SECTIONS[currentStageIndex].sectionContents,
+        [WIZARD_SECTIONS, currentStageIndex]
     )
+    const currentSectionMetaContents = WIZARD_SECTIONS[currentStageIndex].metaContents
+    const actionButtonState = getButtonState(currentStageIndex)
 
     const progressInfo = {
         currentStage: currentStageIndex + 1,
@@ -114,37 +98,50 @@ export default () => {
             break
     }
 
-    const currentSectionContents =  WIZARD_SECTIONS[currentStageIndex].sectionContents //getStageContentsSection(WIZARD_SECTIONS[currentStageIndex].metaContents.sectionName)
-    const currentSectionMetaContents = WIZARD_SECTIONS[currentStageIndex].metaContents
-    const actionButtonState = getButtonState(currentStageIndex)
-
     // Navigation actions
 
-    const proceed = (direction) => {
-        setCurrentStageIndex([
-            Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex + direction)),
-            direction,
-        ])
-    }
+    const proceed = useCallback(
+        (direction) => {
+            setCurrentStageIndex([
+                Math.max(0, Math.min(WIZARD_SECTIONS.length - 1, currentStageIndex + direction)),
+                direction,
+            ])
+        },
+        [currentStageIndex, setCurrentStageIndex]
+    )
 
-    const exitAction = () => {
+    const exitAction = useCallback(() => {
         navigate("/signup/completed")
-    }
+    }, [navigate])
 
-    const goToPreviousSection = () => {
+    const goToPreviousSection = useCallback(() => {
         proceed(-1) // left
-    }
+    }, [proceed])
     useTelegramOnBackListener(goToPreviousSection)
 
     const goToNextSection = useCallback(() => {
-        commitSectionState(currentStageName, currentSectionState)
+        const { canProceed: canProceedFn, saveState: stateSaveHandler } =
+            WIZARD_SECTIONS[currentStageIndex].dataHandlers
+
+        const canProceed = canProceedFn?.(currentSectionState) ?? true
+        if (!canProceed) {
+            // TODO print some info message
+            return
+        }
+
+        stateSaveHandler?.(currentSectionState)
+        setWizardState({
+            ...wizardState,
+            [currentStageName]: currentSectionState,
+        })
+
         if (currentStageIndex == WIZARD_SECTIONS.length) {
             // This was the last section of wizard.
             exitAction()
         } else {
             proceed(+1) // right
         }
-    }, [navigate, commitSectionState, currentStageName, currentSectionState])
+    }, [wizardState, setWizardState, proceed, exitAction])
 
     return (
         <div className="w-full relative flex flex-col items-stretch page">
@@ -175,10 +172,10 @@ export default () => {
                     <AnimatePresence custom={navigationDirection}>
                         <motion.section
                             className="w-full grid gap-6"
-                            key={currentStageName}
                             initial="enter"
                             animate="center"
                             exit="exit"
+                            key={currentStageName}
                             custom={navigationDirection}
                             variants={variants}
                             transition={{
