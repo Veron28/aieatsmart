@@ -35,15 +35,9 @@ const AgeSelectorInput = () => {
                 unit={unit}
                 onValueSelected={onValueSelected}
             />
-            <button
+            <button className="flex items-center gap-1 border-none bg-transparent cursor-pointer"
                 style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: ".25em",
-                    border: "none",
-                    backgroundColor: "transparent",
                     fontSize: ".875em",
-                    cursor: "pointer",
                     color: selectedAge ? "var(--theme_link_color)" : "var(--theme_text_hint_color)",
                 }}
                 onClick={openDialogFn}

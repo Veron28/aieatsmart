@@ -17,23 +17,12 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
     }, [unitValue, subUnitValue, onValueSelected, onClose])
 
     return (
-        <dialog
-            ref={ref}
-            style={{
-                width: "100%",
-            }}
-        >
-            <PaperSection
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "stretch",
-                }}
-            >
+        <dialog className="w-full" ref={ref}>
+            <PaperSection className="flex flex-col items-stretch">
                 <h1
+                    className="font-bold"
                     style={{
                         fontSize: "2em",
-                        fontWeight: "bold",
                     }}
                 >
                     {title}
@@ -72,31 +61,9 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                     />
                 </span>
 
-                <div
-                    style={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "stretch",
-                        gap: ".5em",
-                    }}
-                >
-                    <SimpleButton
-                        text="Отмена"
-                        plain
-                        onClick={onClose}
-                        style={{
-                            flexBasis: 0,
-                            flexGrow: 1,
-                        }}
-                    />
-                    <SimpleButton
-                        text="ОК"
-                        onClick={onOKClick}
-                        style={{
-                            flexBasis: 0,
-                            flexGrow: 1,
-                        }}
-                    />
+                <div className="w-full gap-2 grid grid-flow-col">
+                    <SimpleButton text="Отмена" plain onClick={onClose} />
+                    <SimpleButton text="ОК" onClick={onOKClick} />
                 </div>
             </PaperSection>
         </dialog>

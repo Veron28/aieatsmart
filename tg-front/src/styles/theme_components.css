@@ -4,7 +4,7 @@ dialog {
 }
 
 dialog[open] {
-    animation: modalShowAnim 0.2s ease-out normal;
+    animation: modalShowAnim 0.2s ease-out forwards;
 }
 
 @keyframes modalShowAnim {
