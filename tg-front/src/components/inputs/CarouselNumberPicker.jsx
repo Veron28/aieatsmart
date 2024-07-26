@@ -1,6 +1,8 @@
 import React from "react"
 import { NumberPickerItem } from "./NumberPickerItem"
 
+const emblaLabelClasses = "font-bold pointer-events-none text-[--theme_accent_color] text-2xl"
+
 const EmblaCarousel = ({ unit, subUnit, divider: dividerContent }) => {
     const { minValue, maxValue, onChange } = unit
 
@@ -20,16 +22,16 @@ const EmblaCarousel = ({ unit, subUnit, divider: dividerContent }) => {
     }
 
     return (
-        <div className="embla">
+        <div className="relative flex items-center justify-center gap-2 w-fit max-w-full mx-auto h-96">
             <NumberPickerItem
+                loop
                 minValue={minValue}
                 maxValue={maxValue}
-                loop
                 onChange={onChange}
             />
-            {subUnitSlide && <span className="embla__ios-picker__label">{dividerContent}</span>}
+            {subUnitSlide ? <span className={emblaLabelClasses}>{dividerContent}</span> : null}
             {subUnitSlide}
-            <span className="embla__ios-picker__label">{subUnit?.name ?? unit.name}</span>
+            <span className={emblaLabelClasses}>{subUnit?.name ?? unit.name}</span>
         </div>
     )
 }

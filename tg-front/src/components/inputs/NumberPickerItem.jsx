@@ -2,9 +2,9 @@ import React, { useEffect, useCallback, useMemo, useRef } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 
 const CIRCLE_DEGREES = 360
-const WHEEL_ITEM_SIZE = 32
-const WHEEL_ITEM_COUNT = 18
-const WHEEL_ITEMS_IN_VIEW = 4
+const WHEEL_ITEM_SIZE = 48
+const WHEEL_ITEM_COUNT = 13
+const WHEEL_ITEMS_IN_VIEW = 3
 
 export const WHEEL_ITEM_RADIUS = CIRCLE_DEGREES / WHEEL_ITEM_COUNT
 export const IN_VIEW_DEGREES = WHEEL_ITEM_RADIUS * WHEEL_ITEMS_IN_VIEW
@@ -46,11 +46,10 @@ const setSlideStyles = (emblaApi, index, loop, slideCount, totalRadius) => {
 }
 
 export const setContainerStyles = (emblaApi, wheelRotation) => {
-    emblaApi.containerNode().style.transform = `translateZ(${WHEEL_RADIUS}px) rotateX(${wheelRotation}deg)`
+    emblaApi.containerNode().style.transform = `rotateX(${wheelRotation}deg)`
 }
 
-export const NumberPickerItem = (props) => {
-    const { minValue, maxValue, perspective, loop = false, onChange } = props
+export const NumberPickerItem = ({ minValue, maxValue, loop = false, onChange }) => {
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop,
         axis: "y",
@@ -60,18 +59,24 @@ export const NumberPickerItem = (props) => {
     })
     const rootNodeRef = useRef(null)
     const [slideCount, slides, slideViews] = useMemo(() => {
-        const slideCount = Math.max(1, 1 + (maxValue ?? 0) - (minValue ?? 0))
-        const slides = [...Array(slideCount).keys()].map((i) => i + minValue)
-        const slideViews = slides.map((slideData) => (
-            <div className="embla__ios-picker__slide" key={slideData}>
+        const carouselItemsCount = Math.max(1, 1 + (maxValue ?? 0) - (minValue ?? 0))
+        const carouselItemValues = [...Array(carouselItemsCount).keys()].map((i) => minValue + i)
+        const carouselItemViews = carouselItemValues.map((slideData) => (
+            <li
+                className="size-full flex justify-center items-center transition-colors opacity-0 text-center text-4xl font-medium"
+                key={slideData}
+                style={{
+                    backfaceVisibility: "hidden",
+                }}
+            >
                 {slideData}
-            </div>
+            </li>
         ))
 
-        return [slideCount, slides, slideViews]
+        return [carouselItemsCount, carouselItemValues, carouselItemViews]
     }, [minValue, maxValue])
 
-    const onSettleListener = useCallback(() => {
+    const onSelectedListener = useCallback(() => {
         const selectedSlide = emblaApi.selectedScrollSnap()
         const newSelectedValue = slides[selectedSlide]
         onChange?.(newSelectedValue)
@@ -115,7 +120,7 @@ export const NumberPickerItem = (props) => {
         })
 
         if (onChange) {
-            emblaApi.on("select", onSettleListener)
+            emblaApi.on("select", onSelectedListener)
         }
 
         emblaApi.on("scroll", rotateWheel)
@@ -130,13 +135,23 @@ export const NumberPickerItem = (props) => {
     }, [emblaApi, inactivateEmblaTransform, rotateWheel, onChange])
 
     return (
-        <div className="embla__ios-picker">
-            <div className="embla__ios-picker__scene" ref={rootNodeRef}>
+        <div className="h-full flex items-center justify-center gap-2 text-3xl leading-4 min-w-16 max-w-[50%]">
+            <div ref={rootNodeRef}>
                 <div
-                    className={`embla__ios-picker__viewport embla__ios-picker__viewport--perspective-${perspective}`}
                     ref={emblaRef}
+                    className={`w-full noselect h-8`}
+                    style={{
+                        perspective: "1000px",
+                    }}
                 >
-                    <div className="embla__ios-picker__container">{slideViews}</div>
+                    <ul
+                        className="size-full will-change-transform"
+                        style={{
+                            transformStyle: "preserve-3d"
+                        }}
+                        >
+                        {slideViews}
+                    </ul>
                 </div>
             </div>
         </div>

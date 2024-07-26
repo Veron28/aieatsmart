@@ -19,31 +19,10 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
     return (
         <dialog className="w-full" ref={ref}>
             <PaperSection className="flex flex-col items-stretch">
-                <h1
-                    className="font-bold"
-                    style={{
-                        fontSize: "2em",
-                    }}
-                >
-                    {title}
-                </h1>
-                <p
-                    style={{
-                        marginTop: ".25em",
-                        fontSize: ".875em",
-                        color: "var(--theme_subtitle_text_color)",
-                    }}
-                >
-                    {unitSectionText}
-                </p>
+                <h1 className="font-bold text-4xl">{title}</h1>
+                <p className="text-[--theme_subtitle_text_color] mt-1 text-sm">{unitSectionText}</p>
 
-                <span
-                    style={{
-                        display: "contents",
-                        position: "relative",
-                        color: "var(--theme_text_color)",
-                    }}
-                >
+                <span className="contents relative text-[--theme_text_color]">
                     <CarouselNumberPicker
                         unit={{
                             ...unit,
