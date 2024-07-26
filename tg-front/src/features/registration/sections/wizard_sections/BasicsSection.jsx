@@ -22,7 +22,8 @@ const BasicsSectionContents = memo(() => {
 })
 
 const canProceed = (sectionData) => {
-    return sectionData?.weight && sectionData?.height && sectionData?.age && sectionData?.gender
+    const dataIsValid = sectionData?.weight && sectionData?.height && sectionData?.age && sectionData?.gender
+    return dataIsValid ? null : "Выберите параметры"
 }
 
 export default {

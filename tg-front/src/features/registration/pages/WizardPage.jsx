@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AnimatePresence, LayoutGroup, m as motion } from "framer-motion"
 import {
@@ -64,19 +64,22 @@ export default () => {
     const navigate = useNavigate()
     const [[currentStageIndex, navigationDirection], setCurrentStageIndex] = useState([0, 0])
     const [wizardState, setWizardState] = useState({})
+    const [validationMessage, setValidationMessage] = useState(null)
+
+    const currentSectionData = WIZARD_SECTIONS[currentStageIndex]
 
     const [currentStageName, currentSectionState] = useMemo(() => {
-        // We calculate different things, that depend on stage index
-        const sectionName = WIZARD_SECTIONS[currentStageIndex].metaContents.stageName
+        // We modify wizard state here
+        const sectionName = currentSectionData.metaContents.stageName
         if (!wizardState[sectionName]) {
             wizardState[sectionName] = {}
         }
 
-        return [sectionName, wizardState[sectionName]]
-    }, [currentStageIndex, wizardState])
+        return [sectionName, wizardState]
+    }, [currentStageIndex, wizardState, currentSectionData])
 
-    const currentSectionContents = WIZARD_SECTIONS[currentStageIndex].sectionContents
-    const currentSectionMetaContents = WIZARD_SECTIONS[currentStageIndex].metaContents
+    const currentSectionContents = currentSectionData.sectionContents
+    const currentSectionMetaContents = currentSectionData.metaContents
     const actionButtonState = getButtonState(currentStageIndex)
 
     const progressInfo = {
@@ -103,16 +106,16 @@ export default () => {
             direction,
         ])
     }
-    const exitAction = () => navigate("/signup/completed")
     const goToPreviousSection = () => proceed(-1) // left
     useTelegramOnBackListener(goToPreviousSection)
-    const goToNextSection = () => {
-        const { canProceed: canProceedFn, saveState: stateSaveHandler } =
-            WIZARD_SECTIONS[currentStageIndex].dataHandlers
 
-        const canProceed = canProceedFn ? canProceedFn(currentSectionState) : true
-        if (!canProceed) {
-            // TODO maybe print some info message
+    const exitAction = () => navigate("/signup/completed")
+    const goToNextSection = () => {
+        const { canProceed: canProceedFn, saveState: stateSaveHandler } = currentSectionData.dataHandlers
+
+        const newValidationMessage = canProceedFn ? canProceedFn(currentSectionState) : null
+        setValidationMessage(newValidationMessage)
+        if (newValidationMessage) {
             return
         }
 
@@ -187,6 +190,7 @@ export default () => {
                     text={actionButtonState.title}
                     progress={progressInfo}
                     icon={actionButtonState.icon}
+                    validationErrorMessage={validationMessage}
                     onClick={goToNextSection}
                 />
                 <span className="mt-4 text-center text-sm text-[--theme_text_hint_color]">

@@ -64,7 +64,7 @@ const GoalsSectionContents = memo(() => {
 })
 
 const canProceed = (sectionData) => {
-    return sectionData?.goal
+    return sectionData?.goal ? null : "Выберите цель"
 }
 
 export default {

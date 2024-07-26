@@ -2,6 +2,7 @@ import { memo, useCallback, useContext } from "react"
 
 import {
     RiHealthBookFill,
+    RiSubtractFill as NoLimitationsIcon,
     RiDropFill as DiabetesIcon,
     RiScalesFill as ObesityIcon,
     RiPulseLine as HypertoniaIcon,
@@ -17,6 +18,10 @@ import { storeUserHealthInfo } from "@/features/registration/api/RegistrationApi
 import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"
 
 const healthItemsData = [
+    {
+        name: "Не имеется",
+        icon: <StyledIcon iconShape={<NoLimitationsIcon />} />,
+    },
     {
         name: "Диабет",
         icon: <StyledIcon iconShape={<DiabetesIcon />} />,
@@ -61,7 +66,12 @@ const getCheckbox = (valueName, sectionData) => {
 const HealthSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
     const inputFields = healthItemsData.map(({ name, icon }) => (
-        <InputFieldLayout key={name} fieldIcon={icon} fieldName={name} inputControl={getCheckbox(name, sectionData)} />
+        <InputFieldLayout
+            key={name}
+            fieldIcon={icon}
+            fieldName={name}
+            inputControl={getCheckbox(name, sectionData)}
+        />
     ))
 
     return (
@@ -81,6 +91,15 @@ const HealthSectionContents = memo(() => {
     )
 })
 
+const canProceed = (sectionData) => {
+    const selectedHealthIssues = sectionData.base
+    const userIsHealthy = selectedHealthIssues.length === 1 && selectedHealthIssues.includes(healthItemsData[0].name)
+    const userSelectedHealthIssues = selectedHealthIssues.length > 0 && !selectedHealthIssues.includes(healthItemsData[0].name)
+
+    const dataIsValid = userIsHealthy || userSelectedHealthIssues
+    return dataIsValid ? null : "Выберите противопоказание"
+}
+
 export default {
     sectionContents: <HealthSectionContents />,
     metaContents: {
@@ -96,5 +115,6 @@ export default {
     },
     dataHandlers: {
         saveState: storeUserHealthInfo,
+        canProceed
     },
 }

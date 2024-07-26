@@ -9,6 +9,10 @@ body {
     --theme_text_color: var(--tg-theme-text-color, black);
     --theme_text_hint_color: var(--tg-theme-hint-color, #CECECE);
     --theme_subtitle_text_color: var(--tg-theme-subtitle-text-color, #8F8F8F);
+    --theme_section_separator_color: var(--tg-theme-section-separator-color, #DBDBDB);
+
+    --theme_destructive_bg_color: #FBB4B4;
+    --theme_destructive_text_color: var(--tg-theme-destructive-text-color, #BB1515);
 
     --theme_accent_color: #9C6AF9;
     --theme_accent_light_color: #EBE1FE;

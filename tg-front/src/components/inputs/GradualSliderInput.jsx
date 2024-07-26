@@ -11,7 +11,7 @@ export const GradualSliderInput = ({ onChange }) => {
             step={0.01}
             thumbClassName={`size-6 rounded-full bg-[--theme_button_color] text-[--theme_button_text_color] cursor-pointer
                 flex justify-center items-center`}
-            trackClassName="bg-[--theme_text_hint_color] rounded-full h-1"
+            trackClassName="bg-[--tg-theme-section-separator-color] rounded-full h-1"
             renderThumb={(props, state) => <div {...props}>{Math.floor(state.valueNow)}</div>}
             onChange={onChange}
         />
