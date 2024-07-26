@@ -47,9 +47,6 @@ const healthItemsData = [
 const getCheckbox = (valueName, sectionData) => {
     const onChangeFn = useCallback(
         (itemIsSelected) => {
-            if (!sectionData.base) {
-                sectionData.base = []
-            }
             if (itemIsSelected) {
                 sectionData.base.push(valueName)
             } else {
@@ -65,6 +62,9 @@ const getCheckbox = (valueName, sectionData) => {
 
 const HealthSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
+    if (!sectionData.base) {
+        sectionData.base = []
+    }
     const inputFields = healthItemsData.map(({ name, icon }) => (
         <InputFieldLayout
             key={name}

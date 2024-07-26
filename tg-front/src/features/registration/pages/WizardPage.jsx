@@ -25,6 +25,7 @@ import SectionLifestyle from "../sections/wizard_sections/LifestyleSection"
 
 const WIZARD_SECTIONS = [SectionBasics, SectionHealth, SectionGoals, SectionLimitations, SectionLifestyle]
 
+const ANIMATION_DURATION = 0.25
 const variants = {
     enter: (direction) => {
         return {
@@ -40,6 +41,26 @@ const variants = {
         return {
             position: "absolute",
             x: direction < 0 ? "100dvw" : "-100dvw",
+            opacity: 0,
+        }
+    },
+}
+
+const iconVariants = {
+    enter: (direction) => {
+        return {
+            x: direction === 0 ? 0 : direction > 0 ? "1.5em" : "-1.5em",
+            opacity: 0,
+        }
+    },
+    center: {
+        x: 0,
+        opacity: 1,
+    },
+    exit: (direction) => {
+        return {
+            position: "absolute",
+            x: direction < 0 ? "1.5em" : "-1.5em",
             opacity: 0,
         }
     },
@@ -142,7 +163,7 @@ export default () => {
                         className="h-fit flex items-center gap-4 mb-8"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1, position: "sticky", top: "2em", zIndex: 1 }}
-                        exit={{ opacity: 0, position: "absolute", duration: 0.1 }}
+                        exit={{ opacity: 0, position: "absolute", duration: ANIMATION_DURATION }}
                         layout
                     >
                         {weAreInWebBrowser && currentStageIndex > 0 && <BackIcon onClick={goToPreviousSection} />}
@@ -153,8 +174,23 @@ export default () => {
                     key="wizardStageIcon"
                     className="size-12 rounded-full bg-white p-1 flex justify-center items-center absolute top-8 right-0 drop-shadow-2xl"
                 >
-                    <span className="p-1.5">
-                        <StyledIcon iconShape={currentSectionMetaContents.sectionIcon} />
+                    <span className="p-1.5 rounded-full relative overflow-hidden">
+                        <AnimatePresence custom={navigationDirection}>
+                            <motion.div
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                                key={currentStageIndex}
+                                custom={navigationDirection}
+                                variants={iconVariants}
+                                transition={{
+                                    ease: "easeOut",
+                                    duration: ANIMATION_DURATION,
+                                }}
+                            >
+                                <StyledIcon key={currentStageIndex} iconShape={currentSectionMetaContents.sectionIcon} />
+                            </motion.div>
+                        </AnimatePresence>
                     </span>
                 </span>
 
@@ -170,7 +206,7 @@ export default () => {
                             variants={variants}
                             transition={{
                                 ease: "easeOut",
-                                duration: 0.25,
+                                duration: ANIMATION_DURATION,
                             }}
                         >
                             <SectionHeading
