@@ -33,6 +33,7 @@ const LifestyleSectionContents = memo(() => {
                 placeholder="Например: хожу в тренажерный зал, 3 тренировки в неделю, тренировка длится час, во время тренировки бегаю на дорожке.&#10;&#10;Если физической активности нет, оставьте поле пустым."
                 autocomplete="off"
                 autocapitalize="sentences"
+                maxLength={2500}
                 style={{
                     resize: "none",
                 }}

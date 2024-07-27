@@ -80,9 +80,10 @@ const HealthSectionContents = memo(() => {
             <span className="mt-8 mb-3">Не нашли в списке?</span>
             <textarea
                 className="rounded-lg drop-shadow-2xl bg-white min-h-16 p-4 text-sm"
-                placeholder="Введите здесь все имеющиеся медицинские противопоказания.&#10;Не более 600 символов"
+                placeholder="Введите здесь все имеющиеся медицинские противопоказания.&#10;Не более 2500 символов"
                 autocomplete="off"
                 autocapitalize="sentences"
+                maxLength={2500}
                 style={{
                     resize: "none",
                 }}

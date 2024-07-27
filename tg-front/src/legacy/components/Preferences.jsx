@@ -180,7 +180,8 @@ const Preferences = ({onChangeData}) => {
             <div className="additional-options">
               <div className="not-found">Не нашли в списке?</div>
               <textarea className="medical-conditions"
-                placeholder="Введите здесь все имеющиеся медицинские противопоказания. Не более 600 символов"></textarea>
+                maxLength={2500}
+                placeholder="Введите здесь все имеющиеся медицинские противопоказания. Не более 2500 символов"></textarea>
             </div>
           </div>
           </>
