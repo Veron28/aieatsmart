@@ -5,22 +5,23 @@ import { RiCake3Fill } from "@remixicon/react"
 
 import SmoothImg from "@shared/ui/SmoothImg"
 
-import MeatIcon from "@/assets/ingridients/meat.png"
-import FishIcon from "@/assets/ingridients/fish.png"
-import MilkIcon from "@/assets/ingridients/milk.png"
-import SweetsIcon from "@/assets/ingridients/sweets.png"
-import FastFoodIcon from "@/assets/ingridients/fast_food.png"
-import MushroomsIcon from "@/assets/ingridients/mushrooms.png"
-import FruitsIcon from "@/assets/ingridients/fruits.png"
-import VegetablesIcon from "@/assets/ingridients/vegetables.png"
-import FlourBasedIcon from "@/assets/ingridients/flour_based.png"
-import CerealsIcon from "@/assets/ingridients/cereals.png"
-import NutsIcon from "@/assets/ingridients/nuts.png"
+import MeatIcon from "@shared/ui/assets/ingridients/meat.png"
+import FishIcon from "@shared/ui/assets/ingridients/fish.png"
+import MilkIcon from "@shared/ui/assets/ingridients/milk.png"
+import SweetsIcon from "@shared/ui/assets/ingridients/sweets.png"
+import FastFoodIcon from "@shared/ui/assets/ingridients/fast_food.png"
+import MushroomsIcon from "@shared/ui/assets/ingridients/mushrooms.png"
+import FruitsIcon from "@shared/ui/assets/ingridients/fruits.png"
+import VegetablesIcon from "@shared/ui/assets/ingridients/vegetables.png"
+import FlourBasedIcon from "@shared/ui/assets/ingridients/flour_based.png"
+import CerealsIcon from "@shared/ui/assets/ingridients/cereals.png"
+import NutsIcon from "@shared/ui/assets/ingridients/nuts.png"
 
-import CrossOutIcon from "@/assets/crossout.svg"
+import CrossOutIcon from "@shared/ui/assets/crossout.svg"
 
 import { storeUserLimitations } from "@features/registration/api/RegistrationApi"
 import { WizardSectionContext } from "@features/registration/widgets/WizardSectionContext"
+import { twMerge } from "tailwind-merge"
 
 const limitationsList = [
     {
@@ -82,50 +83,37 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
                 onSelectionChange(newState)
             }}
         >
-            {icon && (
+            {icon ? (
                 <div
-                    style={{
-                        position: "relative",
-                        width: "100%",
-                        aspectRatio: "1/1",
-                        boxSizing: "border-box",
-                        padding: isSelected ? "25%" : "20%",
-                        borderRadius: ".5em",
-                        backgroundColor: isSelected ? "var(--theme_accent_color)" : "transparent",
-                        transition: "all .1s",
-                    }}
+                    className={twMerge(
+                        "relative w-full aspect-square transition-all duration-100 rounded-lg",
+                        isSelected ? "p-[25%] bg-[--theme_accent_color]" : "p-[20%] bg-transparent"
+                    )}
                 >
                     <SmoothImg
-                        style={{
-                            filter: `grayscale(${isSelected ? 1 : 0})`,
-                        }}
-                        className="noselect size-full object-contain"
+                        className={twMerge(
+                            "noselect size-full object-contain",
+                            isSelected ? "grayscale" : "grayscale-0"
+                        )}
                         src={icon}
                         alt={`Thumbnail for ${title}`}
                     />
                     <AnimatePresence>
-                        {isSelected && (
-                            <img
+                        {isSelected ? (
+                            <SmoothImg
                                 src={CrossOutIcon}
                                 alt="cross-out diagonal"
-                                className="noselect"
-                                style={{
-                                    width: "60%",
-                                    position: "absolute",
-                                    left: "50%",
-                                    top: "50%",
-                                    translate: "-50% -50%",
-                                }}
+                                className="noselect absolute w-[60%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                             />
-                        )}
+                        ) : null}
                     </AnimatePresence>
                 </div>
-            )}
+            ) : null}
             <span
-                style={{
-                    fontSize: ".875em",
-                    color: isSelected ? "var(--theme_accent_color)" : "var(--theme_subtitle_text_color)",
-                }}
+                className={twMerge(
+                    "text-sm",
+                    isSelected ? "text-[--theme_accent_color]" : "text-[--theme_subtitle_text_color]"
+                )}
             >
                 {title}
             </span>
@@ -160,12 +148,11 @@ const LimitationsSectionContents = memo(() => {
     )
 
     return (
-        <div className="flex flex-col items-stretch">
+        <div className="grid items-stretch">
             <div
+                className="grid gap-3"
                 style={{
-                    display: "grid",
                     gridTemplateColumns: "repeat(3, 1fr)",
-                    gap: ".6em",
                 }}
             >
                 {limitationCards}
