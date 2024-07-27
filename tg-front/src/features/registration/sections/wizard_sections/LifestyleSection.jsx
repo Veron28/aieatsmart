@@ -1,4 +1,4 @@
-import { memo, useContext } from "react"
+import { memo, useCallback, useContext } from "react"
 import { RiMentalHealthFill } from "@remixicon/react"
 
 import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"
@@ -15,6 +15,14 @@ const LifestyleSectionContents = memo(() => {
     const onStressLevelChangeFn = (newValue) => {
         sectionData.stress_level = newValue
     }
+
+    const updateExtraLifestyleInformation = useCallback(
+        (event) => {
+            event?.preventDefault?.()
+            sectionData.extra = event?.target?.value ?? undefined
+        },
+        [sectionData]
+    )
 
     return (
         <div className="flex flex-col items-stretch gap-2">
@@ -34,6 +42,7 @@ const LifestyleSectionContents = memo(() => {
                 autocomplete="off"
                 autocapitalize="sentences"
                 maxLength={2500}
+                onChange={updateExtraLifestyleInformation}
                 style={{
                     resize: "none",
                 }}

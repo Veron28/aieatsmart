@@ -36,7 +36,6 @@ export default ({ title, subtext, initialValue, onChange }) => {
     const [currentValue, setCurrentValue] = useState(initialValue ?? 1)
     const valueChangeObserver = useCallback((newValue) => {
         const postProcessedValue = Math.floor(newValue)
-        console.log("New value: ", newValue)
         setCurrentValue(postProcessedValue)
         onChange(postProcessedValue)
     }, [setCurrentValue, onChange])

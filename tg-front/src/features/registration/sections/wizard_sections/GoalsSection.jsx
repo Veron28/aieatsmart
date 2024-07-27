@@ -1,4 +1,4 @@
-import { memo, useContext } from "react"
+import { memo, useCallback, useContext } from "react"
 
 import {
     RiCheckboxCircleFill,
@@ -40,6 +40,10 @@ const goalsDataItems = [
 
 const GoalsSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
+    const updateExtraGoal = useCallback((event) => {
+        event?.preventDefault?.()
+        sectionData.extra = event?.target?.value ?? undefined
+    }, [sectionData])
     const updateGoalInSectionData = (newGoal) => {
         sectionData.goal = newGoal
     }
@@ -56,6 +60,7 @@ const GoalsSectionContents = memo(() => {
                 autocomplete="off"
                 autocapitalize="sentences"
                 maxLength={2500}
+                onChange={updateExtraGoal}
                 style={{
                     resize: "none",
                 }}

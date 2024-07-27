@@ -139,7 +139,7 @@ export default () => {
     const goToNextSection = () => {
         const { canProceed: canProceedFn, saveState: stateSaveHandler } = currentSectionData.dataHandlers
 
-        const newValidationMessage = canProceedFn ? canProceedFn(currentSectionState) : null
+        const newValidationMessage = null // canProceedFn ? canProceedFn(currentSectionState) : null
         setValidationMessage(newValidationMessage)
         if (newValidationMessage) {
             return

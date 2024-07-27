@@ -1,4 +1,4 @@
-import { memo, useContext, useState } from "react"
+import { memo, useCallback, useContext, useState } from "react"
 import { AnimatePresence } from "framer-motion"
 
 import { RiCake3Fill } from "@remixicon/react"
@@ -136,9 +136,6 @@ const LimitationCard = ({ isSelected: defaultIsSelected, limitation, onSelection
 const getLimitationCard = (limitation) => {
     const onChangeFn = (isSelected) => {
         const sectionData = useContext(WizardSectionContext)
-        if (!sectionData.base) {
-            sectionData.base = []
-        }
         if (isSelected) {
             sectionData.base.push(limitation.title)
         } else {
@@ -149,7 +146,18 @@ const getLimitationCard = (limitation) => {
 }
 
 const LimitationsSectionContents = memo(() => {
+    const sectionData = useContext(WizardSectionContext)
+    if (!sectionData.base) {
+        sectionData.base = []
+    }
     const limitationCards = limitationsList.map(getLimitationCard)
+    const updateExtraLimitationsInformation = useCallback(
+        (event) => {
+            event?.preventDefault?.()
+            sectionData.extra = event?.target?.value ?? undefined
+        },
+        [sectionData]
+    )
 
     return (
         <div className="flex flex-col items-stretch">
@@ -169,6 +177,7 @@ const LimitationsSectionContents = memo(() => {
                 autocomplete="off"
                 autocapitalize="sentences"
                 maxLength={2500}
+                onChange={updateExtraLimitationsInformation}
                 style={{
                     resize: "none",
                 }}

@@ -62,6 +62,11 @@ const getCheckbox = (valueName, sectionData) => {
 
 const HealthSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
+    const updateExtraHealthDescription = useCallback((event) => {
+        event?.preventDefault?.()
+        sectionData.extra = event?.target?.value ?? undefined
+    }, [sectionData])
+
     if (!sectionData.base) {
         sectionData.base = []
     }
@@ -84,6 +89,7 @@ const HealthSectionContents = memo(() => {
                 autocomplete="off"
                 autocapitalize="sentences"
                 maxLength={2500}
+                onChange={updateExtraHealthDescription}
                 style={{
                     resize: "none",
                 }}
