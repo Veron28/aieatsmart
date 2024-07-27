@@ -17,13 +17,18 @@ import StyledIcon from "@/components/StyledIcon"
 import PageIndicator from "../components/PageIndicator"
 import { WizardSectionContext } from "../components/WizardSectionContext"
 
+import WelcomeSection from "../sections/WelcomeSection"
+import SignupCompletedSection from "../sections/SignupCompletedSection"
+
 import SectionBasics from "../sections/wizard_sections/BasicsSection"
 import SectionHealth from "../sections/wizard_sections/HealthSection"
 import SectionGoals from "../sections/wizard_sections/GoalsSection"
 import SectionLimitations from "../sections/wizard_sections/LimitationsSection"
 import SectionLifestyle from "../sections/wizard_sections/LifestyleSection"
 
+const IntroductionSection = WelcomeSection
 const WIZARD_SECTIONS = [SectionBasics, SectionHealth, SectionGoals, SectionLimitations, SectionLifestyle]
+const CompletedSection = SignupCompletedSection
 
 const ANIMATION_DURATION = 0.25
 const variants = {

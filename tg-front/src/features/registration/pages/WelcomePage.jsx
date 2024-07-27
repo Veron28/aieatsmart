@@ -25,13 +25,7 @@ const WelcomePage = () => {
                 subtitle={
                     <span>
                         Это{" "}
-                        <a
-                            href={getBotUrl()}
-                            style={{
-                                color: "var(--theme_link_color)",
-                            }}
-                            target="__blank"
-                        >
+                        <a href={getBotUrl()} className="text-[--theme_link_color]" target="__blank">
                             EatSmart
                         </a>
                         , твой личный ИИ-гуру питания
@@ -40,13 +34,7 @@ const WelcomePage = () => {
             />
             <PageActionsBlock>
                 <div className="flex flex-col items-stretch gap-4">
-                    <span
-                        className="p-4 rounded-lg text-sm"
-                        style={{
-                            color: "var(--theme_text_hint_color)",
-                            backgroundColor: "var(--theme_section_bg_color)",
-                        }}
-                    >
+                    <span className="p-4 rounded-lg text-sm text-[--theme_text_hint_color] bg-[--theme_section_bg_color]">
                         Пройдите короткую регистрацию <wbr />и расскажите о себе, <wbr />
                         чтобы бот работал максимально точно
                     </span>
