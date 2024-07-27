@@ -1,8 +1,9 @@
 import React, { useEffect, useCallback, useMemo, useRef } from "react"
 import useEmblaCarousel from "embla-carousel-react"
+import { twMerge } from "tailwind-merge"
 
 const CIRCLE_DEGREES = 360
-const WHEEL_ITEM_SIZE = 48
+const WHEEL_ITEM_SIZE = 64
 const WHEEL_ITEM_COUNT = 13
 const WHEEL_ITEMS_IN_VIEW = 3
 
@@ -57,14 +58,17 @@ export const NumberPickerItem = ({ minValue, maxValue, loop = false, onChange })
         containScroll: "keepSnaps",
         watchSlides: false,
     })
-    const rootNodeRef = useRef(null)
     const [slideCount, slides, slideViews] = useMemo(() => {
         const carouselItemsCount = Math.max(1, 1 + (maxValue ?? 0) - (minValue ?? 0))
         const carouselItemValues = [...Array(carouselItemsCount).keys()].map((i) => minValue + i)
         const carouselItemViews = carouselItemValues.map((slideData) => (
             <li
-                className="size-full flex justify-center items-center transition-colors opacity-0 text-center text-4xl font-medium"
                 key={slideData}
+                className={twMerge(
+                    "h-full flex justify-center items-center px-12",
+                    "text-4xl text-center font-medium noselect",
+                    "text-[--theme_accent_color] opacity-0"
+                )}
                 style={{
                     backfaceVisibility: "hidden",
                 }}
@@ -85,7 +89,7 @@ export const NumberPickerItem = ({ minValue, maxValue, loop = false, onChange })
     const totalRadius = slideCount * WHEEL_ITEM_RADIUS
     const rotationOffset = loop ? 0 : WHEEL_ITEM_RADIUS
 
-    const inactivateEmblaTransform = useCallback((emblaApi) => {
+    const inactivateEmblaTransform = (emblaApi) => {
         if (!emblaApi) return
         const { translate, slideLooper } = emblaApi.internalEngine()
         translate.clear()
@@ -94,7 +98,7 @@ export const NumberPickerItem = ({ minValue, maxValue, loop = false, onChange })
             translate.clear()
             translate.toggleActive(false)
         })
-    }, [])
+    }
 
     const rotateWheel = useCallback(
         (emblaApi) => {
@@ -135,24 +139,22 @@ export const NumberPickerItem = ({ minValue, maxValue, loop = false, onChange })
     }, [emblaApi, inactivateEmblaTransform, rotateWheel, onChange])
 
     return (
-        <div className="h-full flex items-center justify-center gap-2 text-3xl leading-4 min-w-16 max-w-[50%]">
-            <div ref={rootNodeRef}>
-                <div
-                    ref={emblaRef}
-                    className={`w-full noselect h-8`}
+        <div className="size-full flex items-center justify-center">
+            <div
+                ref={emblaRef}
+                className={`w-full h-12`}
+                style={{
+                    perspective: "1000px",
+                }}
+            >
+                <ul
+                    className="size-full will-change-transform"
                     style={{
-                        perspective: "1000px",
+                        transformStyle: "preserve-3d",
                     }}
                 >
-                    <ul
-                        className="size-full will-change-transform"
-                        style={{
-                            transformStyle: "preserve-3d"
-                        }}
-                        >
-                        {slideViews}
-                    </ul>
-                </div>
+                    {slideViews}
+                </ul>
             </div>
         </div>
     )

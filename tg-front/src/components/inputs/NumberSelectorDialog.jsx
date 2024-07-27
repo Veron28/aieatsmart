@@ -17,10 +17,10 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
     }, [unitValue, subUnitValue, onValueSelected, onClose])
 
     return (
-        <dialog className="w-full" ref={ref}>
-            <PaperSection className="flex flex-col items-stretch">
-                <h1 className="font-bold text-4xl">{title}</h1>
-                <p className="text-[--theme_subtitle_text_color] mt-1 text-sm">{unitSectionText}</p>
+        <dialog ref={ref}>
+            <PaperSection className="grid justify-stretch gap-4 p-4 pt-6">
+                <h1 className="font-bold text-4xl text-center noselect">{title}</h1>
+                <p className="text-[--theme_subtitle_text_color] mt-1 text-sm text-center noselect">{unitSectionText}</p>
 
                 <span className="contents relative text-[--theme_text_color]">
                     <CarouselNumberPicker
@@ -40,7 +40,7 @@ const NumberSelectorDialog = forwardRef((props, ref) => {
                     />
                 </span>
 
-                <div className="w-full gap-2 grid grid-flow-col">
+                <div className="gap-2 grid grid-flow-col">
                     <SimpleButton text="Отмена" plain onClick={onClose} />
                     <SimpleButton text="ОК" onClick={onOKClick} />
                 </div>

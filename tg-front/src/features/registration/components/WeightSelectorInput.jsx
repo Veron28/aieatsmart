@@ -35,6 +35,8 @@ const WeightSelectorInput = () => {
         <>
             <NumberSelectorDialog
                 ref={dialogRef}
+                title="Выберите вес"
+                unitSectionText="килограммы"
                 unit={unit}
                 divider=","
                 subUnit={subUnit}
