@@ -34,7 +34,7 @@ const WelcomePage = () => {
             />
             <PageActionsBlock>
                 <div className="flex flex-col items-stretch gap-4">
-                    <span className="p-4 rounded-lg text-sm text-[--theme_text_hint_color] bg-[--theme_section_bg_color]">
+                    <span className="p-4 rounded-lg text-sm drop-shadow-lg text-[--theme_subtitle_text_color] bg-[--theme_section_bg_color]">
                         Пройдите короткую регистрацию <wbr />и расскажите о себе, <wbr />
                         чтобы бот работал максимально точно
                     </span>
