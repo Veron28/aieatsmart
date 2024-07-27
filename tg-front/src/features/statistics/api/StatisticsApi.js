@@ -1,4 +1,4 @@
-import { getUserData } from "@/features/authentication/api/AuthenticationApi"
+import { getUserData } from "@features/authentication/api/AuthenticationApi"
 
 export const getStatistics = getUserData
 

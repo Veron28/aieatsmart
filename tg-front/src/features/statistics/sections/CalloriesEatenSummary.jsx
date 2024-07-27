@@ -1,6 +1,6 @@
 import { RiScalesFill as ScalesIcon } from "@remixicon/react"
 
-import CellSummaryLayout from "../components/CellSummaryLayout"
+import CellSummaryLayout from "../widgets/CellSummaryLayout"
 
 const GrammsEatenSummary = ({ foodIntakeData }) => {
     const dataToDisplay = {

@@ -1,6 +1,6 @@
-import PaperSection from "@shared/components/PaperSection"
-import PCFBreakdown from "../components/PCFBreakdown"
-import PCFChart from "../components/PCFChart"
+import PaperSection from "@shared/ui/PaperSection"
+import PCFBreakdown from "../widgets/PCFBreakdown"
+import PCFChart from "../widgets/PCFChart"
 
 export default ({ pcfConsumptionData, style: styleProps }) => {
     return (

@@ -1,4 +1,4 @@
-import { callBackend } from "@/api/client"
+import { callBackend } from "@shared/api/client"
 
 export const isAuthenticatedFn = (userData) => userData?.is_stat ?? false
 

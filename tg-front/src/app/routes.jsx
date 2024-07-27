@@ -3,17 +3,17 @@ import { createBrowserRouter } from "react-router-dom"
 
 import App from "@app/App"
 
-const WelcomePage = lazy(() => import("@/features/registration/pages/WelcomePage"))
-const SignupPage = lazy(() => import("@/features/registration/pages/WizardPage"))
-const SignupCompletedPage = lazy(() => import("@/features/registration/pages/SignupCompletedPage"))
-const UserStatisticsPage = lazy(() => import("@/features/statistics/pages/StatisticsPage"))
+const WelcomePage = lazy(() => import("@features/registration/pages/WelcomePage"))
+const SignupPage = lazy(() => import("@features/registration/pages/WizardPage"))
+const SignupCompletedPage = lazy(() => import("@features/registration/pages/SignupCompletedPage"))
+const UserStatisticsPage = lazy(() => import("@features/statistics/pages/StatisticsPage"))
 
-import { rootLoader } from "@/features/authentication/data/UserDataLoaders"
+import { rootLoader } from "@features/authentication/data/UserDataLoaders"
 import {
     AuthenticationRedirector,
     AuthenticatedOnly,
     UnauthenticatedOnly,
-} from "@/features/authentication/components/AuthenticationLayouts"
+} from "@features/authentication/widgets/AuthenticationLayouts"
 
 const router = createBrowserRouter([
     {

@@ -1,10 +1,10 @@
 import { memo, useCallback, useContext } from "react"
 import { RiMentalHealthFill } from "@remixicon/react"
 
-import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"
+import { WizardSectionContext } from "@features/registration/widgets/WizardSectionContext"
 
-import { storeUserLifestyleData } from "@/features/registration/api/RegistrationApi"
-import GradualSliderSection from "@/features/registration/components/GradualSliderSection"
+import { storeUserLifestyleData } from "@features/registration/api/RegistrationApi"
+import GradualSliderSection from "@features/registration/widgets/GradualSliderSection"
 
 const LifestyleSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)

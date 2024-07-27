@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion"
 
 import { RiCake3Fill } from "@remixicon/react"
 
-import SmoothImg from "@shared/components/SmoothImg"
+import SmoothImg from "@shared/ui/SmoothImg"
 
 import MeatIcon from "@/assets/ingridients/meat.png"
 import FishIcon from "@/assets/ingridients/fish.png"
@@ -19,8 +19,8 @@ import NutsIcon from "@/assets/ingridients/nuts.png"
 
 import CrossOutIcon from "@/assets/crossout.svg"
 
-import { storeUserLimitations } from "@/features/registration/api/RegistrationApi"
-import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"
+import { storeUserLimitations } from "@features/registration/api/RegistrationApi"
+import { WizardSectionContext } from "@features/registration/widgets/WizardSectionContext"
 
 const limitationsList = [
     {

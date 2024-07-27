@@ -1,5 +1,5 @@
 import { memo } from "react"
-import PaperSection from "@shared/components/PaperSection"
+import PaperSection from "@shared/ui/PaperSection"
 
 const InputFieldLayout = ({ fieldIcon, fieldName, inputControl }) => {
     const iconIsUrl = typeof fieldIcon === "string" || fieldIcon instanceof String

@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom"
 
 import { RiArrowRightLine as ForwardIcon } from "@remixicon/react"
 
-import { getBotUrl } from "@/utils/ApplicationLinks"
-import { closeMiniApp, openTelegramLink } from "@/utils/TelegramUtils"
+import { getBotUrl } from "@shared/utils/ApplicationLinks"
+import { closeMiniApp, openTelegramLink } from "@shared/utils/TelegramUtils"
 
-import SectionHeading from "@shared/components/SectionHeading"
-import PageActionsBlock from "@shared/components/PageActionsBlock"
-import SimpleButton from "@shared/components/SimpleButton"
-import UltimateActionButton from "@shared/components/UltimateActionButton"
+import SectionHeading from "@shared/ui/SectionHeading"
+import PageActionsBlock from "@shared/ui/PageActionsBlock"
+import SimpleButton from "@shared/ui/SimpleButton"
+import UltimateActionButton from "@shared/ui/UltimateActionButton"
 
-import SignupCompletedSection from "@/features/registration/sections/SignupCompletedSection"
+import SignupCompletedSection from "@features/registration/sections/SignupCompletedSection"
 
 export default memo(() => {
     const navigate = useNavigate()

@@ -1,11 +1,11 @@
 import { useRouteLoaderData } from "react-router-dom"
 import { RiShareFill as ShareIcon } from "@remixicon/react"
 
-import SectionHeading from "@shared/components/SectionHeading"
-import UltimateActionButton from "@shared/components/UltimateActionButton"
-import PageActionsBlock from "@shared/components/PageActionsBlock"
+import SectionHeading from "@shared/ui/SectionHeading"
+import UltimateActionButton from "@shared/ui/UltimateActionButton"
+import PageActionsBlock from "@shared/ui/PageActionsBlock"
 
-import { closeMiniApp } from "@/utils/TelegramUtils"
+import { closeMiniApp } from "@shared/utils/TelegramUtils"
 
 import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 import FoodIntakeSummary from "../sections/FoodIntakeSummary"

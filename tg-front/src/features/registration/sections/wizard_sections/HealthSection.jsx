@@ -10,12 +10,12 @@ import {
     RiFlaskFill as AllergiesIcon,
 } from "@remixicon/react"
 
-import StyledIcon from "@shared/components/StyledIcon"
-import CheckboxSelectorInput from "@shared/components/inputs/CheckboxSelectorInput"
-import InputFieldLayout from "@shared/components/inputs/InputFieldLayout"
+import StyledIcon from "@shared/ui/StyledIcon"
+import CheckboxSelectorInput from "@shared/ui/inputs/CheckboxSelectorInput"
+import InputFieldLayout from "@shared/ui/inputs/InputFieldLayout"
 
-import { storeUserHealthInfo } from "@/features/registration/api/RegistrationApi"
-import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"
+import { storeUserHealthInfo } from "@features/registration/api/RegistrationApi"
+import { WizardSectionContext } from "@features/registration/widgets/WizardSectionContext"
 
 const healthItemsData = [
     {

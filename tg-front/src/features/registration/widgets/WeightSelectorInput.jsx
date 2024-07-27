@@ -1,6 +1,6 @@
 import { useCallback, useState, useRef, useContext } from "react"
 import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
-import NumberSelectorDialog from "@shared/components/inputs/NumberSelectorDialog"
+import NumberSelectorDialog from "@shared/ui/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 import { twMerge } from "tailwind-merge"
 

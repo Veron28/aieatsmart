@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react"
-import PaperSection from "@shared/components/PaperSection"
-import { GradualSliderInput } from "@shared/components/inputs/GradualSliderInput"
+import PaperSection from "@shared/ui/PaperSection"
+import { GradualSliderInput } from "@shared/ui/inputs/GradualSliderInput"
 import { twMerge } from "tailwind-merge"
 
 const GRADE_DESCRIPTIONS = ["Минимальный", "Небольшой", "Умеренный", "Больше среднего", "Максимальный"]

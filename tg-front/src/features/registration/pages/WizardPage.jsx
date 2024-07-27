@@ -7,15 +7,15 @@ import {
     RiCheckFill as CheckmarkIcon,
 } from "@remixicon/react"
 
-import { weAreInWebBrowser, useTelegramOnBackListener } from "@/utils/TelegramUtils"
+import { weAreInWebBrowser, useTelegramOnBackListener } from "@shared/utils/TelegramUtils"
 
-import SectionHeading from "@shared/components/SectionHeading"
-import UltimateActionButton from "@shared/components/UltimateActionButton"
-import PageActionsBlock from "@shared/components/PageActionsBlock"
-import StyledIcon from "@shared/components/StyledIcon"
+import SectionHeading from "@shared/ui/SectionHeading"
+import UltimateActionButton from "@shared/ui/UltimateActionButton"
+import PageActionsBlock from "@shared/ui/PageActionsBlock"
+import StyledIcon from "@shared/ui/StyledIcon"
 
-import PageIndicator from "../components/PageIndicator"
-import { WizardSectionContext } from "../components/WizardSectionContext"
+import PageIndicator from "../widgets/PageIndicator"
+import { WizardSectionContext } from "../widgets/WizardSectionContext"
 
 import WelcomeSection from "../sections/WelcomeSection"
 import SignupCompletedSection from "../sections/SignupCompletedSection"

@@ -1,14 +1,14 @@
 import { memo } from "react"
 import { RiEmpathizeFill } from "@remixicon/react"
 
-import { storeUserPhysiologyInfo } from "@/features/registration/api/RegistrationApi"
+import { storeUserPhysiologyInfo } from "@features/registration/api/RegistrationApi"
 
-import InputFieldLayout from "@shared/components/inputs/InputFieldLayout"
+import InputFieldLayout from "@shared/ui/inputs/InputFieldLayout"
 
-import WeightSelectorInput from "@/features/registration/components/WeightSelectorInput"
-import HeightSelectorInput from "@/features/registration/components/HeightSelectorInput"
-import GenderSelectorInput from "@/features/registration/components/GenderSelectorInput"
-import AgeSelectorInput from "@/features/registration/components/AgeSelectorInput"
+import WeightSelectorInput from "@features/registration/widgets/WeightSelectorInput"
+import HeightSelectorInput from "@features/registration/widgets/HeightSelectorInput"
+import GenderSelectorInput from "@features/registration/widgets/GenderSelectorInput"
+import AgeSelectorInput from "@features/registration/widgets/AgeSelectorInput"
 
 const BasicsSectionContents = memo(() => {
     return (

@@ -1,9 +1,9 @@
 import { useCallback, useContext, useRef, useState } from "react"
 import { RiArrowDownSFill as ArrowDownIcon, RiMenFill as MaleIcon, RiWomenFill as FemaleIcon } from "@remixicon/react"
 
-import RadioSelectorDialog from "@shared/components/inputs/RadioSelectorDialog"
+import RadioSelectorDialog from "@shared/ui/inputs/RadioSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
-import StyledIcon from "@shared/components/StyledIcon"
+import StyledIcon from "@shared/ui/StyledIcon"
 
 const values = [
     {

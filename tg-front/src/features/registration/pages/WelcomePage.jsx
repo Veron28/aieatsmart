@@ -2,14 +2,14 @@ import { useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 import { RiArrowRightLine as ForwardIcon } from "@remixicon/react"
 
-import { getBotUrl } from "@/utils/ApplicationLinks"
+import { getBotUrl } from "@shared/utils/ApplicationLinks"
 
-import SectionHeading from "@shared/components/SectionHeading"
-import PageActionsBlock from "@shared/components/PageActionsBlock"
-import UltimateActionButton from "@shared/components/UltimateActionButton"
+import SectionHeading from "@shared/ui/SectionHeading"
+import PageActionsBlock from "@shared/ui/PageActionsBlock"
+import UltimateActionButton from "@shared/ui/UltimateActionButton"
 
-import WelcomeSection from "@/features/registration/sections/WelcomeSection"
-import { startRegistration } from "@/features/registration/api/RegistrationApi"
+import WelcomeSection from "@features/registration/sections/WelcomeSection"
+import { startRegistration } from "@features/registration/api/RegistrationApi"
 
 const WelcomePage = () => {
     const navigate = useNavigate()

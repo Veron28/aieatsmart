@@ -1,4 +1,4 @@
-import PaperSection from "@shared/components/PaperSection"
+import PaperSection from "@shared/ui/PaperSection"
 
 export default ({ dataToDisplay }) => {
     const { icon, emphasis, remainingSummary, actionDescription } = dataToDisplay

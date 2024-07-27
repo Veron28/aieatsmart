@@ -1,6 +1,6 @@
 import { RiCakeFill as CakeIcon } from "@remixicon/react"
 
-import CellSummaryLayout from "../components/CellSummaryLayout"
+import CellSummaryLayout from "../widgets/CellSummaryLayout"
 
 export default ({ foodIntakeData }) => {
     const dataToDisplay = {

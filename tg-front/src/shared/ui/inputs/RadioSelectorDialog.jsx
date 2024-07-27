@@ -1,7 +1,7 @@
 import { forwardRef, useCallback, useState } from "react"
-import PaperSection from "@shared/components/PaperSection"
-import SimpleButton from "@shared/components/SimpleButton"
-import RadioButtonItems from "@shared/components/inputs/RadioButtonItems"
+import PaperSection from "@shared/ui/PaperSection"
+import SimpleButton from "@shared/ui/SimpleButton"
+import RadioButtonItems from "@shared/ui/inputs/RadioButtonItems"
 
 export default forwardRef((props, ref) => {
     const { title, subtitle, selectedOption, options, onValueSelected } = props

@@ -3,9 +3,9 @@ import { Await, Outlet, useRouteLoaderData } from "react-router-dom"
 import { LazyMotion, domMax } from "framer-motion"
 
 import "@app/styles/application.css"
-import { AuthenticationContext } from "@/features/authentication/components/AuthenticationLayouts"
-import { isAuthenticatedFn } from "@/features/authentication/api/AuthenticationApi"
-import LoadingFallback from "@shared/components/LoadingFallback"
+import { AuthenticationContext } from "@features/authentication/widgets/AuthenticationLayouts"
+import { isAuthenticatedFn } from "@features/authentication/api/AuthenticationApi"
+import LoadingFallback from "@shared/ui/LoadingFallback"
 
 export default function App() {
     const [authFlag, setAuthFlag] = useState(false)

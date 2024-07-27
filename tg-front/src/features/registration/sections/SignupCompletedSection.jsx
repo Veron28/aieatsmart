@@ -1,6 +1,6 @@
-import StyledIcon from "@shared/components/StyledIcon"
+import StyledIcon from "@shared/ui/StyledIcon"
 import { RiCheckFill as CheckmarkIcon } from "@remixicon/react"
-import CirclesOrbitsIcons from "@/features/registration/sections/CirclesOrbitsIcons"
+import CirclesOrbitsIcons from "@features/registration/sections/CirclesOrbitsIcons"
 
 const checkmarkAnimation = {
     animate: { scaleX: [0, 1] },

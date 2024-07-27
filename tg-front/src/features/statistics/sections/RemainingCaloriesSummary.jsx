@@ -1,5 +1,5 @@
 import { memo } from "react"
-import PaperSection from "@shared/components/PaperSection"
+import PaperSection from "@shared/ui/PaperSection"
 
 export default memo(({ caloriesConsumptionData, style: styleProps }) => {
     const { current, total } = caloriesConsumptionData
