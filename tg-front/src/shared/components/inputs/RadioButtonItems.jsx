@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react"
 
-import InputFieldLayout from "@/components/inputs/InputFieldLayout"
-import CheckboxSelectorInput from "@/components/inputs/CheckboxSelectorInput"
+import InputFieldLayout from "@shared/components/inputs/InputFieldLayout"
+import CheckboxSelectorInput from "@shared/components/inputs/CheckboxSelectorInput"
 
 const getRadioButton = (thisValue, currentSelection, updateSelection) => {
     const onChangeFn = useCallback(

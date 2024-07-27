@@ -1,4 +1,4 @@
-import StyledIcon from "@/components/StyledIcon"
+import StyledIcon from "@shared/components/StyledIcon"
 import { RiCheckFill as CheckmarkIcon } from "@remixicon/react"
 import CirclesOrbitsIcons from "@/features/registration/sections/CirclesOrbitsIcons"
 

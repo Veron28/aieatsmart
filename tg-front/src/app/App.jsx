@@ -2,10 +2,10 @@ import { Suspense, useEffect, useState } from "react"
 import { Await, Outlet, useRouteLoaderData } from "react-router-dom"
 import { LazyMotion, domMax } from "framer-motion"
 
-import "./styles/application.css"
+import "@app/styles/application.css"
 import { AuthenticationContext } from "@/features/authentication/components/AuthenticationLayouts"
 import { isAuthenticatedFn } from "@/features/authentication/api/AuthenticationApi"
-import LoadingFallback from "./components/LoadingFallback"
+import LoadingFallback from "@shared/components/LoadingFallback"
 
 export default function App() {
     const [authFlag, setAuthFlag] = useState(false)

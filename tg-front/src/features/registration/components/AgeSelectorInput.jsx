@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState, useRef } from "react"
 import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
-import NumberSelectorDialog from "@/components/inputs/NumberSelectorDialog"
+import NumberSelectorDialog from "@shared/components/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 
 const unit = {

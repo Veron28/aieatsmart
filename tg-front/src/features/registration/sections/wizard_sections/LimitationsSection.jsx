@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion"
 
 import { RiCake3Fill } from "@remixicon/react"
 
-import SmoothImg from "@/components/SmoothImg"
+import SmoothImg from "@shared/components/SmoothImg"
 
 import MeatIcon from "@/assets/ingridients/meat.png"
 import FishIcon from "@/assets/ingridients/fish.png"

@@ -3,7 +3,7 @@ import { RiEmpathizeFill } from "@remixicon/react"
 
 import { storeUserPhysiologyInfo } from "@/features/registration/api/RegistrationApi"
 
-import InputFieldLayout from "@/components/inputs/InputFieldLayout"
+import InputFieldLayout from "@shared/components/inputs/InputFieldLayout"
 
 import WeightSelectorInput from "@/features/registration/components/WeightSelectorInput"
 import HeightSelectorInput from "@/features/registration/components/HeightSelectorInput"

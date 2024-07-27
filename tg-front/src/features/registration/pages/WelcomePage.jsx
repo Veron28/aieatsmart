@@ -4,9 +4,9 @@ import { RiArrowRightLine as ForwardIcon } from "@remixicon/react"
 
 import { getBotUrl } from "@/utils/ApplicationLinks"
 
-import SectionHeading from "@/components/SectionHeading"
-import PageActionsBlock from "@/components/PageActionsBlock"
-import UltimateActionButton from "@/components/UltimateActionButton"
+import SectionHeading from "@shared/components/SectionHeading"
+import PageActionsBlock from "@shared/components/PageActionsBlock"
+import UltimateActionButton from "@shared/components/UltimateActionButton"
 
 import WelcomeSection from "@/features/registration/sections/WelcomeSection"
 import { startRegistration } from "@/features/registration/api/RegistrationApi"

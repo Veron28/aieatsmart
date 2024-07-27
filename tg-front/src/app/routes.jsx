@@ -1,7 +1,7 @@
 import { lazy } from "react"
 import { createBrowserRouter } from "react-router-dom"
 
-import App from "@/App"
+import App from "@app/App"
 
 const WelcomePage = lazy(() => import("@/features/registration/pages/WelcomePage"))
 const SignupPage = lazy(() => import("@/features/registration/pages/WizardPage"))

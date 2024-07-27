@@ -9,8 +9,8 @@ import {
     RiRunFill as SportResultsIcon,
 } from "@remixicon/react"
 
-import RadioButtonItems from "@/components/inputs/RadioButtonItems"
-import StyledIcon from "@/components/StyledIcon"
+import RadioButtonItems from "@shared/components/inputs/RadioButtonItems"
+import StyledIcon from "@shared/components/StyledIcon"
 
 import { storeUserGoals } from "@/features/registration/api/RegistrationApi"
 import { WizardSectionContext } from "@/features/registration/components/WizardSectionContext"

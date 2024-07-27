@@ -9,10 +9,10 @@ import {
 
 import { weAreInWebBrowser, useTelegramOnBackListener } from "@/utils/TelegramUtils"
 
-import SectionHeading from "@/components/SectionHeading"
-import UltimateActionButton from "@/components/UltimateActionButton"
-import PageActionsBlock from "@/components/PageActionsBlock"
-import StyledIcon from "@/components/StyledIcon"
+import SectionHeading from "@shared/components/SectionHeading"
+import UltimateActionButton from "@shared/components/UltimateActionButton"
+import PageActionsBlock from "@shared/components/PageActionsBlock"
+import StyledIcon from "@shared/components/StyledIcon"
 
 import PageIndicator from "../components/PageIndicator"
 import { WizardSectionContext } from "../components/WizardSectionContext"

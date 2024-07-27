@@ -1,4 +1,4 @@
-import PaperSection from "@/components/PaperSection"
+import PaperSection from "@shared/components/PaperSection"
 import PCFBreakdown from "../components/PCFBreakdown"
 import PCFChart from "../components/PCFChart"
 

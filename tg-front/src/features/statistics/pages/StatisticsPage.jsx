@@ -1,9 +1,9 @@
 import { useRouteLoaderData } from "react-router-dom"
 import { RiShareFill as ShareIcon } from "@remixicon/react"
 
-import SectionHeading from "@/components/SectionHeading"
-import UltimateActionButton from "@/components/UltimateActionButton"
-import PageActionsBlock from "@/components/PageActionsBlock"
+import SectionHeading from "@shared/components/SectionHeading"
+import UltimateActionButton from "@shared/components/UltimateActionButton"
+import PageActionsBlock from "@shared/components/PageActionsBlock"
 
 import { closeMiniApp } from "@/utils/TelegramUtils"
 

@@ -4,8 +4,8 @@ import { twMerge } from "tailwind-merge"
 
 import { RiCake3Fill, RiEmpathizeFill, RiHeart3Fill, RiHealthBookFill, RiCupFill, RiLeafFill } from "@remixicon/react"
 
-import StyledIcon from "@/components/StyledIcon"
-import { LayerStackLayout } from "@/components/LayerStackLayout"
+import StyledIcon from "@shared/components/StyledIcon"
+import { LayerStackLayout } from "@shared/components/LayerStackLayout"
 
 import { MotionGradientCircle } from "@/features/registration/components/GradientCircle"
 

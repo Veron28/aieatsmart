@@ -1,6 +1,6 @@
 import { forwardRef, useCallback, useState } from "react"
-import PaperSection from "@/components/PaperSection"
-import SimpleButton from "@/components/SimpleButton"
+import PaperSection from "@shared/components/PaperSection"
+import SimpleButton from "@shared/components/SimpleButton"
 
 import CarouselNumberPicker from "./CarouselNumberPicker"
 

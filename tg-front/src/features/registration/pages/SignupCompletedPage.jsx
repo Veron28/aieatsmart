@@ -6,10 +6,10 @@ import { RiArrowRightLine as ForwardIcon } from "@remixicon/react"
 import { getBotUrl } from "@/utils/ApplicationLinks"
 import { closeMiniApp, openTelegramLink } from "@/utils/TelegramUtils"
 
-import SectionHeading from "@/components/SectionHeading"
-import PageActionsBlock from "@/components/PageActionsBlock"
-import SimpleButton from "@/components/SimpleButton"
-import UltimateActionButton from "@/components/UltimateActionButton"
+import SectionHeading from "@shared/components/SectionHeading"
+import PageActionsBlock from "@shared/components/PageActionsBlock"
+import SimpleButton from "@shared/components/SimpleButton"
+import UltimateActionButton from "@shared/components/UltimateActionButton"
 
 import SignupCompletedSection from "@/features/registration/sections/SignupCompletedSection"
 
