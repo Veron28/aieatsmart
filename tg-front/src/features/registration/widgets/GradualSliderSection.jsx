@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from "react"
+import { twMerge } from "tailwind-merge"
 import PaperSection from "@shared/ui/PaperSection"
 import { GradualSliderInput } from "@shared/ui/inputs/GradualSliderInput"
-import { twMerge } from "tailwind-merge"
 
 const GRADE_DESCRIPTIONS = ["Минимальный", "Небольшой", "Умеренный", "Больше среднего", "Максимальный"]
 
@@ -45,11 +45,11 @@ export default ({ title, subtext, initialValue, onChange }) => {
         <PaperSection>
             <div className="flex flex-col gap-6 text-sm">
                 <div className="flex justify-between gap-4">
-                    <span style={{ fontWeight: 500, color: "var(--theme_text_color)" }}>{title}</span>
-                    <span style={{ color: "var(--theme_accent_color)" }}>{gradeClassifier(currentValue)}</span>
+                    <span className="text-[--theme_text_color] font-medium">{title}</span>
+                    <span className="text-[--theme_accent_color]">{gradeClassifier(currentValue)}</span>
                 </div>
                 <GradualSliderInput grades={5} onChange={valueChangeObserver} />
-                <p style={{ color: "var(--theme_subtitle_text_color)" }}>{subtitle}</p>
+                <p className="text-[--theme_subtitle_text_color]">{subtitle}</p>
             </div>
         </PaperSection>
     )

@@ -32,7 +32,7 @@ export default {
         sectionName: "basics",
         title: "Основное",
         subtitle: (
-            <span style={{ display: "contents" }}>
+            <span className="contents">
                 Чем больше мы о Вас знаем,
                 <wbr /> тем лучше мы сможем Вам помочь:
             </span>

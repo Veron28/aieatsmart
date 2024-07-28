@@ -11,12 +11,7 @@ const PCFBreakdownItem = ({ consumptionItem }) => {
             />
             <h3 className="font-medium">{consumptionItem.name}</h3>
             <span />
-            <p
-                className="text-sm"
-                style={{
-                    color: "var(--theme_subtitle_text_color)",
-                }}
-            >
+            <p className="text-sm text-[--theme_subtitle_text_color]">
                 {consumptionItem.gramms ? `${consumptionItem.gramms} гр` : "Нет данных"}
             </p>
         </>
@@ -30,11 +25,9 @@ const PCFBreakdown = ({ pcfConsumption }) => {
 
     return (
         <div
-            className="grid"
+            className="grid gap-x-2 gap-y-3"
             style={{
                 gridTemplateColumns: "auto 1fr",
-                rowGap: ".7em",
-                columnGap: ".4em",
             }}
         >
             {consumptionItemViews}

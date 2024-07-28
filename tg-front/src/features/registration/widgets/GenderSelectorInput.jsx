@@ -4,6 +4,7 @@ import { RiArrowDownSFill as ArrowDownIcon, RiMenFill as MaleIcon, RiWomenFill a
 import RadioSelectorDialog from "@shared/ui/inputs/RadioSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
 import StyledIcon from "@shared/ui/StyledIcon"
+import { twMerge } from "tailwind-merge"
 
 const values = [
     {
@@ -42,16 +43,10 @@ const GenderSelectorInput = () => {
             />
 
             <button
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: ".25em",
-                    border: "none",
-                    backgroundColor: "transparent",
-                    fontSize: ".875em",
-                    cursor: "pointer",
-                    color: selectedGender ? "var(--theme_link_color)" : "var(--theme_text_hint_color)",
-                }}
+                className={twMerge(
+                    "flex items-center gap-1 border-none bg-transparent text-sm cursor-pointer",
+                    selectedGender ? "text-[--theme_link_color]" : "text-[--theme_text_hint_color]"
+                )}
                 onClick={openDialogFn}
             >
                 {selectedGender ? selectedGender : "Выберите Ваш пол"} <ArrowDownIcon />

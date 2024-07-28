@@ -79,7 +79,7 @@ export default {
         sectionName: "goals",
         title: "Цели",
         subtitle: (
-            <span style={{ display: "contents" }}>
+            <span className="contents">
                 Выберите одну цель,
                 <wbr /> которая больше Вам подходит:
             </span>

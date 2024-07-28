@@ -18,21 +18,9 @@ export default forwardRef((props, ref) => {
         <dialog ref={ref} className="w-full">
             <PaperSection className="flex flex-col items-center">
                 <h1 className="text-4xl font-bold">{title}</h1>
-                <span
-                    className="text-sm mt-1 mb-4"
-                    style={{
-                        color: "var(--theme_subtitle_text_color)",
-                    }}
-                >
-                    {subtitle}
-                </span>
+                <span className="text-[--theme_subtitle_text_color] text-sm mt-1 mb-4">{subtitle}</span>
 
-                <span
-                    className="w-full grid gap-1"
-                    style={{
-                        color: "var(--theme_text_color)",
-                    }}
-                >
+                <span className="w-full grid gap-1 text-[--theme_text_color]">
                     <RadioButtonItems options={options} onSelectionChange={setSelectedGender} />
                 </span>
 

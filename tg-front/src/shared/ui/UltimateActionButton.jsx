@@ -20,10 +20,10 @@ export default memo(({ text, progress, validationErrorMessage, icon, onClick }) 
             ) : (
                 <span className="flex items-stretch">
                     <span
-                        className="bg-[--theme_button_color] transition-[width]"
-                        style={{
-                            width: `${completePercentage}%`,
-                        }}
+                        className={twMerge(
+                            "bg-[--theme_button_color] transition-[width]",
+                            `w-[${completePercentage}%]`
+                        )}
                     />
                     <span className="grow transition-[width] bg-[--theme_accent_progress_color]" />
                 </span>

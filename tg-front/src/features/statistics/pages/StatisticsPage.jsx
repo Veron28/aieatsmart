@@ -9,7 +9,7 @@ import { closeMiniApp } from "@shared/utils/TelegramUtils"
 
 import PCFConsumptionSummary from "../sections/PCFConsumptionSummary"
 import FoodIntakeSummary from "../sections/FoodIntakeSummary"
-import CaloriesEatenSummary from "../sections/CalloriesEatenSummary"
+import CaloriesEatenSummary from "../sections/CaloriesEatenSummary"
 import RemainingCaloriesSummary from "../sections/RemainingCaloriesSummary"
 import { shareStatistics } from "../api/StatisticsApi"
 
@@ -58,19 +58,11 @@ const StatisticsPage = () => {
     return userInformation ? (
         <section className="page flex flex-col items-stretch gap-3.5">
             <SectionHeading title="Статистика" subtitle="За сегодня" />
-            <div className="grid gap-2 grid-cols-2">
-                <PCFConsumptionSummary
-                    style={{
-                        gridColumnStart: "span 2",
-                    }}
-                    pcfConsumptionData={pcfConsumptionData}
-                />
+            <div className="grid gap-2 grid-cols-2 col-start-2">
+                <PCFConsumptionSummary className="col-span-2" pcfConsumptionData={pcfConsumptionData} />
                 <FoodIntakeSummary foodIntakeData={foodIntakeData} />
                 <CaloriesEatenSummary foodIntakeData={caloriesConsumptionData} />
-                <RemainingCaloriesSummary
-                    style={{
-                        gridColumnStart: "span 2",
-                    }}
+                <RemainingCaloriesSummary className="col-span-2"
                     caloriesConsumptionData={caloriesConsumptionData}
                 />
             </div>

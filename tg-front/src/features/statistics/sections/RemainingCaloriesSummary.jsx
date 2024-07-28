@@ -1,7 +1,8 @@
 import { memo } from "react"
 import PaperSection from "@shared/ui/PaperSection"
+import { twMerge } from "tailwind-merge"
 
-export default memo(({ caloriesConsumptionData, style: styleProps }) => {
+export default memo(({ caloriesConsumptionData, className }) => {
     const { current, total } = caloriesConsumptionData
     let remaining = total - current
     if (isNaN(remaining)) {
@@ -12,27 +13,9 @@ export default memo(({ caloriesConsumptionData, style: styleProps }) => {
     const remainingAngles = Math.trunc(remaining / oneAngle)
 
     return (
-        <PaperSection
-            className="w-full flex items-center justify-between"
-            style={{
-                ...styleProps,
-            }}
-        >
-            <div
-                className="flex flex-col items-start"
-                style={{
-                    gap: ".7em",
-                    color: "var(--theme_subtitle_text_color)",
-                }}
-            >
-                <p
-                    className="font-medium"
-                    style={{
-                        color: "var(--theme_text_color)",
-                    }}
-                >
-                    {remaining}
-                </p>
+        <PaperSection className={twMerge("w-full flex items-center justify-between", className)}>
+            <div className="flex flex-col items-start gap-3 text-[--theme_subtitle_text_color]">
+                <p className="font-medium text-[--theme_text_color]">{remaining}</p>
                 <p>Осталось</p>
             </div>
 

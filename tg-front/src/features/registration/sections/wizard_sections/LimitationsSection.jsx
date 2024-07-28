@@ -179,7 +179,7 @@ export default {
         sectionName: "limitations",
         title: "Исключаемые продукты",
         subtitle: (
-            <span style={{ display: "contents" }}>
+            <span className="contents">
                 Выберите категории продуктов,
                 <wbr /> которые Вы не едите:
             </span>

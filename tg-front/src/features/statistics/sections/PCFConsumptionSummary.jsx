@@ -1,15 +1,11 @@
 import PaperSection from "@shared/ui/PaperSection"
 import PCFBreakdown from "../widgets/PCFBreakdown"
 import PCFChart from "../widgets/PCFChart"
+import { twMerge } from "tailwind-merge"
 
-export default ({ pcfConsumptionData, style: styleProps }) => {
+export default ({ pcfConsumptionData, className }) => {
     return (
-        <PaperSection
-            className="flex gap-5"
-            style={{
-                ...styleProps,
-            }}
-        >
+        <PaperSection className={twMerge("flex gap-5", className)}>
             <PCFChart pcfConsumption={pcfConsumptionData} />
             <PCFBreakdown pcfConsumption={pcfConsumptionData} />
         </PaperSection>

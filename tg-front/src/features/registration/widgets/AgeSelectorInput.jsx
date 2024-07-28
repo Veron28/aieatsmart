@@ -2,6 +2,7 @@ import { useCallback, useContext, useState, useRef } from "react"
 import { RiArrowDownSFill as ArrowDownIcon } from "@remixicon/react"
 import NumberSelectorDialog from "@shared/ui/inputs/NumberSelectorDialog"
 import { WizardSectionContext } from "./WizardSectionContext"
+import { twMerge } from "tailwind-merge"
 
 const unit = {
     name: "год",
@@ -35,11 +36,11 @@ const AgeSelectorInput = () => {
                 unit={unit}
                 onValueSelected={onValueSelected}
             />
-            <button className="flex items-center gap-1 border-none bg-transparent cursor-pointer"
-                style={{
-                    fontSize: ".875em",
-                    color: selectedAge ? "var(--theme_link_color)" : "var(--theme_text_hint_color)",
-                }}
+            <button
+                className={twMerge(
+                    "flex items-center gap-1 border-none bg-transparent cursor-pointer text-sm",
+                    selectedAge ? "text-[--theme_link_color]" : "text-[--theme_text_hint_color]"
+                )}
                 onClick={openDialogFn}
             >
                 {selectedAge ? `${selectedAge} лет` : "Выберите возраст"} <ArrowDownIcon />
