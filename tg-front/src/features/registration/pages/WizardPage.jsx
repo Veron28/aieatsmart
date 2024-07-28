@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react"
+import { useMemo, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { AnimatePresence, LayoutGroup, m as motion } from "framer-motion"
 import {
@@ -135,11 +135,10 @@ export default () => {
     const goToPreviousSection = () => proceed(-1) // left
     useTelegramOnBackListener(goToPreviousSection)
 
-    const exitAction = () => navigate("/signup/completed")
     const goToNextSection = () => {
         const { canProceed: canProceedFn, saveState: stateSaveHandler } = currentSectionData.dataHandlers
 
-        const newValidationMessage = null // canProceedFn ? canProceedFn(currentSectionState) : null
+        const newValidationMessage = canProceedFn ? canProceedFn(currentSectionState) : null
         setValidationMessage(newValidationMessage)
         if (newValidationMessage) {
             return
@@ -151,9 +150,9 @@ export default () => {
             [currentStageName]: currentSectionState,
         })
 
-        if (currentStageIndex == WIZARD_SECTIONS.length) {
+        if (currentStageIndex === WIZARD_SECTIONS.length - 1) {
             // This was the last section of wizard.
-            exitAction()
+            navigate("/signup/completed")
         } else {
             proceed(+1) // right
         }
@@ -193,7 +192,10 @@ export default () => {
                                     duration: ANIMATION_DURATION,
                                 }}
                             >
-                                <StyledIcon key={currentStageIndex} iconShape={currentSectionMetaContents.sectionIcon} />
+                                <StyledIcon
+                                    key={currentStageIndex}
+                                    iconShape={currentSectionMetaContents.sectionIcon}
+                                />
                             </motion.div>
                         </AnimatePresence>
                     </span>
