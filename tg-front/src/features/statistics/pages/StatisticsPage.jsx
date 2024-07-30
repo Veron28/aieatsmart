@@ -1,6 +1,8 @@
 import { useRouteLoaderData } from "react-router-dom"
 import { RiShareFill as ShareIcon } from "@remixicon/react"
 
+import { m as motion } from "framer-motion"
+
 import SectionHeading from "@shared/ui/SectionHeading"
 import UltimateActionButton from "@shared/ui/UltimateActionButton"
 import PageActionsBlock from "@shared/ui/PageActionsBlock"
@@ -41,6 +43,17 @@ const getPCFConsumptionData = ({ squirrels, fats, carbohydrates }) => [
     },
 ]
 
+const sectionAppearAnimation = {
+    initial: { y: 100, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+}
+
+const transitionCommon = {
+    type: "linear",
+    ease: "easeOut",
+    duration: .3,
+}
+
 const StatisticsPage = () => {
     const loaderData = useRouteLoaderData("root")
 
@@ -59,12 +72,31 @@ const StatisticsPage = () => {
         <section className="page flex flex-col items-stretch gap-3.5">
             <SectionHeading title="Статистика" subtitle="За сегодня" />
             <div className="grid gap-2 grid-cols-2 col-start-2">
-                <PCFConsumptionSummary className="col-span-2" pcfConsumptionData={pcfConsumptionData} />
-                <FoodIntakeSummary foodIntakeData={foodIntakeData} />
-                <CaloriesEatenSummary foodIntakeData={caloriesConsumptionData} />
-                <RemainingCaloriesSummary className="col-span-2"
-                    caloriesConsumptionData={caloriesConsumptionData}
-                />
+                <motion.div
+                    className="col-span-2"
+                    {...sectionAppearAnimation}
+                    transition={{...transitionCommon}}
+                >
+                    <PCFConsumptionSummary pcfConsumptionData={pcfConsumptionData} />
+                </motion.div>
+                <motion.div
+                    className="col-span-2 grid grid-flow-col gap-2"
+                    {...sectionAppearAnimation}
+                    transition={{...transitionCommon, delay: 0.1 }}
+                >
+                    <FoodIntakeSummary foodIntakeData={foodIntakeData} />
+                    <CaloriesEatenSummary foodIntakeData={caloriesConsumptionData} />
+                </motion.div>
+                <motion.div
+                    className="col-span-2"
+                    {...sectionAppearAnimation}
+                    transition={{...transitionCommon, delay: 0.2 }}
+                >
+                    <RemainingCaloriesSummary
+                        className="col-span-2"
+                        caloriesConsumptionData={caloriesConsumptionData}
+                    />
+                </motion.div>
             </div>
             <PageActionsBlock>
                 <UltimateActionButton text="Поделиться" icon={<ShareIcon />} onClick={onShareClick} />
