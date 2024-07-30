@@ -135,6 +135,7 @@ const getLimitationCard = (limitation) => {
 
 const LimitationsSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
+    const [extraText, setExtraText] = useState(sectionData.extra)
     if (!sectionData.base) {
         sectionData.base = []
     }
@@ -143,8 +144,9 @@ const LimitationsSectionContents = memo(() => {
         (event) => {
             event?.preventDefault?.()
             sectionData.extra = event?.target?.value ?? undefined
+            setExtraText(sectionData.extra)
         },
-        [sectionData]
+        [sectionData, setExtraText]
     )
 
     return (
@@ -164,6 +166,7 @@ const LimitationsSectionContents = memo(() => {
                 autocomplete="off"
                 autocapitalize="sentences"
                 maxLength={2500}
+                value={extraText}
                 onChange={updateExtraLimitationsInformation}
                 style={{
                     resize: "none",

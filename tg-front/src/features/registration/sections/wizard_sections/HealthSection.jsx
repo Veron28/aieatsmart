@@ -1,4 +1,4 @@
-import { memo, useCallback, useContext } from "react"
+import { memo, useCallback, useContext, useState } from "react"
 
 import {
     RiHealthBookFill,
@@ -62,10 +62,14 @@ const getCheckbox = (valueName, sectionData) => {
 
 const HealthSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
+    const [extraText, setExtraText] = useState(sectionData.extra)
     const updateExtraHealthDescription = useCallback((event) => {
         event?.preventDefault?.()
         sectionData.extra = event?.target?.value ?? undefined
-    }, [sectionData])
+        console.log("Health section triggered with: ", sectionData.extra)
+        console.log("Section data is: ", sectionData)
+        setExtraText(sectionData.extra)
+    }, [sectionData, setExtraText])
 
     if (!sectionData.base) {
         sectionData.base = []
@@ -89,6 +93,7 @@ const HealthSectionContents = memo(() => {
                 autocomplete="off"
                 autocapitalize="sentences"
                 maxLength={2500}
+                value={extraText}
                 onChange={updateExtraHealthDescription}
                 style={{
                     resize: "none",

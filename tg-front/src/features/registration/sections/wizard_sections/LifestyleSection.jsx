@@ -1,4 +1,4 @@
-import { memo, useCallback, useContext } from "react"
+import { memo, useCallback, useContext, useState } from "react"
 import { RiMentalHealthFill } from "@remixicon/react"
 
 import { WizardSectionContext } from "@features/registration/widgets/WizardSectionContext"
@@ -8,6 +8,7 @@ import GradualSliderSection from "@features/registration/widgets/GradualSliderSe
 
 const LifestyleSectionContents = memo(() => {
     const sectionData = useContext(WizardSectionContext)
+    const [extraText, setExtraText] = useState(sectionData.extra)
     const onActivityLevelChangeFn = (newValue) => {
         sectionData.activity_level = newValue
     }
@@ -20,8 +21,11 @@ const LifestyleSectionContents = memo(() => {
         (event) => {
             event?.preventDefault?.()
             sectionData.extra = event?.target?.value ?? undefined
+            console.log("Lifestyle section triggered with: ", sectionData.extra)
+            console.log("Section data is: ", sectionData)
+            setExtraText(sectionData.extra)
         },
-        [sectionData]
+        [sectionData, setExtraText]
     )
 
     return (
@@ -29,11 +33,13 @@ const LifestyleSectionContents = memo(() => {
             <GradualSliderSection
                 title="Уровень активности"
                 subtext={"Выберите свой обычный уровень активности, где "}
+                initialValue={sectionData.activity_level}
                 onChange={onActivityLevelChangeFn}
             />
             <GradualSliderSection
                 title="Уровень стресса"
                 subtext={"Выберите свой обычный уровень стресса, где"}
+                initialValue={sectionData.stress_level}
                 onChange={onStressLevelChangeFn}
             />
             <textarea
@@ -41,6 +47,7 @@ const LifestyleSectionContents = memo(() => {
                 placeholder="Например: хожу в тренажерный зал, 3 тренировки в неделю, тренировка длится час, во время тренировки бегаю на дорожке.&#10;&#10;Если физической активности нет, оставьте поле пустым."
                 autocomplete="off"
                 autocapitalize="sentences"
+                value={extraText}
                 maxLength={2500}
                 onChange={updateExtraLifestyleInformation}
                 style={{

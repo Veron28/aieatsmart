@@ -34,11 +34,14 @@ const sublevelTextPattern = (sublevelText, currentValue) => (
 
 export default ({ title, subtext, initialValue, onChange }) => {
     const [currentValue, setCurrentValue] = useState(initialValue ?? 1)
-    const valueChangeObserver = useCallback((newValue) => {
-        const postProcessedValue = Math.floor(newValue)
-        setCurrentValue(postProcessedValue)
-        onChange(postProcessedValue)
-    }, [setCurrentValue, onChange])
+    const valueChangeObserver = useCallback(
+        (newValue) => {
+            const postProcessedValue = Math.floor(newValue)
+            setCurrentValue(postProcessedValue)
+            onChange(postProcessedValue)
+        },
+        [setCurrentValue, onChange]
+    )
     const subtitle = useMemo(() => sublevelTextPattern(subtext, currentValue), [subtext, currentValue])
 
     return (
@@ -48,7 +51,7 @@ export default ({ title, subtext, initialValue, onChange }) => {
                     <span className="text-[--theme_text_color] font-medium">{title}</span>
                     <span className="text-[--theme_accent_color]">{gradeClassifier(currentValue)}</span>
                 </div>
-                <GradualSliderInput grades={5} onChange={valueChangeObserver} />
+                <GradualSliderInput grades={5} initialValue={currentValue} onChange={valueChangeObserver} />
                 <p className="text-[--theme_subtitle_text_color]">{subtitle}</p>
             </div>
         </PaperSection>
